@@ -1,0 +1,30 @@
+{
+  "name": "expomar.com",
+  "version": "0.0.0",
+  "description": "Applicación web para a fundación expomar.",
+  "main": "backend/server.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "DEBUG=iai:* node -e \"require('iai').boot()\""
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^0.7.4",
+    "swig": "^1.3.2",
+    "express": "^4.1.1",
+    "less-middleware": "^0.2.1-beta",
+    "less": "^1.7.0",
+    "sqlite3": "^2.2.3",
+    "morgan": "^1.0.0",
+    "static-favicon": "^1.0.2",
+    "basic-auth": "0.0.1",
+    "marked": "^0.3.2"
+  },
+  "devDependencies": {
+    "marked": "^0.3.2"
+  }
+}

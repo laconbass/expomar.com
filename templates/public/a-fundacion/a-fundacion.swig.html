@@ -1,0 +1,15 @@
+{%- import "../../tags.swig" as tag -%}
+
+<nav>
+    {{ tag.a( "/a-fundacion/obxectivos", t('Obxectivos'), 2 ) }}
+    {{ tag.a( "/a-fundacion/historia", t('Historia'), 2 ) }}
+    {{ tag.a( "/a-fundacion/estrutura", t('Estrutura'), 2 ) }}
+</nav>
+
+{% if html %}
+    <article>{{ html|safe }}</article>
+{% else %}
+    <article>
+        <p>Lorem ipsum bla bla bla</p>
+    </article>
+{% endif %}

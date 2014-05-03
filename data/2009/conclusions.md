@@ -1,0 +1,33 @@
+En Burela, a 24 de Maio de 2009, reunidas as asociacións pesqueiras no marco do X Encontro Empresarial de Organizacións Pesqueiras celebrado co amparo da FUNDACIÓN EXPOMAR paralelamente á celebración da XIII FEIRA EXPOMAR 2009, desexan manifestar o seguinte:
+
+En relación coa Comercialización do Peixe Fresco en España, hai que recoñecer a existencia un problema grave con esta. Asistimos á presenza de gran cantidade de peixe nos nosos mercados, xerado por unha parte pola propia produción nacional, a comunitaria e as importacións. E non só da mesma especie, senón que existe unha gran cantidade de produtos pesqueiros substitutivos incluíndo os provenientes da acuicultura. Agrávase a situación pola crise económica que provocou unha retracción da demanda de peixe. E aínda que ao nivel de consumo de peixe se mantén, variaron os hábitos de compra e tamén o tipo de produto que se consume. Para afrontar estes problemas que nos están levando a uns prezos que non se poden asumir e que fan insostible a actividade pesqueira, non hai unha solución unívoca.
+
+Trátase polo tanto de buscar solucións para a comercialización dos produtos pesqueiros, porque non todos necesitan o mesmo tipo de comercialización; de pedir apoio á Administración para formar e informar ao consumidor na diferenciación do produto pesqueiro que entra en España polos portos pesqueiros, sobre a base das vantaxes económicas e sociais da súa forma de extracción, así como para promover o consumo do peixe.
+
+Finalmente cremos que se deberían modificar as normativas que diferencian o tratamento do produto pesqueiro fresco que entra en España polos portos, do que entra por outras vías, de forma que todo o produto pesqueiro fresco deba ter un control físico á súa entrada en España, sexa pola vía que sexa (portuaria ou aeroportuaria). E incidir finalmente no control dos produtos pesqueiros expostos para a compra polo consumidor final, co fin de garantir o cumprimento de todas as normativas vixentes, ao igual que se fai nas lonxas do sector extractivo.
+
+Despois de tratar tamén a cuestión do Relevo Xeracional no Sector Pesqueiro, chegamos á conclusión de reiterar que esta problemática veu sendo tratada durante varios encontros, e neste sentido queremos retomar as conclusións alcanzadas no Encontro Empresarial celebrado en 2007, posto que, desgraciadamente, seguen vixentes e mesmo agravadas, ao non ter obtido ningún tipo de solución a estas:
+
+"En relación coa cuestión da problemática das tripulacións tratada na Xornada Técnica do día 17 de Maio, todos os reunidos concluíron:
+
+Primeiro. - Existe para toda a flota española, de calquera sector ou pesqueira, dende a Baixura ata a Grande Altura, así como a Flota Espadeira e a de Gran Sol, unha manifesta falta de tripulacións, en particular de titulados que permitan garantir a continuación en poucos anos da actividade pesqueira como a coñecemos.
+
+Segunda. - Asistimos ademais a unha diferenza de trato no que se refire a esixencias de cadros mínimos de tripulación entre os distintos Estados Membros da Unión Europea, o que xera que exista unha competencia desleal prexudicial para os nosos buques, que teñen que vender a súa pesca nos mesmos mercados que outras flotas con esixencias menores.
+
+Terceira. - Encontrámonos ademais cunha estraña falta de homologación dos títulos profesionais a nivel comunitario, tanto os doutros Estados Membros en España coma os españois no resto da Unión Europea, o que nos parece incomprensible dende o punto de vista da Libre Circulación de Persoas, incluíndo traballadores, base fundamental da política comunitaria.
+
+Cuarta. - Os nosos armadores levan realizando, e continuarano facendo, investimentos constantes en seguridade e automatización, que propiciaron un incremento real e importante dos niveis de seguridade nos buques, moi superiores aos existentes fai non xa 40 anos (data da Orde reguladora dos Cadros Mínimos de Tripulación), senón mesmo a 20 anos atrás (1.986, data da entrada de España na Unión Europea).
+
+Quinta. - A falta de tripulantes á que faciamos referencia anteriormente coincide ademais cunha escaseza de presenza de estudantes nas distintas Escolas Náutico-Pesqueiras ou nos Centros de Ensino que imparten os Ciclos de Grao Medio e Superior que permiten obter a titulación que necesitan os nosos buques.
+
+Sexta. - Existe unha imposibilidade na actualidade de que se poida facer "carreira profesional" a bordo dos buques pesqueiros, como non hai moito tempo, onde se tiña en conta a vocación pesqueira dos tripulantes, a súa experiencia e se facilitaba a adquisición dun título profesional que lle permitise alcanzar o máximo cargo nun buque, despois de comezar como mariñeiro.
+
+Todas estas realidades poñen de manifesto as graves dificultades que neste momento está a pasar a flota pesqueira que as nosas organizacións representan, e para palialos do mellor modo posible queremos realizar as seguintes PROPOSTAS:
+
+1.- Conseguir unha harmonización das esixencias dos Cadros Mínimos de Tripulación a nivel comunitario, que permitirá, tras analizar as situacións e necesidades, eliminar as desigualdades na competencia e que todos os cidadáns comunitarios, neste caso, armadores e pescadores comunitarios, teñan igual trato ante situacións iguais, variando a asimilación porto base/seguridade do buque como criterio básico.
+
+2.- Obter por fin unha homologación completa a nivel comunitario dos títulos profesionais, que permitan unha real libre circulación de traballadores no ámbito da Unión Europea, tanto dos españois no resto de Estados Membros, como dos nacionais doutros Estados Membros en España.
+
+3.- Intervención para conseguir o recoñecemento da experiencia que permita obter unha cualificación profesional e unha real carreira profesional a bordo dos buques pesqueiros, facendo fincapé precisamente na experiencia como medio de obtención da capacidade para ocupar cargos superiores, e podendo desta forma chegar a estar lexitimado para mandar un buque ou a súa máquina".
+
+Queremos facer constar que ademais se está a producir unha competencia que podiamos definir como desleal polas propias embarcacións titularidade da Administración, que grazas ás súas especiais condicións que ofertan os traballadores, en moitos casos derivadas da súa pertenza a un segundo rexistro, se levan consigo a traballadores da pesca. Moito temémonos que se non se poñen en práctica as solucións propostas, poderemos volver repetir as nosas peticións dentro de dous anos, porque moitos terán tido que abandonar o mar.

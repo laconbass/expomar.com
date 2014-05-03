@@ -1,0 +1,18 @@
+{%- import "../../tags.swig" as tag -%}
+
+<nav>
+    {{ tag.a( "/xornadas-tecnicas", t('Presentación'), 1 ) }}
+    {{ tag.a( "/xornadas-tecnicas/programa", t('Programa'), 2 ) }}
+    {{ tag.a( "/xornadas-tecnicas/comite", t('Comité Executivo'), 2 ) }}
+    {{ tag.a( "/xornadas-tecnicas/ponencias", t('Ponencias'), 2 ) }}
+    {{ tag.a( "/xornadas-tecnicas/historico", t('Histórico'), 2 ) }}
+    {{ tag.a( "/xornadas-tecnicas/galeria", t('Galería de fotos'), 2 ) }}
+</nav>
+
+{% if html %}
+    <article>{{ html|safe }}</article>
+{% else %}
+    <article>
+        <p>Lorem ipsum bla bla bla</p>
+    </article>
+{% endif %}

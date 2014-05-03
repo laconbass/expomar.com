@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<project name="expomar.com" company="" manager="" phase="Posta en marcha" project-start="20140215T000000Z" mrproject-version="2" calendar="2">
+  <properties/>
+  <phases>
+    <phase name="Posta en marcha"/>
+    <phase name="Desenvolvemento"/>
+    <phase name="Mantemento e soporte"/>
+  </phases>
+  <calendars>
+    <day-types>
+      <day-type id="0" name="Jornada laboral" description="Un d&#xED;a de trabajo predeterminado"/>
+      <day-type id="1" name="Jornada de descanso" description="Un d&#xED;a de descanso predeterminado"/>
+      <day-type id="2" name="Usar base" description="Usar d&#xED;a del calendario base"/>
+    </day-types>
+    <calendar id="1" name="Unha hora ao mes">
+      <default-week mon="1" tue="1" wed="1" thu="1" fri="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="1500" end="1600"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days>
+        <day date="20140820" type="day-type" id="0"/>
+        <day date="20140620" type="day-type" id="0"/>
+        <day date="20140720" type="day-type" id="0"/>
+        <day date="20140420" type="day-type" id="0"/>
+        <day date="20140520" type="day-type" id="0"/>
+        <day date="20140320" type="day-type" id="0"/>
+        <day date="20140220" type="day-type" id="0"/>
+      </days>
+    </calendar>
+    <calendar id="2" name="Predeterminado">
+      <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
+      <overridden-day-types>
+        <overridden-day-type id="0">
+          <interval start="0900" end="1400"/>
+          <interval start="1500" end="1800"/>
+        </overridden-day-type>
+      </overridden-day-types>
+      <days/>
+      <calendar id="3" name="24x7x365">
+        <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="0" sun="0"/>
+        <overridden-day-types>
+          <overridden-day-type id="0">
+            <interval start="0000" end="2359"/>
+          </overridden-day-type>
+        </overridden-day-types>
+        <days/>
+      </calendar>
+      <calendar id="4" name="Horario 8x5">
+        <default-week mon="2" tue="2" wed="2" thu="2" fri="2" sat="2" sun="2"/>
+        <overridden-day-types/>
+        <days/>
+      </calendar>
+    </calendar>
+  </calendars>
+  <tasks>
+    <task id="1" name="Pago inicial" note="" work="0" start="20140215T000000Z" end="20140215T000000Z" work-start="20140217T090000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work"/>
+    <task id="2" name="Desenvolvemento" note="" work="1152000" duration="1152000" start="20140215T000000Z" end="20140411T180000Z" work-start="20140217T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+      <predecessors>
+        <predecessor id="1" predecessor-id="1" type="FS"/>
+      </predecessors>
+      <task id="3" name="Mes 1" note="" work="576000" duration="576000" start="20140215T000000Z" end="20140314T180000Z" work-start="20140217T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration"/>
+      <task id="4" name="Mes 2" note="" work="576000" duration="576000" start="20140314T180000Z" end="20140411T180000Z" work-start="20140317T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="3" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+    <task id="5" name="Pago desenvolvemento" note="" work="0" start="20140415T000000Z" end="20140415T000000Z" work-start="20140415T090000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20140415T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="2" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="6" name="Primeira publicaci&#xF3;n" note="" work="0" start="20140415T000000Z" end="20140415T000000Z" work-start="20140415T090000Z" percent-complete="0" priority="0" type="milestone" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="5" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="7" name="Mantemento" note="&#10;" work="360000" duration="5760000" start="20140415T000000Z" end="20150119T180000Z" work-start="20140415T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+      <predecessors>
+        <predecessor id="1" predecessor-id="6" type="FS"/>
+      </predecessors>
+      <task id="8" name="Mes 1" note="" work="36000" duration="576000" start="20140415T000000Z" end="20140512T180000Z" work-start="20140415T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration"/>
+      <task id="9" name="Mes 2" note="" work="36000" duration="576000" start="20140512T180000Z" end="20140609T180000Z" work-start="20140513T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="8" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="10" name="Mes 3" note="" work="36000" duration="576000" start="20140609T180000Z" end="20140707T180000Z" work-start="20140610T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="9" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="11" name="Mes 4" note="" work="36000" duration="576000" start="20140707T180000Z" end="20140804T180000Z" work-start="20140708T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="10" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="12" name="Mes 5" note="" work="36000" duration="576000" start="20140804T180000Z" end="20140901T180000Z" work-start="20140805T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="11" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="13" name="Mes 6" note="" work="36000" duration="576000" start="20140901T180000Z" end="20140929T180000Z" work-start="20140902T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="12" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="14" name="Mes 7" note="" work="36000" duration="576000" start="20140929T180000Z" end="20141027T180000Z" work-start="20140930T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="13" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="15" name="Mes 8" note="" work="36000" duration="576000" start="20141027T180000Z" end="20141124T180000Z" work-start="20141028T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="14" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="16" name="Mes 9" note="" work="36000" duration="576000" start="20141124T180000Z" end="20141222T180000Z" work-start="20141125T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="15" type="FS"/>
+        </predecessors>
+      </task>
+      <task id="17" name="Mes 10" note="" work="36000" duration="576000" start="20141222T180000Z" end="20150119T180000Z" work-start="20141223T090000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-duration">
+        <predecessors>
+          <predecessor id="1" predecessor-id="16" type="FS"/>
+        </predecessors>
+      </task>
+    </task>
+  </tasks>
+  <resource-groups default_group="1">
+    <group id="1" name="Tarifas estandar" admin-name="" admin-phone="" admin-email=""/>
+  </resource-groups>
+  <resources>
+    <resource group="1" id="1" name="Perfil de programador - 8x5 - antes de 5 d&#xED;as" short-name="pro/h" type="1" units="0" email="" note="" std-rate="30"/>
+    <resource group="1" id="2" name="Perfil de programador - 8x5 - antes de 24h" short-name="pro/h 24h" type="1" units="0" email="" note="" std-rate="40"/>
+    <resource group="1" id="3" name="Perfil de programador - 8x5 - antes de 4h" short-name="pro/h 4h" type="1" units="0" email="" note="" std-rate="50"/>
+    <resource group="1" id="4" name="Perfil de manager - 8x5 - antes de 5 d&#xED;as" short-name="man/h" type="1" units="0" email="" note="" std-rate="40"/>
+    <resource group="1" id="5" name="Perfil de manager - 8x5 - antes de 24h" short-name="man/h 24h" type="1" units="0" email="" note="" std-rate="0"/>
+    <resource group="1" id="6" name="Perfil de programador - 8x5 - antes de 4h" short-name="man/h 4h" type="1" units="0" email="" note="" std-rate="0"/>
+  </resources>
+  <allocations/>
+</project>
