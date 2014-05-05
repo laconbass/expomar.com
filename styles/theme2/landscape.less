@@ -1,0 +1,41 @@
+body {
+    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
+                url('/img/fondo-b-verde-alpha.png') no-repeat right 9.5em;
+}
+
+header {
+
+  #logo {
+    display: inline-block;
+
+    img {
+      width: 200px;
+    }
+
+    h1 {
+      widht: 300px;
+      height: 120px;
+    }
+  }
+
+  aside {
+    position: absolute;
+    right: 0;
+    bottom: .5em;
+  }
+}
+
+nav#menu-main {
+  position: absolute;
+  top: 210px;
+  width: 9em;
+}
+
+div#content {
+  margin-left: 11em;
+
+  & > * {
+    padding-left: 1em;
+  }
+}
+

@@ -13,7 +13,7 @@
  * intro animation
  */
 #portada #intro {
-  .animated(); .fadeOut(); .animation-delay(4.5s);
+  //.animated(); .fadeOut(); .animation-delay(4.5s);
   h1, h2 { .animated(); }
   .mar { .fadeInLeft(); .animation-delay(1s); }
   .promocion { .fadeInRight(); .animation-delay(1.5s); }
@@ -72,31 +72,35 @@
 
 #portada{
   position: relative;
+  height: 12em;
+  #content & { padding: 0; margin: 0; }
 
   #intro {
-    position: relative;
-    top: 6em;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    margin: auto auto;
+    //top: 6em;
     width: 24em;
     height: 7em;
-    margin: 0 auto;
-    * { position: absolute; margin: 0; }
+    * { position: absolute; margin: 0 5px; }
     h1 { font-size: 4em; }
     h2 { font-size: 1.4em; font-weight: normal; }
-    .mar { top: -0.5em; right: 2.9em; color: @ouro-logo; }
-    .promocion { top: 0.5em; left: 9em; color: @verde-logo; }
-    .desenvolvemento { top: 1.8em; left: 0; color: @azul-claro; }
-    .futuro { bottom: 0; right: 0; color: @azul-logo; }
+    .mar { top: -0.5em; right: 48%; color: @ouro-logo; }
+    .promocion { top: 0.5em; left: 52%; color: @verde-logo; }
+    .desenvolvemento { top: 1.8em; right: 52%; color: @azul-claro; }
+    .futuro { bottom: 0; left: 48%; color: @azul-logo; }
   }
   #slider {
+    display: none;
     position: absolute;
     top: 2em;
     width: 100%;
     height: 18em;
-    background-image: url(@img-portada-1),
+/*    background-image: url(@img-portada-1),
                       url(@img-portada-2),
                       url(@img-portada-3),
                       url(@img-portada-4)
-    ;
+    ;*/
     background-repeat: no-repeat;
     .drop-shadow(0, 0, 10px, .5);
     .rounded(.5em);

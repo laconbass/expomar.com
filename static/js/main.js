@@ -1,3 +1,3 @@
 $(document).ready(function(){
-  $('.message').click(function(){ $(this).remove(); });
+  $('#messages > *').click(function(){ $(this).remove(); });
 })

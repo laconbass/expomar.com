@@ -1,0 +1,456 @@
+/*!
+ * Default styles, mobile-first
+ */
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+// A better looking default horizontal rule
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+// text selection
+.expomar-selection(){
+  background: lighten(@ouro-logo, 30%);
+  text-shadow: none;
+}
+::-moz-selection { .expomar-selection(); }
+::selection { .expomar-selection(); }
+
+// h5bp.com/i/440
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+// Remove default fieldset styles.
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+// Allow only vertical resizing of textareas.
+textarea {
+    resize: vertical;
+}
+
+html,
+input {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #333;
+}
+
+html {
+  min-height: 100%;
+  .background-image( linear-gradient(to bottom, #fff 0%, @gris-azulado 70%) );
+}
+
+body {
+    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
+                url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
+    padding-bottom: 5em;
+}
+
+// de momento non
+//a.selected { cursor: default; pointer-events: none; }
+
+header {
+  position: relative;
+
+  #logo {
+    display: block;
+    text-decoration: none;
+    margin: .5em;
+
+    * { display: inline-block; vertical-align: middle; }
+    img {
+        width: 90% / 5 * 2;
+    }
+    h1 {
+      margin: 0;
+      margin-left: .5em;
+      text-transform: uppercase;
+      color: #122F62;
+      width: 90% / 5 * 3;
+      height: 120px;
+      .ir();
+      background-image: url('/img/logo-expomar-letras-blueok.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center center;
+    }
+  }
+  aside {
+    .clearfix();
+    nav {
+      float: right;
+      clear: both;
+      padding-left: .5em;
+    }
+  }
+  nav a {
+    display: inline-block;
+    text-decoration: none;
+  }
+  nav#social {
+    //height: 2.5em;
+    height: 0; overflow: hidden;
+
+    a {
+      height: 33px; width: 33px;
+      .ir();
+      background: url('/img/sprite-social-icons-32.png') no-repeat;
+      background-position: 0% 0%;
+
+      &:hover{ background-position-y: 99.3%; }
+      &.facebook { background-position-x: 37.25%; }
+      &.twitter { background-position-x: 62.25%; }
+    }
+  }
+  nav#language {
+    margin-bottom: .2em;
+    a {
+      color: #444;
+      margin-right: .5em;
+
+      &:hover { color: #122F62; }
+      &.selected { color: #ccc; }
+    }
+  }
+  nav#menu-top {
+    padding-right: 3em;
+    background-color: @azul-logo;
+
+    a {
+      padding: 1em .5em;
+      color: @ouro-logo;
+
+      &:hover,
+      &.selected {
+        background-color: @ouro-logo;
+        color: @azul-logo;
+      }
+    }
+  }
+}
+
+body.actualidade header,
+body.axenda header {
+  .background-image( linear-gradient(to right, fade(@ouro-logo, 0) 40%, @ouro-logo 80%) );
+  background-repeat: no-repeat;
+  background-position: 0% 100%;
+  background-size: 100% .5em;
+}
+
+#breadcumbs {
+  margin-left: 1em;
+  margin-top: .5em;
+
+  a, span {
+    font-size: .8em;
+  }
+  a { text-decoration: underline }
+  a.selected, span {
+    color: lighten(@azul-logo-gris, 6%);
+    text-decoration: none;
+  }
+}
+
+nav#menu-main {
+  margin-top: .5em;
+  padding: .5em 0;
+  width: 90%;
+  @color-empeza: fade(#fff, 85%);
+  //.background-image( linear-gradient(to right, @color-empeza 20%, fade(@color-empeza, 20%) 50%) );
+  background: fade( #fff, 50%);
+  .border-radius( 0 .5em .5em 0 );
+  .box-shadow( 0 0 10px fade(#000, 50%) );
+
+    a {
+      display: block;
+      padding: .2em .6em;
+      border: 1px solid transparent;
+      .border-radius(0 .4em .4em 0);
+      color: @azul-logo-gris;
+      text-decoration: none;
+      text-transform: uppercase;
+      .transition( all .3s ease-out );
+
+      &:hover { padding-left: 1em; color: @ouro-logo;   }
+      &.selected {
+        //border-color: @ouro-logo;
+        border-left: none;
+        margin-right: -1em;
+        text-align: right;
+        background-color: #fff;
+        color: @azul-logo;
+        .box-shadow( 0 0 10px 1px @ouro-logo );
+      }
+    }
+}
+
+
+//
+// Text default colors
+//
+
+header,
+#content,
+footer,
+button,
+input,
+select,
+textarea {
+  color: darken(@azul-logo, 6%);
+}
+a {
+  color: lighten(@azul-logo, 6%);
+}
+
+#content {
+  #messages > * {
+    position: relative;
+    margin: .5em auto;
+    padding: 1em 1em .5em;
+    width: 80%;
+    text-align: center;
+    background: #fff;
+    .border-radius(.5em);
+    .box-shadow(0, 0, 10px 0, fade(#000, 50%));
+    .animated(); .tada(); .animation-delay(2s);
+
+    &::before {
+      content: 'X';
+      position: absolute;
+      top: 0; right: 0;
+      margin: .5em;
+    }
+    &::after {
+      content: 'Click para ocultar';
+      display: block;
+      margin-top: 1em;
+    }
+    *:lang(en) &::after {
+      content: 'Click to dismiss';
+    }
+    &::before,
+    &::after { color: #cfcfcf; }
+    &:hover::before,
+    &:hover::after { color: #999; }
+    &:hover { cursor: pointer; }
+  }
+
+
+  //
+  // Generic section styles
+  //
+
+  section {
+    & > * {
+      margin-left: .7em;
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+    }
+
+    @color-empeza: fade(#fff, 85%);
+
+    nav {
+      .clearfix();
+      overflow: hidden;
+      padding-top: .5em;
+      a {
+        float: left;
+        margin: 0 .3em;
+        padding: .6em .6em .3em;
+        text-decoration: none;
+        .background-image( linear-gradient(to bottom, @color-empeza 0%, fade(@color-empeza, 0) 90%) );
+        .border-radius( .5em .5em 0 0 );
+
+        .transition( all .15s ease-in );
+
+        &:hover, &.selected {
+          background-color: @color-empeza;
+          color: darken(@ouro-logo, 10%);
+          .scale( 1.05 );
+        }
+      }
+    }
+
+    nav a, article {
+      .box-shadow( 0 0 10px fade(#000, 50%) );
+    }
+
+    article {
+      padding-top: 1.5em;
+      padding-bottom: 1.5em;
+      .border-radius( .5em 0 0 .5em );
+      .background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
+    }
+
+    h1 {
+      margin-top: 0;
+      span { color: #bbb; }
+    }
+
+    p { text-align: justify; }
+
+    img { max-width: 100%; height: auto; text-align: center; }
+
+    figure {
+      img { display: block; margin: 0 auto; }
+      figcaption { font-style: italic; text-align: center; }
+    }
+  }
+}
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
