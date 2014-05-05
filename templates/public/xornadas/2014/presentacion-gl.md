@@ -13,7 +13,7 @@ consolidadas no sector pesqueiro español.
 Comezará o 8 de maio, ás cinco da tarde, na Confraría de Pescadores "San Xoán Bautista" de Burela, onde Rosa Quintana, conselleira do Medio Rural e do Mar, inaugurará oficialmente as Xornadas Técnicas Expomar 2014.
 
 A primeira xornada centrarase nas "Novas consecuencias
-das normas comunitarias na regulación dá pesca", moderada por José
+das normas comunitarias na regulación da pesca", moderada por José
 Ángel Iglesias, titular en Burela da Capitanía Marítima Provincial
 de Lugo.
 
