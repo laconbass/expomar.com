@@ -137,12 +137,17 @@ var xornadas = public.concat( 'public/xornadas/xornadas.swig.html' )
 app.use(
   '/xornadas-tecnicas',
   express.Router()
-  .get('/', Document({
-      "name": "Xornadas Técnicas",
-      "desc": format(
+  .get( '/', redirect({
+    "name": "Xornadas Técnicas",
+    "desc": format(
         '%s Xornadas Técnicas "Expomar %s"',
         romanize(aX.length), aX[ aX.length-1 ]
       ),
+    "location": "/xornadas-tecnicas/presentacion"
+  }) )
+  .get('/presentacion', Document({
+      "name": "Presentación",
+      "desc": "Presentación do evento",
       "layout": xornadas.concat( 'public/presentacion.swig.html' ),
       "document": 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
       "anos": aX
@@ -165,9 +170,14 @@ var encontro = public.concat( 'public/encontro/encontro.swig.html' )
 app.use(
   '/encontro-empresarial',
   express.Router()
-  .get('/', Layout({
-      "name": "Encontro Empresarial",
-      "desc": "Encontro Empresarial de Organizacións Pesqueiras",
+  .get( '/', redirect({
+    "name": "Encontro Empresarial",
+    "desc": "Encontro Empresarial de Organizacións Pesqueiras",
+    "location": "/encontro-empresarial/presentacion"
+  }) )
+  .get('/presentacion', Layout({
+      "name": "Presentación",
+      "desc": "Presentación do Encontro Empresarial de Organizacións Pesqueiras",
       "layout": encontro.concat( "public/presentacion.swig.html" )
       // temporalmente, tería que ser un doc
       .concat( 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md' ),
