@@ -11,7 +11,6 @@ app
   .use( less( project.resolve( 'styles' ), {
       // options
       force: ! iai.production,
-      once: iai.production,
       debug: ! iai.production,
       dest: project.resolve( 'static' ),
       preprocess: {
