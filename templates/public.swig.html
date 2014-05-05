@@ -49,7 +49,7 @@
                 <nav id="breadcumbs">
                   {%- for item in breadcumbs -%}
                     {% if not loop.first %}<span class="sep">&nbsp;&gt;&nbsp;</span>{% endif %}
-                    <a href="{{ item.url }}" title="{{ t(item.view.meta.desc) }}"{{ selected(loop.last) }}>{{ t(item.view.meta.name|default('Not Found')) }}</a>
+                    <a href="{{ item.url }}" title="{{ t(item.view.meta.desc) }}"{{ selected(loop.last) }}>{{ t(item.view.meta.name|default('Not found')) }}</a>
                   {%- endfor -%}
                 </nav>
             {% endif %}
