@@ -19,7 +19,7 @@ function Layout( meta ){
       return res.render( meta.layout );
     }
 
-    console.log( "i should render on sequence", meta.layout );
+    //console.log( "i should render on sequence", meta.layout );
     layout.render( meta.layout, req, res, next );
   }
 
