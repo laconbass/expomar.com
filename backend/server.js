@@ -7,7 +7,7 @@ var backend = iai( __dirname );
 var mode = 'http';
 
 conf
-  .set( 'domain', 'expomar2.lorenzogrv.com' )
+  .set( 'domain', iai.production? 'expomar.com' : 'expomar.loc' )
   .set( 'port', 3000 )
 ;
 
