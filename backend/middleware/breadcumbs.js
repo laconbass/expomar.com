@@ -60,15 +60,19 @@ function breadcumbs( app ){
   }
 
   return function breadcumbs( req, res, next ){
-    res.locals.breadcumbs =
-      (  (req.url == '/')? [''] : req.url.split('/')  )
-      .map(function( curr, i, parts ){
-        var url = parts.slice( 0, i+1 ).join('/') || '/';
+    res.locals.breadcumbs = [];
+
+    (  (req.url == '/')? [''] : req.url.split('/')  )
+      .every(function( val, i, parts ){
+        var url = parts.slice( 0, i + 1 ).join( '/' ) || '/'
+          , handle = search( app.stack, req.method, url )
+        ;
         //console.log( "RESOLVE %s", url );
-        return {
-          view: search( app.stack, req.method, url ),
+        res.locals.breadcumbs.push({
+          view: handle,
           url: url
-        }
+        });
+        return !!handle;
       })
     ;
     next();
