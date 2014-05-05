@@ -187,9 +187,21 @@ app.use(
   }) )
 );
 
-app.use( Layout({
+var NotFound = Layout({
   "name": "Page Not Found",
   "desc": "Page Not Found",
   "layout": public.concat( "404.swig.html" ),
   "styles": "404.less"
-}) );
+});
+
+var oldUrl = project.require('data/old-urls');
+
+app.use(function( req, res, next ){
+  res.status(404);
+
+  if( !!~oldUrl.indexOf(req.url) ){
+    res.status(410);
+  }
+
+  NotFound( req, res, next );
+});
