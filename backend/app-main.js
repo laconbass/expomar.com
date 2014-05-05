@@ -46,7 +46,7 @@ morgan.format( 'custom', function(tokens, req, res){
     ? ''
     : len = ' - ' + bytes(len);
 
-  return '' + morgan['remote-addr']( req )
+  return '' + ( req.headers['x-forwarded-for'] || morgan['remote-addr'](req) )
     + ' \x1b[90m' + req.method
     + ' ' + req.host + (req.originalUrl || req.url) + ' '
     + '\x1b[' + color + 'm' + res.statusCode
