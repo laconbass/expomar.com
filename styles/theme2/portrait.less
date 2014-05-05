@@ -45,10 +45,15 @@ textarea {
     resize: vertical;
 }
 
+// Default font styles
 html,
 input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #333;
+  color: darken(@azul-logo, 6%);
+}
+
+a {
+  color: lighten(@azul-logo, 6%);
 }
 
 html {
@@ -201,22 +206,6 @@ nav#menu-main {
 }
 
 
-//
-// Text default colors
-//
-
-header,
-#content,
-footer,
-button,
-input,
-select,
-textarea {
-  color: darken(@azul-logo, 6%);
-}
-a {
-  color: lighten(@azul-logo, 6%);
-}
 
 #content {
   #messages > * {
