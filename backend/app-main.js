@@ -37,8 +37,8 @@ app.set( 'view engine', 'html' );
 
 app
   .use( require( 'static-favicon' )( project.resolve('static/favicon.ico') ) )
-  .use( require( 'morgan' )( 'dev' ) )
   .use( vhost( 'static.*', project.require('backend/app-static') ) )
+  .use( require( 'morgan' )( iai.production? ':remote-addr - :method :req[Host]:url - :status - :res[content-length] - :response-time ms' : 'dev' ) )
   .use( vhost( 'admin.*', project.require('backend/app-admin') ) )
-  .use( project.require('backend/public/app-public') )
+  .use( project.require('backend/app-public') )
 ;

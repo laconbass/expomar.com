@@ -1,4 +1,4 @@
-var iai = require('../../../iai')
+var iai = require('../../iai')
   , project = iai.project
   , public = iai( project.resolve('layouts/public') )
   , express = require( 'express' )
@@ -101,7 +101,8 @@ app.use(
   .get( '/estrutura', Layout({
     "name": "Estrutura",
     "desc": "Estrutura da Fundación Expomar",
-    "layout": fundacion.concat( "public/a-fundacion/estrutura.swig.html" )
+    "layout": fundacion.concat( "public/a-fundacion/estrutura.swig.html" ),
+    "styles": "public/estrutura.less"
   }) )
 );
 

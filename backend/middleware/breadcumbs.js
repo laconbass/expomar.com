@@ -71,8 +71,6 @@ function breadcumbs( app ){
         }
       })
     ;
-    console.log( req.url )
-    console.log( "RESOLVED TO ", res.locals.breadcumbs );
     next();
   }
 }
