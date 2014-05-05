@@ -1,4 +1,4 @@
-var iai = require('iai')
+var iai = require('../../iai')
   , project = iai.project
   , express = require('express')
   , app = express.Router()

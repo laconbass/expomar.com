@@ -1,4 +1,4 @@
-var iai = require('iai')
+var iai = require('../../iai')
   , project = iai.project
   , debug = require('debug')('iai:translator')
   , fs = require('fs')

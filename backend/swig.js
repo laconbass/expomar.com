@@ -1,4 +1,4 @@
-var iai = require( 'iai' )
+var iai = require( '../../iai' )
   , swig = require( 'swig' )
   , utils = require('./utils')
 ;

@@ -1,4 +1,4 @@
-var iai = require('iai')
+var iai = require('../../../iai')
   , project = iai.project
   , public = iai( project.resolve('layouts/public') )
   , express = require( 'express' )

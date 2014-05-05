@@ -1,4 +1,4 @@
-var iai = require( 'iai' )
+var iai = require( '../../../iai' )
   , sequence = iai( 'async/sequence' )
   , Controller = require( './Controller' )
 ;

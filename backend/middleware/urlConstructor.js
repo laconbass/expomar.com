@@ -1,5 +1,5 @@
 
-var iai = require('iai')
+var iai = require('../../../iai')
   , f = require('util').format
 ;
 
