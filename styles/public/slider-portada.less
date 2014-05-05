@@ -1,0 +1,53 @@
+/*!
+ * slider animation
+ */
+
+@img-portada-1: "http://lorempixel.com/1280/800/sports/1";
+@img-portada-2: "http://lorempixel.com/1280/800/sports/2";
+@img-portada-3: "http://lorempixel.com/1280/800/sports/3";
+@img-portada-4: "http://lorempixel.com/1280/800/sports/4";
+
+@-webkit-keyframes slider-portada { .frames-slider-portada; }
+@-moz-keyframes slider-portada { .frames-slider-portada; }
+@-ms-keyframes slider-portada { .frames-slider-portada; }
+@-o-keyframes slider-portada { .frames-slider-portada; }
+@keyframes slider-portada { .frames-slider-portada; }
+
+.frames-slider-portada() {
+  0% {
+    background-image: url(@img-portada-1);
+    background-position: 50% 50%;
+  }
+  20% {
+    background-image: url(@img-portada-1);
+    background-position: 75% 25%;
+  }
+  25% {
+    background-image: url(@img-portada-2);
+    background-position: 100% 0%;
+  }
+  45% {
+    background-image: url(@img-portada-2);
+    background-position: 75% 25%;
+  }
+  50% {
+    background-image: url(@img-portada-3);
+    background-position: 50% 50%;
+  }
+  70% {
+    background-image: url(@img-portada-3);
+    background-position: 25% 75%;
+  }
+  75% {
+    background-image: url(@img-portada-4);
+    background-position: 0% 100%;
+  }
+  95% {
+    background-image: url(@img-portada-4);
+    background-position: 25% 75%;
+  }
+  100% {
+    background-image: url(@img-portada-1);
+    background-position: 50% 50%;
+  }
+}
