@@ -24,17 +24,6 @@ function i18n( main, available, translate ){
     var match = available.exec( req.headers.host );
     res.locals.lang = req.language = (match)? match[1] : main;
     res.locals.t = translate.bind( translate, req.language );
-
-    // warn about available languages meeting request requeriments
-    if( res.message && ! req.acceptsLanguage(req.language) ){
-      var options = req.acceptedLanguages, match;
-      while( options.length ){
-        if( match = available.exec( options.shift() ) ){
-          res.message( translate( match[1], 'lang available: ' + match[1] ) );
-          options.length = 0;
-        }
-      }
-    }
     next();
   }
 }
