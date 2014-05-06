@@ -1,4 +1,4 @@
-# XV ENCONTRO EMPRESARIAL DE ORGANIZACIÓNS PESQUEIRAS
+# XV Encontro Empresarial de Organizacións Pesqueiras
 
 ## Entidades que participan:
 
