@@ -12,7 +12,10 @@ Dentro deste contexto nace o 22 de maio de 1998 a FUNDACIÓN EXPOMAR, a cal vén
 
 Este é un proxecto que nace do convencemento xa demostrado, de que se pode ir máis lonxe abarcando a organización de toda unha serie de eventos ligados ós intereses dun sector en permanente evolución.
 
-Deste xeito, a Fundación Expomar foi clasificada como de interese náutico-pesqueiro por Orde da Consellería da Presidencia e Administración Pública do 21 de xullo de 1998 (D.O.G. nº 145, do 29 de xullo) e declarada de interese galego por Orde da Consellería de Pesca, Marisqueo e Acuicultura do 28 de outubro de 1998 (D.O.G. nº 220, do 12 de novembro) figurando inscrita co número 1998/13.
+Deste xeito, a Fundación Expomar foi clasificada como de interese náutico-pesqueiro por Orde da Consellería da Presidencia e Administración Pública do 21 de xullo de 1998 ([D.O.G. nº 145, do 29 de xullo][DOG145]) e declarada de interese galego por Orde da Consellería de Pesca, Marisqueo e Acuicultura do 28 de outubro de 1998 ([D.O.G. nº 220, do 12 de novembro][DOG220]) figurando inscrita co número 1998/13.
+
+[DOG145]: http://www.xunta.es/dog/Publicados/1998/19980729/Anuncio64F2_gl.html
+[DOG220]: http://www.xunta.es/dog/Publicados/1998/19981112/Anuncio3ADA_gl.html
 
 É  obxectivo xeral desta Fundación a promoción e o desenvolvemento do sector náutico-pesqueiro. A nivel particular organiza un amplo conxunto de eventos coincidentes sempre cos intereses do sector mariño, que pasan pola súa promoción, formación e información, pola actualización de coñecementos e avances tecnolóxicos como base da mellora da súa competitividade, e pola realización de toda clase de actividades que serán necesarias para os fins pretendidos.
 
