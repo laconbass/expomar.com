@@ -162,6 +162,21 @@ app.use(
       //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
     //,"anos": aX
   }) )
+  .get('/ponencias', Layout({
+      "name": "Ponencias",
+      "desc": "Ponencias",
+      "layout": xornadas.concat( 'public/xornadas/ponencias.swig.html' ),
+      "data": function( callback ){
+        iai.project.require('backend/operation/ponencias-xornadas')
+        .list( aX[ aX.length-1 ], function( err, data ){
+          if( err ){
+            return callback( err );
+          }
+          console.log( "data", data );
+          callback( null, data );
+        });
+      }
+  }) )
 );
 
 var encontro = public.concat( 'public/encontro/encontro.swig.html' )

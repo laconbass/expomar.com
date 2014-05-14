@@ -7,7 +7,8 @@
     "talk_title": "Tripulacións Mínimas, Máquinas desatendidas",
     "photo_filename": "",
     "resume_filename": "",
-    "slideshow_filename": ""
+    "slideshow_filename": "8-1-tripulaciones_minimas.ppsx",
+    "slideshow_summary_filename": ""
   },
   {
     "name": "Mª do Carme García Negro",
@@ -15,9 +16,10 @@
     "position": "Doutora do Equipo de Investigación de Economía Pesqueira",
     "organization": "USC. Universidade de Santiago de Compostela",
     "talk_title": "Últimas reformas da OCM",
-    "photo_filename": "8-2-m_do_carmo.jpg",
-    "resume_filename": "",
-    "slideshow_filename": ""
+    "photo_filename": "8-2-m_do_carme.jpg",
+    "resume_filename": "8-2-cv-m_do_carme.md",
+    "slideshow_filename": "8-2.Nova_OCM.ppsx",
+    "slideshow_summary_filename": ""
   },
   {
     "name": "Andrés Hermida Trastoy",
@@ -27,7 +29,8 @@
     "talk_title": "Utilización práctica do novo FEMP, Fondo Europeo Marítimo e da Pesca",
     "photo_filename": "",
     "resume_filename": "",
-    "slideshow_filename": ""
+    "slideshow_filename": "8-3-nuevo_FEMP.ppsx",
+    "slideshow_summary_filename": "8-3-sinopse_experiencias_sector.md"
   },
   {
     "name": "Torcuato Teixeira Valoría",
@@ -35,9 +38,10 @@
     "position": "Secretario Xeral",
     "organization": "OPP31 - Pescagalicia",
     "talk_title": "Visión do sector sobre as novas consecuencias das Normas Comunitarias na regulación da Pesca",
-    "photo_filename": "8-4-torcuato_teixeira.jpg",
+    "photo_filename": "8-4-torcuato-teixeira.jpg",
     "resume_filename": "",
-    "slideshow_filename": ""
+    "slideshow_filename": "",
+    "slideshow_summary_filename": ""
   },
   {
     "name": "Ernesto Penas Lado",
@@ -47,7 +51,8 @@
     "talk_title": "A normativa comunitaria sobre descartes",
     "photo_filename": "9-1-ernesto_penas_lado.jpg",
     "resume_filename": "",
-    "slideshow_filename": ""
+    "slideshow_filename": "9-1-normativa_descartes.potx",
+    "slideshow_summary_filename": ""
   },
   {
     "name": "Francisco Sánchez Delgado",
@@ -55,18 +60,20 @@
     "position": "Investigador Titular",
     "organization": "Instituto Español de Oceanografía",
     "talk_title": "As Áreas Mariñas Protexidas como ferramentas de xestión de ecosistemas sostibles",
-    "photo_filename": "",
-    "resume_filename": "",
-    "slideshow_filename": ""
+    "photo_filename": "9-2-francisco_sanchez.jpg",
+    "resume_filename": "9-2-cv_francisco_sanchez.md",
+    "slideshow_filename": "9-2-areas_marinas.ppsx",
+    "slideshow_summary_filename": "9-2-sinopse_areas_marinas.md"
   },
   {
     "name": "Antonio Basanta Fernández",
     "gender": "male",
     "position": "Xefe de Gabinete da Conselleira do Medio Rural e do Mar",
     "organization": "Xunta de Galicia",
-    "talk_title": "",
+    "talk_title": "Experiencias no sector de cara a sostenibilidade",
     "photo_filename": "",
-    "resume_filename": "",
-    "slideshow_filename": ""
+    "resume_filename": "9-3-cv_antonio_basanta.md",
+    "slideshow_filename": "9-3-experiencias_sector.ppsx",
+    "slideshow_summary_filename": ""
   }
 ]

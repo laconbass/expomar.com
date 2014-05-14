@@ -1,6 +1,7 @@
 var iai = require( '../../iai' )
   , swig = require( 'swig' )
-  , utils = require('./utils')
+  , utils = require( './utils' )
+  , marked = require( 'marked' )
 ;
 
 var exports = module.exports = new swig.Swig({
@@ -28,3 +29,6 @@ swig.setFilter( 'trim', function( input ){
   return input.trim();
 });
 swig.setFilter( 'romanize', utils.romanize );
+swig.setFilter( 'marked', function( input ){
+  return marked( input );
+});

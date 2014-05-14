@@ -15,12 +15,23 @@ function Layout( meta ){
   function layout( req, res, next ){
     res.locals.meta = meta;
 
-    if(  ! Array.isArray( meta.layout )  ){
-      return res.render( meta.layout );
+    function finish(){
+      if(  ! Array.isArray( meta.layout )  ){
+        return res.render( meta.layout );
+      }
+      layout.render( meta.layout, req, res, next );
     }
 
-    //console.log( "i should render on sequence", meta.layout );
-    layout.render( meta.layout, req, res, next );
+    if( !meta.data ){
+      return finish();
+    }
+    meta.data(function( err, data ){
+      if( err ){
+        return next( err );
+      }
+      res.locals.data = data;
+      finish();
+    });
   }
 
   layout.render = renderSequence;
