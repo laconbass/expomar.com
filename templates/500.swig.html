@@ -1,5 +1,10 @@
-<h1>{{ t( 'Internal Server Error')|capitalize }} <span>:S</span></h1>
-<p>{{ t('Vaites! Ocurreu un erro no servidor.') }}</p>
-<p>{{ t('O erro foi notificado automáticamente ao noso equipo de desenvolvemento para solucionalo.') }}</p>
-<p>{{ t('Tente recargar a páxina, se o problema persiste ténteo de novo transcurridos uns intres.') }}</p>
-<p>{{ t('Lamentamos as molestias que isto lle poda causar.') }}</p>
+<article>
+    <h1>{{ t( 'Internal Server Error')|capitalize }} <span>:S</span></h1>
+    {% if error %}
+    <code style="font-size: 12px; white-space: pre;">{{ error.stack }}</code>
+    {% endif %}
+    <p>{{ t('Vaites! Ocorreu un erro no servidor.') }}</p>
+    <p>{{ t('O erro foi notificado automáticamente ao noso equipo de desenvolvemento para solucionalo.') }}</p>
+    <p>{{ t('Tente recargar a páxina, se o problema persiste ténteo de novo transcurridos uns intres.') }}</p>
+    <p>{{ t('Lamentamos as molestias que isto lle poda causar.') }}</p>
+</article>
