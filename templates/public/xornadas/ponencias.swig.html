@@ -1,0 +1,8 @@
+<h1>{{ t( meta.name ) }}</h1>
+<p>{{ meta.desc }}</p>
+
+<ul>
+{% for file in data %}
+    <li>{{ file }}</li>
+{% endfor %}
+</ul>

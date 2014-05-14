@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Victor Jiménez Fernández",
+    "gender": "male",
+    "position": "Subdirector General de Seguridad, Contaminación e Inspección Marítima",
+    "organization": "Ministerio de Fomento - DGMM",
+    "talk_title": "Tripulacións Mínimas, Máquinas desatendidas",
+    "photo_filename": "",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Mª do Carme García Negro",
+    "gender": "female",
+    "position": "Doutora do Equipo de Investigación de Economía Pesqueira",
+    "organization": "USC. Universidade de Santiago de Compostela",
+    "talk_title": "Últimas reformas da OCM",
+    "photo_filename": "8-2-m_do_carmo.jpg",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Andrés Hermida Trastoy",
+    "gender": "male",
+    "position": "Dtor. General de Ordenación Pesquera",
+    "organization": "Ministerio de Agricultura, Alimentación y Medio Ambiente",
+    "talk_title": "Utilización práctica do novo FEMP, Fondo Europeo Marítimo e da Pesca",
+    "photo_filename": "",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Torcuato Teixeira Valoría",
+    "gender": "male",
+    "position": "Secretario Xeral",
+    "organization": "OPP31 - Pescagalicia",
+    "talk_title": "Visión do sector sobre as novas consecuencias das Normas Comunitarias na regulación da Pesca",
+    "photo_filename": "8-4-torcuato_teixeira.jpg",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Ernesto Penas Lado",
+    "gender": "male",
+    "position": "Director Policy development and coordination",
+    "organization": "European Comision, Directorate General for Maritime Affaiers and Fisheries",
+    "talk_title": "A normativa comunitaria sobre descartes",
+    "photo_filename": "9-1-ernesto_penas_lado.jpg",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Francisco Sánchez Delgado",
+    "gender": "male",
+    "position": "Investigador Titular",
+    "organization": "Instituto Español de Oceanografía",
+    "talk_title": "As Áreas Mariñas Protexidas como ferramentas de xestión de ecosistemas sostibles",
+    "photo_filename": "",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  },
+  {
+    "name": "Antonio Basanta Fernández",
+    "gender": "male",
+    "position": "Xefe de Gabinete da Conselleira do Medio Rural e do Mar",
+    "organization": "Xunta de Galicia",
+    "talk_title": "",
+    "photo_filename": "",
+    "resume_filename": "",
+    "slideshow_filename": ""
+  }
+]
