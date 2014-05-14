@@ -187,6 +187,10 @@ app.use(
   }) )
 );
 
+/**
+ * 404 + 410 responses
+ */
+
 var NotFound = Layout({
   "name": "Page Not Found",
   "desc": "Page Not Found",
@@ -205,3 +209,24 @@ app.use(function( req, res, next ){
 
   NotFound( req, res, next );
 });
+
+/**
+ * 500 responses
+ */
+
+var ServerError = Layout({
+  "name": "Internal Server Error",
+  "desc": "An unexpected error was thrown",
+  "layout": public.concat( "500.swig.html" )
+});
+
+app.use(function( err, req, res, next ){
+  console.error( err.stack );
+  res.status( 500 );
+
+  if( ! iai.production ){
+    res.locals.error = err;
+  }
+
+  ServerError( req, res, next );
+})
