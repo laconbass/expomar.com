@@ -61,7 +61,7 @@
     "Presentación": "Presentación",
     "Programa": "Programa",
     "Comité Executivo": "Comité Executivo",
-    "Ponencias": "Ponencias",
+    "Ponencias": "Relatorios",
     "Histórico": "Histórico",
     "Galería de fotos": "Galería de fotos",
     "Contacto": "Contacto",
@@ -75,5 +75,16 @@
     "Encontro Empresarial de Organizacións Pesqueiras": "Encontro Empresarial de Organizacións Pesqueiras",
     "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.": "Está a empregar un navegador <strong>obsoleto</strong>. Pregámoslle <a href=\"http://browsehappy.com/\">actualice o seu navegador</a> para mellorar a súa experiencia.",
     "Presentación do evento": "Presentación do evento",
-    "Presentación do Encontro Empresarial de Organizacións Pesqueiras": "Presentación do Encontro Empresarial de Organizacións Pesqueiras"
+    "Presentación do Encontro Empresarial de Organizacións Pesqueiras": "Presentación do Encontro Empresarial de Organizacións Pesqueiras",
+    "Cartaz da edición de %s de Presentación": null,
+    "XXI Xornadas Técnicas \"Expomar 2014\"": null,
+    "Internal Server Error": null,
+    "Vaites! Ocorreu un erro no servidor.": null,
+    "O erro foi notificado automáticamente ao noso equipo de desenvolvemento para solucionalo.": null,
+    "Tente recargar a páxina, se o problema persiste ténteo de novo transcurridos uns intres.": null,
+    "Descargar": null,
+    "Descargar powerpoint": null,
+    "A presentacion en powerpoint da ponencia non está dispoñible para a descarga": null,
+    "Nesta sección pode consultar toda a información referente aos poñentes das Xornadas Técnicas e ás súas poñencias, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.": null,
+    "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.": null
 }
