@@ -20,15 +20,22 @@ function tFilter( input, lang ){
   return translator( lang, input );
 }
 tFilter.safe = true;
-
 swig.setFilter( 't', tFilter );
+
+
 swig.setFilter( 'trim', function( input ){
   if( !input.trim ){
     return input;
   }
   return input.trim();
 });
+
+
 swig.setFilter( 'romanize', utils.romanize );
-swig.setFilter( 'marked', function( input ){
+
+
+function markdown( input ){
   return marked( input );
-});
+}
+markdown.safe = true;
+swig.setFilter( 'marked', markdown );

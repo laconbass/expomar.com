@@ -246,7 +246,7 @@ nav#menu-main {
   //
 
   section {
-    & > * {
+    > * {
       margin-left: .7em;
       padding-left: 1.5em;
       padding-right: 1.5em;
@@ -276,11 +276,11 @@ nav#menu-main {
       }
     }
 
-    nav a, article {
+    nav a, > article {
       .box-shadow( 0 0 10px fade(#000, 50%) );
     }
 
-    article {
+    > article {
       &:first-child {
         margin-top: .5em;
       }

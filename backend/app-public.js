@@ -5,6 +5,7 @@ var iai = require('../../iai')
   , app = express.Router()
   , debug = require( 'debug' )( 'expomar.com:public' )
   , f = require('util').format
+  , utils = project.require( 'backend/utils' )
 ;
 
 module.exports = app;
@@ -15,7 +16,11 @@ module.exports = app;
 
 app
   .use( project.require('backend/middleware/messages')() )
-  .use( project.require('backend/middleware/urlConstructor')() )
+  .use(function( req, res, next ){
+    res.locals.location = req.url;
+    res.locals.url = utils.url;
+    next();
+  })
   .use( project.require('backend/middleware/i18n')( 'gl', ['es', 'en'], project.require('backend/translator') ) )
   .use( project.require('backend/middleware/breadcumbs')( app ) )
   //.use( app.router )
@@ -133,6 +138,7 @@ app
 
 var xornadas = public.concat( 'public/xornadas/xornadas.swig.html' )
   , aX = project.require( 'data/anosXornadas.json' )
+  , xOps = project.require('backend/operation/xornadas')
 ;
 
 app.use(
@@ -164,18 +170,9 @@ app.use(
   }) )
   .get('/ponencias', Layout({
       "name": "Ponencias",
-      "desc": "Ponencias",
+      "desc": "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.",
       "layout": xornadas.concat( 'public/xornadas/ponencias.swig.html' ),
-      "data": function( callback ){
-        iai.project.require('backend/operation/ponencias-xornadas')
-        .list( aX[ aX.length-1 ], function( err, data ){
-          if( err ){
-            return callback( err );
-          }
-          console.log( "data", data );
-          callback( null, data );
-        });
-      }
+      "data": xOps.getPonencias.bind( null, aX[ aX.length-1 ] )
   }) )
 );
 

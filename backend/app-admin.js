@@ -32,7 +32,7 @@ app
     next();
   })
   .use( require('./middleware/messages')() )
-  .use( require('./middleware/urlConstructor')() )
+  .use( require('./middleware/urlConstructor')( require('./utils').url ) )
   .use( require('./middleware/i18n')( 'gl', [] ) )
 ;
 
