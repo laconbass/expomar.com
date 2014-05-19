@@ -197,6 +197,11 @@ app.use(
       //"document": 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md',
       "anos": aE
   }) )
+  .get('/comite', Layout({
+      "name": "Comité Executivo",
+      "desc": "Listado de integrantes do Comité Executivo do Encontro Empresarial de Organizacións Pesqueiras",
+      "layout": encontro.concat( 'public/comite-executivo.swig.html' )
+  }) )
 );
 
 /**
