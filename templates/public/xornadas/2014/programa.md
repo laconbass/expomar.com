@@ -4,8 +4,7 @@
 
 ### Lugar
 
-**Salón de Actos da Confraría de Pescadores "San Juan Bautista" de Burela**
-- Porto Pesqueiro s/n.
+**Salón de Actos da Confraría de Pescadores "San Juan Bautista" de Burela** - Porto Pesqueiro s/n.
 
 ### Inauguración a cargo de
 
@@ -50,8 +49,7 @@ Normas Comunitarias na regulación da Pesca.
 
 ### Lugar
 
-**Salón de Actos da Confraría de Pescadores "San Juan Bautista" de Burela**
-- Porto Pesqueiro s/n.
+**Salón de Actos da Confraría de Pescadores "San Juan Bautista" de Burela** - Porto Pesqueiro s/n.
 
 ### Clausura a cargo de
 

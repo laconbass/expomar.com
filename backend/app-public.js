@@ -177,6 +177,7 @@ app.use(
       "name": "Ponencias",
       "desc": "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.",
       "layout": xornadas.concat( 'public/xornadas/ponencias.swig.html' ),
+      "styles": "public/ponencias.less",
       "data": xOps.getPonencias.bind( null, aX[ aX.length-1 ] )
   }) )
 );

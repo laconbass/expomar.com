@@ -4,22 +4,22 @@
 {% for ponente in data %}
 <article>
     <h2>{{ ponente.talk_title }}</h2>
-    <p>
+    <div>
         {% if ponente.slideshow_url %}
-        <a href="{{ ponente.slideshow_url }}" title="{{ t('Descargar')+' '+ponente.talk_title }}">{{ t('Descargar powerpoint') }}</a>
+        <a class="button" href="{{ ponente.slideshow_url }}" title="{{ t('Descargar')+' '+ponente.talk_title }}">{{ t('Descargar powerpoint') }}</a>
         {% else %}
-        {{ t('A presentacion en powerpoint da ponencia non está dispoñible para a descarga') }}
+        <a class="button disabled">{{ t('Descarga')+' '+t('non dispoñible') }}</a>
         {% endif %}
-    </p>
+    </div>
     <figure>
         {% if ponente.photo_url %}
             <img src="{{ ponente.photo_url }}" alt="{{ ponente.name }}"/>
-        {% endif %}
-        <h3>
-            <abbr>{% if ponente.gender == "female" %}{{ t('Dª.') }}{% else %}{{ t('D.') }}{% endif %}</abbr>
-            {{ ponente.name }}
-        </h3>
+        {%- endif -%}
         <figcaption>
+            <h3>
+                <abbr>{% if ponente.gender == "female" %}{{ t('Dª.') }}{% else %}{{ t('D.') }}{% endif %}</abbr>
+                {{ ponente.name }}
+            </h3>
             <h4>{{ ponente.position }}</h4>
             <h5>{{ ponente.organization }}</h5>
         </figcaption>
