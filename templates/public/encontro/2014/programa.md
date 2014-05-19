@@ -19,6 +19,7 @@
 * Rogos e preguntas
 
 Horario do día:
+
 - De 10.30 h. a 12.15 h.: (temas a tratar)
 - De 12.15 h. a 12.30 h.: café
 - De 12.30 h. a 14.00 h.: (temas a tratar)

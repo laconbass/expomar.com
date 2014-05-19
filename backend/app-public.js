@@ -152,11 +152,13 @@ app.use(
       ),
     "location": "/xornadas-tecnicas/presentacion"
   }) )
-  .get('/presentacion', Document({
+  .get('/presentacion', Layout({
       "name": "Presentación",
       "desc": "Presentación do evento",
-      "layout": xornadas.concat( 'public/presentacion.swig.html' ),
-      "document": 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
+      "layout": xornadas.concat( 'public/presentacion.swig.html' )
+      // temporal, cambiar a documento
+      .concat( 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion-gl.md' ),
+      //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
       "anos": aX
   }) )
   .get('/programa', Layout({
@@ -203,10 +205,31 @@ app.use(
       //"document": 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md',
       "anos": aE
   }) )
+  .get('/programa', Layout({
+      "name": "Programa",
+      "desc": "Programa",
+      "layout": encontro
+      // temporal, cambiar a documento
+      .concat( 'public/encontro/' + aX[ aX.length-1 ] + '/programa.md' ),
+      //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
+    //,"anos": aX
+  }) )
   .get('/comite', Layout({
       "name": "Comité Executivo",
       "desc": "Listado de integrantes do Comité Executivo do Encontro Empresarial de Organizacións Pesqueiras",
       "layout": encontro.concat( 'public/comite-executivo.swig.html' )
+  }) )
+  .get('/organizacions', Layout({
+      "name": "Organizacións Invitadas",
+      "desc": "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras",
+      "layout": encontro.concat( 'public/encontro/' + aE[ aE.length-1 ] + '/organizacions.md' ),
+  }) )
+  .get('/conclusions', Layout({
+      "name": "Conclusións",
+      "desc": "Conclusións do Encontro Empresarial de Organizacións Pesqueiras",
+      "layout": encontro
+      // temporal, cambiar a documento
+      .concat( 'public/encontro/' + aX[ aX.length-1 ] + '/conclusions-es.md' ),
   }) )
 );
 
