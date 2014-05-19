@@ -168,6 +168,11 @@ app.use(
       //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
     //,"anos": aX
   }) )
+  .get('/comite', Layout({
+      "name": "Comité Executivo",
+      "desc": "Listado de integrantes do Comité Executivo das Xornadas Técnicas",
+      "layout": xornadas.concat( 'public/comite-executivo.swig.html' )
+  }) )
   .get('/ponencias', Layout({
       "name": "Ponencias",
       "desc": "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.",
