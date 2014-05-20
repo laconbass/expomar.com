@@ -1,0 +1,17 @@
+<h1>{{ t('Traducción non dispoñible') }}</h1>
+
+<p>{{ t('O contido ao que intenta acceder non se atopa dispoñible neste idioma polo momento.') }}</p>
+
+<p>{{ t('Pode acceder ao contido nos seguintes idiomas.') }}</p>
+<ul>
+{% for lang, doc in meta.document %}
+    {% if lang != 'gl' %}
+      {% set doc_url = url( lang, location ) %}
+    {% else %}
+      {% set doc_url = url( '', location ) %}
+    {% endif %}
+    <li><a href="{{ doc_url }}">{{ t(lang) }}</a></li>
+{% endfor %}
+</ul>
+
+<p>{{ t('Lamentamos as molestias que isto lle poda causar.') }}</p>

@@ -17,6 +17,7 @@ module.exports = app;
 app
   .use( project.require('backend/middleware/messages')() )
   .use(function( req, res, next ){
+    console.log( req.url );
     res.locals.location = req.url;
     res.locals.url = utils.url;
     next();
@@ -95,13 +96,18 @@ app.use(
     "name": "Obxectivos",
     "desc": "Obxectivos da Fundación Expomar",
     "layout": fundacion,
-    "document": "public/a-fundacion/obxectivos.md",
+    "document": {
+      gl: "public/a-fundacion/obxectivos-gl.md",
+      es: "public/a-fundacion/obxectivos-es.md"
+    }
   }) )
   .get( '/historia', Document({
     "name": "Historia",
     "desc": "Historia da Fundación Expomar",
     "layout": fundacion,
-    "document": "public/a-fundacion/historia.md"
+    "document": {
+      gl: "public/a-fundacion/historia-gl.md",
+    }
   }) )
   .get( '/estrutura', Layout({
     "name": "Estrutura",
@@ -115,18 +121,14 @@ var romanize = project.require( 'backend/utils' ).romanize
   , format = require( 'util' ).format
 ;
 
+//
+// 404-working
+//
+
 app
   .get( '/feira-expomar', Layout({
       "name": "Feira Expomar",
       "desc": "Feira monográfica nautico-pesqueira \"Expomar\"",
-      "layout": public.concat( "404-working.swig.html" )
-  }) )
-;
-
-app
-  .get( '/produart', Layout({
-      "name": "Produart",
-      "desc": "Feira de produtos artesáns e ecolóxicos \"Produart\"",
       "layout": public.concat( "404-working.swig.html" )
   }) )
   .get( '/outras-actividades', Layout({
@@ -152,22 +154,22 @@ app.use(
       ),
     "location": "/xornadas-tecnicas/presentacion"
   }) )
-  .get('/presentacion', Layout({
+  .get('/presentacion', Document({
       "name": "Presentación",
       "desc": "Presentación do evento",
-      "layout": xornadas.concat( 'public/presentacion.swig.html' )
-      // temporal, cambiar a documento
-      .concat( 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion-gl.md' ),
-      //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
+      "layout": xornadas.concat( 'public/presentacion.swig.html' ),
+      "document": {
+        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
+      },
       "anos": aX
   }) )
-  .get('/programa', Layout({
+  .get('/programa', Document({
       "name": "Programa",
       "desc": "Programa",
-      "layout": xornadas
-      // temporal, cambiar a documento
-      .concat( 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md' ),
-      //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
+      "layout": xornadas,
+      "document": {
+        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
+      }
     //,"anos": aX
   }) )
   .get('/comite', Layout({
@@ -196,22 +198,22 @@ app.use(
     "desc": "Encontro Empresarial de Organizacións Pesqueiras",
     "location": "/encontro-empresarial/presentacion"
   }) )
-  .get('/presentacion', Layout({
+  .get('/presentacion', Document({
       "name": "Presentación",
       "desc": "Presentación do Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro.concat( "public/presentacion.swig.html" )
-      // temporalmente, tería que ser un doc
-      .concat( 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md' ),
-      //"document": 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md',
+      "layout": encontro.concat( "public/presentacion.swig.html" ),
+      "document": {
+        gl: 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md'
+      },
       "anos": aE
   }) )
-  .get('/programa', Layout({
+  .get('/programa', Document({
       "name": "Programa",
       "desc": "Programa",
-      "layout": encontro
-      // temporal, cambiar a documento
-      .concat( 'public/encontro/' + aX[ aX.length-1 ] + '/programa.md' ),
-      //"document": 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
+      "layout": encontro,
+      "document": {
+        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
+      }
     //,"anos": aX
   }) )
   .get('/comite', Layout({
@@ -224,12 +226,45 @@ app.use(
       "desc": "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras",
       "layout": encontro.concat( 'public/encontro/' + aE[ aE.length-1 ] + '/organizacions.md' ),
   }) )
-  .get('/conclusions', Layout({
+  .get('/conclusions', Document({
       "name": "Conclusións",
       "desc": "Conclusións do Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro
-      // temporal, cambiar a documento
-      .concat( 'public/encontro/' + aX[ aX.length-1 ] + '/conclusions-es.md' ),
+      "layout": encontro,
+      "document": {
+        es: 'public/encontro/' + aX[ aX.length-1 ] + '/conclusions-es.md'
+      }
+  }) )
+);
+
+var produart = public.concat( 'public/produart/produart.swig.html' )
+  , aP = project.require( 'data/anosProduart.json' )
+;
+
+app.use(
+  '/produart',
+  express.Router()
+  .get( '/', redirect({
+    "name": "Produart",
+    "desc": "Feira dos Produtos Artesáns e Ecolóxicos",
+    "location": "/produart/presentacion"
+  }) )
+  .get('/presentacion', Document({
+      "name": "Presentación",
+      "desc": "Presentación de Produart",
+      "layout": produart,
+      "document": {
+        gl: 'public/produart/' + aP[ aP.length-1 ] + '/presentacion.md',
+        es: 'public/produart/' + aP[ aP.length-1 ] + '/presentacion-es.md'
+      },
+      "anos": aP
+  }) )
+  .get('/inscricion', Document({
+      "name": "Inscrición",
+      "desc": "Información sobre a inscrición",
+      "layout": produart,
+      "document": {
+        gl: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion.md'
+      }
   }) )
 );
 
