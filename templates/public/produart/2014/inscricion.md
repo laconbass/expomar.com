@@ -38,7 +38,7 @@ Unha vez realizada a selección, a Organización enviaralle o [modelo de contrat
 
 Opcionalmente Produart pon á súa disposición unha serie de servizos que pode contratar se o desexa, atopará a información referente aos mesmos no [modelo de contrato].
 
-Os costes de participación, incluido o canon (75€ + IVE), deberán ser ingresados no número de conta de **Novagalicia banco ES 83 / 2091 / 0109 /87 / 3040016332**, indicando o nome da persoa ou entidade que fai o ingreso, **antes do 17 de Xullo**.
+Os costes de participación, incluido o canon (75€ + IVE), deberán ser ingresados no número de conta de **Novagalicia banco ES 83 / 2091 / 0109 / 87 / 3040016332**, indicando o nome da persoa ou entidade que fai o ingreso, **antes do 17 de Xullo**.
 
 Unha vez realizado o ingreso, envíe unha copia do comprobante por fax ao número [982 57 50 61], ou por correo electrónico a [xerencia@expomar.com] ou a [expomar@expomar.com], asegurándose de que figura o nome da persoa ou entidade que fai o ingreso.
 
