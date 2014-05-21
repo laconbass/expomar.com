@@ -263,7 +263,8 @@ app.use(
       "desc": "Información sobre a inscrición",
       "layout": produart,
       "document": {
-        gl: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion.md'
+        gl: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion.md',
+        es: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion-es.md'
       }
   }) )
 );
