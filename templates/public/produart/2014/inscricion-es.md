@@ -1,4 +1,4 @@
-# Produart 2014: Cómo realizar la inscrición
+# Produart 2014: Cómo realizar la inscripción
 
 
 [modelo de solicitud]: http://static.expomar.com/files/2014/produart/solicitude-participacion-produart2014.pdf "Modelo de Solicitud para la participacioń en Produart 2014"
