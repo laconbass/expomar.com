@@ -29,7 +29,7 @@ El plazo de entrega de esta solicitud termina el **Viernes 6 de Junio de 2014**.
 
 Podrá consultar si está seleccionado, contactando con la Organización a partir del **Jueves 3 de Julio de 2014**.
 
-**Nota de interé**: La Organización invita a los expositores/as, además de poner un stand, a ofrecer algún tipo de actividad al público asistente como talleres, charlas, etc. Tales actividades contribuirán tanto al buen desarrollo de la actividad como a la promoción de la entidad que las ofrece, y se tendrá en cuenta en el proceso de selección.
+**Nota de interés**: La Organización invita a los expositores/as, además de poner un stand, a ofrecer algún tipo de actividad al público asistente como talleres, charlas, etc. Tales actividades contribuirán tanto al buen desarrollo de la actividad como a la promoción de la entidad que las ofrece, y se tendrá en cuenta en el proceso de selección.
 
 
 ## Confirmación de la participación
