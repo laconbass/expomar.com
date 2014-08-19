@@ -76,7 +76,7 @@ var Validator = {
    * @internal {function} validate: Determine whatever the input data is valid.
    * @param {*} input: the input data
    * @param {function(err, data)}: the callback function
-   * @returns {undefined}
+   * @returns {this}
    *
    * Asynchronously, performs all necessary operations to determine if the
    * given data is valid and passes results on to the callback function.
@@ -90,6 +90,7 @@ var Validator = {
   /**
    * @function keys: Returns an array consisting of the enumerable properties
    * of this object, including those inherited from its prototype chain.
+   * @returns {Array}
    */
   keys: function(){
     var keys = [];
@@ -109,7 +110,7 @@ var Validator = {
    *
    * The convention is `<_type [trueBoolProp, property=value, property2=value]>`
    * where `_type` is the value of the internal self-named property.
-   * Properties storing booleans appear on first place if are true, or doesn'to
+   * Properties storing booleans appear on first place if are true, or doesn't
    * appear at all if are false.
    */
   toString: function(){

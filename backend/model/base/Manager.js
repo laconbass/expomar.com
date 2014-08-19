@@ -23,7 +23,7 @@ var Manager = module.exports = {
     if( ! Array.isArray(this.uses) ){
       this.dbControl = Connection( this.uses );
       this.db = this.dbControl.db;
-      this.dao = Factory( this.uses.engine, 'DAO' );
+      this.dao = this.dao || Factory( this.uses.engine, 'DAO' );
     }
     else {
       throw new Error( "multiple uses not tested yet" );

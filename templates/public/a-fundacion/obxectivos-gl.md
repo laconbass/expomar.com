@@ -1,6 +1,6 @@
 # Obxectivos da Fundación Expomar
 
-A Fundación Expomar,  pretende ser unha plataforma de comunicación entre a administración, os empresarios do sector mariño e os profesionais que traballan nel, para deste xeito acadar maior conciencia e sensibilidade sobre o mundo do mar, potenciando o seu afianzamento como marco creador de emprego e desenvolvemento socioeconómico.
+A Fundación Expomar pretende ser unha plataforma de comunicación entre a administración, os empresarios do sector mariño e os profesionais que traballan nel, para deste xeito acadar maior conciencia e sensibilidade sobre o mundo do mar, potenciando o seu afianzamento como marco creador de emprego e desenvolvemento socioeconómico.
 
 Con este interese nace a Fundación Expomar, que ten como obxectivos:
 
