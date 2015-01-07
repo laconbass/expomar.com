@@ -4,7 +4,8 @@ var iai = require( '../../../../iai' )
 
 module.exports = Manager.extend({
   uses: {
-    engine: 'Redis'
+    engine: 'SQLite',
+    filename: iai.project.resolve('data/testing.db')
   },
   schema: require( './UserSchema' )
 })

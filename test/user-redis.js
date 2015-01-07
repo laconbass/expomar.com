@@ -1,15 +1,9 @@
 var assert = require('chai').assert
   , iai = require('../../iai')
+  , schema = iai.project.require( 'backend/model/user/UserSchema' )
 ;
 
-describe( "User Schema", function(){
-  var schema;
-  before("should be required without errors", function(){
-    schema = iai.project.require( 'backend/model/user/UserSchema' );
-  })
-})
-
-describe( "User Manager", function(){
+describe.skip( "User Manager (Redis)", function(){
   var manager;
   before(function( done ){
     manager = iai.project.require( 'backend/model/user/UserManager' );

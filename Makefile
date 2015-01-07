@@ -71,7 +71,7 @@ documentation:
 
 MOCHA=$(BIN)/mocha
 test:
-	@$(MOCHA) -R spec --watch $(TESTS)
+	@$(MOCHA) -R spec --bail --watch $(TESTS)
 
 content:
 	$(call ensure_npm_present,marked)

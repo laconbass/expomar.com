@@ -2,6 +2,7 @@
   "name": "expomar.com",
   "version": "0.1.0",
   "description": "Applicación web para a fundación expomar.",
+  "private": true,
   "main": "backend/server.js",
   "directories": {
     "doc": "doc"
@@ -18,12 +19,12 @@
     "bytes": "^0.3.0",
     "debug": "^0.7.4",
     "express": "^4.1.1",
-    "hiredis": "^0.1.16",
     "less": "^1.7.0",
     "less-middleware": "^0.2.1-beta",
     "marked": "^0.3.2",
     "morgan": "^1.0.0",
-    "redis": "^0.10.1",
+    "passport": "^0.2.1",
+    "passport-local": "^1.0.0",
     "sqlite3": "^2.2.3",
     "static-favicon": "^1.0.2",
     "swig": "^1.3.2",

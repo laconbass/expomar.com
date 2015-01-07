@@ -1,6 +1,9 @@
 
 
 var DAO = {
+  initialize: function( schema, conection, callback ){
+    throw new Error( 'DAO#initialize should be overriden by implementations' );
+  },
   create: function( schema, connection, input, callback ){
     throw new Error( 'DAO#create should be overriden by implementations' );
   },

@@ -23,3 +23,7 @@ User.password = Field({
 User.email = Field({
   unique: true
 });
+
+User.last_login = Field({
+
+});
