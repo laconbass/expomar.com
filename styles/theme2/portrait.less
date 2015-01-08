@@ -74,9 +74,10 @@ header {
   position: relative;
 
   #logo {
-    display: block;
+    display: inline-block;
     text-decoration: none;
     margin: .5em;
+    margin-bottom: 0;
 
     * { display: inline-block; vertical-align: middle; }
     img {
@@ -101,7 +102,6 @@ header {
     nav {
       float: right;
       clear: both;
-      padding-left: .5em;
     }
   }
   nav a {
@@ -129,83 +129,62 @@ header {
       color: #444;
       margin-right: .5em;
 
-      &:hover { color: #122F62; }
+      &:hover, &:focus, &:active { color: @ouro-logo; }
       &.selected { color: #ccc; }
     }
   }
   nav#menu-top {
-    padding-right: 3em;
+    position: relative;
     background-color: @azul-logo;
+    @toggler-width: 2.5em;
+    padding-right: @toggler-width;
+    button {
+      width: @toggler-width;
+      position: absolute;
+      right: 0; top: 0;
+      height: 100%;
+      background-color: green;
+    }
+    button, button:active { border: 0; outline: 0; }
+    button { height: 100%; }
 
+    a, button { padding: 1em .5em; }
+    //&.collapsed { .animated(); .bounceOut(); }
+    &.expanded { .animated(); .bounceIn(); }
+    &.expanded a { display: block; }
+    &.expanded a + a { margin-top: .5em; }
     a {
-      padding: 1em .5em;
+      display: none;
+      margin: 0 .5em;
       color: @ouro-logo;
 
       &:hover,
+      &:focus,
       &.selected {
+        display: block;
+        .transition( all .3s ease-out );
         background-color: @ouro-logo;
         color: @azul-logo;
       }
     }
   }
-}
+  // & = header
+  nav#breadcumbs {
+    padding-left: 1em;
 
-body.actualidade header,
-body.axenda header {
-  .background-image( linear-gradient(to right, fade(@ouro-logo, 0) 40%, @ouro-logo 80%) );
-  background-repeat: no-repeat;
-  background-position: 0% 100%;
-  background-size: 100% .5em;
-}
-
-#breadcumbs {
-  margin-left: 1em;
-  margin-top: .5em;
-
-  a, span {
-    font-size: .8em;
-  }
-  a { text-decoration: underline }
-  a.selected, span {
-    color: lighten(@azul-logo-gris, 6%);
-    text-decoration: none;
-  }
-}
-
-nav#menu-main {
-  margin-top: .5em;
-  padding: .5em 0;
-  width: 90%;
-  @color-empeza: fade(#fff, 85%);
-  //.background-image( linear-gradient(to right, @color-empeza 20%, fade(@color-empeza, 20%) 50%) );
-  background: fade( #fff, 50%);
-  .border-radius( 0 .5em .5em 0 );
-  .box-shadow( 0 0 10px fade(#000, 50%) );
-
-    a {
-      display: block;
-      padding: .2em .6em;
-      border: 1px solid transparent;
-      .border-radius(0 .4em .4em 0);
-      color: @azul-logo-gris;
-      text-decoration: none;
-      text-transform: uppercase;
-      .transition( all .3s ease-out );
-
-      &:hover { padding-left: 1em; color: @ouro-logo;   }
-      &.selected {
-        //border-color: @ouro-logo;
-        border-left: none;
-        margin-right: -1em;
-        text-align: right;
-        background-color: #fff;
-        color: @azul-logo;
-        .box-shadow( 0 0 10px 1px @ouro-logo );
-      }
+    a, span {
+      font-size: .8em;
     }
+    a { text-decoration: underline }
+    a.selected, span {
+      color: lighten(@azul-logo-gris, 6%);
+      text-decoration: none;
+    }
+    .background-image( linear-gradient(to right, fade(@ouro-logo, 0) 0%, @ouro-logo 80%) );
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+  }
 }
-
-
 
 #content {
   #messages > * {
@@ -246,48 +225,44 @@ nav#menu-main {
   //
 
   section {
-    > * {
-      margin-left: .7em;
-      padding-left: 1.5em;
-      padding-right: 1.5em;
-    }
-
+    @section-nav-width: 7em;
+    @section-nav-pad: 1em;
     @color-empeza: fade(#fff, 85%);
 
     nav {
-      .clearfix();
-      overflow: hidden;
-      padding-top: .5em;
+      margin-left: 0;
+      margin-top: 1.5em;
+      padding-left: @section-nav-pad;
+      //width: @section-nav-width;
+      //float: left;
+      //background: fade( #fff, 50%);
+      //.border-radius( 0 .5em .5em 0 );
+      //.box-shadow( -5px 5px 10px 0 fade(#000, 50%) );
       a {
-        float: left;
-        margin: 0 .3em;
-        padding: .6em .6em .3em;
+        display: block;
+        padding: .2em .6em;
+        color: @azul-logo-gris;
         text-decoration: none;
-        .background-image( linear-gradient(to bottom, @color-empeza 0%, fade(@color-empeza, 0) 90%) );
-        .border-radius( .5em .5em 0 0 );
-
-        .transition( all .15s ease-in );
-
-        &:hover, &.selected {
-          background-color: @color-empeza;
-          color: darken(@ouro-logo, 10%);
-          .scale( 1.05 );
+        .transition( all .3s ease-out );
+        &:hover,
+        &:focus {
+          padding-left: 1em;
+          color: @ouro-logo;
+        }
+        &.selected {
+          text-align: right;
+          background-color: #fff;
         }
       }
     }
 
-    nav a, > article {
-      .box-shadow( 0 0 10px fade(#000, 50%) );
-    }
-
     > article {
-      &:first-child {
-        margin-top: .5em;
-      }
-      padding-top: 1.5em;
-      padding-bottom: 1.5em;
-      .border-radius( .5em 0 0 .5em );
-      .background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
+      &:first-child { margin-top: .5em; }
+      //margin-left: @section-nav-width + @section-nav-pad;
+      padding: 1.5em;
+      //.border-radius( .5em 0 0 .5em );
+      //.background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
+      //.box-shadow( 5px 0 10px 0 fade(#000, 50%) );
     }
 
     h1 {

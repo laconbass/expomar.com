@@ -24,9 +24,6 @@
         <script src="{{ url( 'static', 'js/vendor/modernizr-2.6.2.min.js' ) }}"></script>
     </head>
     <body class="clearfix {{ breadcumbs.join(' ') }}" lang="{{ lang }}">
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
         <header>
             <a id="logo" href="/">
@@ -55,23 +52,22 @@
         </nav>
 
         <div id="content"{% if content.id %} class="{{ content.id }}"{% endif %}>
-          {% for message in messages %}
-            <div class="message">{{ message|safe }}</div>
-          {% endfor %}
-          {% if content.id %}
-            <section id="{{ content.id }}">
-              {% if content.hasLayout() %}
-                {% include content.layout with { lang: lang, t: t, content: content } only %}
-              {% else %}
-                <h1>{{ content.title|default('no title') }}</h1>
-              {% endif %}
-            </section>
-          {% else %}
-            <section id="no-content">
-                <h1>Oops!</h1>
-                <p>{{ t('no-content message') }}</p>
-            </section>
-          {% endif %}
+            <div id="messages">
+                <!--[if lt IE 7]>
+                    <p class="message browsehappy">{{ 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'|t(lang) }}</p>
+                <![endif]-->
+              {%- for message in messages -%}
+                <div class="message">{{ message|safe }}</div>
+              {%- endfor -%}
+            </div>
+            {% set content = meta %}
+            {% if html %}
+                <section>{{ html|safe }}</section>
+            {% else %}
+                <section id="no-content">
+                    {% include "404-working.swig.html" %}
+                </section>
+            {% endif %}
         </div>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
