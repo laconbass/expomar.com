@@ -23,7 +23,7 @@ var fields = {
 
 exports.getPonencias = function( year, callback ){
   try {
-    var dry = project.resolve( f(path.talk.data, year) );
+    var dry = resolve( process.cwd(), f(path.talk.data, year) );
     if( production ){
       delete require.cache[ dry ];
     }
