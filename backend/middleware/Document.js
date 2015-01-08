@@ -1,8 +1,6 @@
-var iai = require('../../../iai')
-  , path = require('path')
-;
+var path = require('path');
 
-var Controller = iai.project.require('backend/middleware/Controller')
+var Controller = require('./Controller')
   , Layout = require( './Layout' )
 ;
 

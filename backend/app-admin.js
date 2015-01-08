@@ -1,8 +1,6 @@
-var iai = require('iai')
-  , project = iai.project
-  , express = require( 'express' )
+var express = require( 'express' )
   , app = express.Router()
-  , auth = iai.project.require( 'backend/app-auth.js' )
+  , auth = require( './app-auth.js' )
  // , f = require('util').format
 ;
 
@@ -12,7 +10,7 @@ module.exports = app;
 // Layout
 //
 
-var Layout = project.require( 'backend/middleware/Layout' );
+var Layout = require( './middleware/Layout' );
 
 var admin = [ 'admin.swig.html' ];
 
@@ -21,11 +19,6 @@ var admin = [ 'admin.swig.html' ];
 //
 
 app
-  .use( auth(Layout({
-    "name": "Identifíquese",
-    "desc": "Páxina de acceso á interface de administración",
-    "layout": admin
-  })) )
   .use( require('./middleware/messages')() )
   .use( require('./middleware/urlConstructor')( require('./utils').url ) )
   .use( require('./middleware/i18n')( 'gl', [] ) )
@@ -35,6 +28,12 @@ app
 //
 // Routes
 //
+
+app.use( auth(Layout({
+  "name": "Identifíquese",
+  "desc": "Páxina de acceso á interface de administración",
+  "layout": admin.concat('login.swig.html')
+})) )
 
 app.get( '/', Layout({
   "name": "Panel de administración de expomar.com",

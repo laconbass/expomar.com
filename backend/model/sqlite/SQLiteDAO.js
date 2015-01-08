@@ -129,7 +129,7 @@ module.exports = oop.extend( DAO, {
     return this;
   },
   /**
-   * @function destroy: Saves an entity to the database
+   * @function destroy: Deletes an entity from the database
    *
    * fails if entity does not exist
    */
@@ -151,8 +151,19 @@ module.exports = oop.extend( DAO, {
     });
     return this;
   },
+  /**
+   * # CONDITIONAL QUERYING
+   */
+  filterOne: null,
+  filterAny: null,
+  filterAll: null,
+  filters: function( schema, object ){
+    return "";
+  },
   count: function( schema, db, filters, callback ){
-    var SQL = f( "SELECT count(*) FROM `%s` %s;", schema._type, this.filters(filters) );
+    // ¿?
+    filters = this.filters( schema, filters );
+    var SQL = f( "SELECT count(*) FROM `%s` %s;", schema._type, filters );
     // TODO log SQL query for debugging
     //console.log( SQL );
     db.get( SQL, function( err, row ){
@@ -164,24 +175,47 @@ module.exports = oop.extend( DAO, {
     return this;
   },
   find: function( schema, db, filters, callback ){
-    var SQL = f( "SELECT * FROM `%s`%s;", schema._type, this.filters(filters) );
+    // ¿?
+    filters = this.filters( schema, filters );
+    var SQL = f( "SELECT * FROM `%s`%s;", schema._type, filters );
     // TODO log SQL query for debugging
     //console.log( SQL );
     db.all( SQL, callback );
     return this;
   },
-  filters: function( object ){
-    return "";
-    return Object.keys(object).map(function( cmd ){
-      switch(cmd){
-        case '$query':
-          // schema.keys()? search within all TEXT fields?
-        case '$limit':
-        default:
-          return "TRUE";
+  findOne: function( schema, db, filters, callback ){
+
+    var SQL = f( "SELECT * FROM `%s`", schema._type );
+    filters = Object.keys(filters).map(function( fname ){
+      if( schema[ fname ].unique ){
+        return f( "%s = %s", fname, JSON.stringify(filters[fname]) );
       }
-    }).join(" AND ");
+      throw Error( 'non-unique filters not implemented' );
+    }).join( " AND ");
+    if( filters ){
+      SQL += f( " WHERE", filters );
+    }
+    SQL += ";";
+
+    // TODO log SQL query for debugging
+    //console.log( SQL );
+    db.all( SQL, function( err, rows ){
+      if( err ){
+        return callback( err );
+      }
+      if( rows.length == 1 ){
+        return callback( null, rows[0] );
+      }
+      if( rows.length < 1 ){
+        return callback( null, null );
+      }
+      callback( Error(f('found %d results while expecting only one', rows.length)) );
+    });
+    return this;
   },
+  /**
+   * # MISC
+   */
   toString: function( ){
     return "[object SQLiteDAO]";
   }

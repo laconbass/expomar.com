@@ -1,6 +1,4 @@
-var iai = require( '../../../../iai' )
-  , oop = iai( 'oop' )
-;
+var oop = require( 'iai-oop' );
 
 /**
  *

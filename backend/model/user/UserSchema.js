@@ -1,4 +1,4 @@
-var oop = iai = require( '../../../../iai' )( 'oop' )
+var oop = require('iai-oop')
   , Schema = require( '../base/Schema' )
   , Field = Schema.Field
 ;

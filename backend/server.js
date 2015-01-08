@@ -1,20 +1,9 @@
-var iai = require('../../iai')
-  , conf = iai.conf
-;
+var conf = require('../conf/server');
 
-var backend = iai( __dirname );
-
-var mode = 'http';
-
-conf
-  .set( 'domain', iai.production? 'expomar.com' : 'expomar.loc' )
-  .set( 'port', iai.production?  61337 : 3000 )
-;
-
-require( mode )
-  .createServer( mode === 'https'? httpsOpts : undefined )
-  .on( 'request', backend.require('app-main') )
+require( conf.mode )
+  .createServer( conf.mode === 'https'? conf.httpsConf : undefined )
+  .on( 'request', require('./app-main') )
   .listen( conf.port, function(){
-    console.log( 'server listening @ %s://%s:%s', mode, conf.domain, conf.port )
+    console.log( 'server listening @ %s://%s:%s', conf.mode, conf.domain, conf.port )
   })
 ;

@@ -1,18 +1,18 @@
-var iai = require('../../iai')
-  , project = iai.project
-  , express = require('express')
+var express = require('express')
+  , resolve = require('path').resolve.bind( 0, process.cwd() )
   , app = express.Router()
   , less = require('less-middleware')
+  , production = process.env.NODE_ENV === 'production'
 ;
 
 module.exports = app;
 
 app
-  .use( less( project.resolve( 'styles' ), {
+  .use( less( resolve( 'styles' ), {
       // options
-      force: ! iai.production,
-      debug: ! iai.production,
-      dest: project.resolve( 'static' ),
+      force: ! production,
+      debug: ! production,
+      dest: resolve( 'static' ),
       preprocess: {
         path: function( path, req ){
           return path.replace( '/css', '' );
@@ -21,15 +21,15 @@ app
     }, {
       // parser options
       //dumpLineNumbers: 'all',
-      paths: [ project.resolve('static/css/lib') ],
-      optimization: iai.production? 2 : 0
+      paths: [ resolve('static/css/lib') ],
+      optimization: production? 2 : 0
     }, {
       // compiler options
-      compress: iai.production? true : 'auto',
-      yuicompress: iai.production
+      compress: production? true : 'auto',
+      yuicompress: production
     }
   ) )
-  .use( express.static( project.resolve('static'), {
+  .use( express.static( resolve('static'), {
       maxAge: 1000 * 60 * 60 * 24
   }) )
 ;

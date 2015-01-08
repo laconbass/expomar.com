@@ -1,11 +1,15 @@
-var iai = require( '../../../../iai' )
-  , Manager = require('../base/Manager')
+var Manager = require('../base/Manager')
+  , resolve = require('path').resolve
 ;
 
-module.exports = Manager.extend({
+var exports = module.exports = Manager.extend({
   uses: {
     engine: 'SQLite',
-    filename: iai.project.resolve('data/testing.db')
+    filename: resolve( process.cwd(), 'data/testing.db')
   },
   schema: require( './UserSchema' )
 })
+
+exports.authenticate = function( username, password, callback ){
+  callback( new Error('authenticate is not implemented') );
+};

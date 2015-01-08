@@ -1,13 +1,13 @@
-var iai = require('../../iai')
-  , project = iai.project
-  , express = require( 'express' )
+var express = require( 'express' )
   , app = express()
-  , swig = iai.project.require('backend/swig')
+  , swig = require('./swig')
   , marked = require( 'marked' )
   , readFile = require( 'fs' ).readFile
-  , vhost = iai( 'middleware/vhost' )
+  , vhost = require( './middleware/vhost' )
   , morgan = require( 'morgan' )
   , bytes = require( 'bytes' )
+  , resolve = require('path').resolve
+  , production = process.env.NODE_ENV === 'production'
 ;
 
 module.exports = app;
@@ -30,7 +30,8 @@ app.engine( 'md', function( path, locals, callback ){
   });
 });
 
-app.set( 'views', project.resolve('templates') );
+app.disable('x-powered-by');
+app.set( 'views', resolve( process.cwd(), 'templates') );
 app.set( 'view engine', 'html' );
 
 morgan.format( 'custom', function(tokens, req, res){
@@ -61,9 +62,9 @@ morgan.format( 'custom', function(tokens, req, res){
 //
 
 app
-  .use( require( 'static-favicon' )( project.resolve('static/favicon.ico') ) )
-  .use( vhost( 'static.*', project.require('backend/app-static') ) )
-  .use( morgan( iai.production? 'custom' : 'dev' ) )
-  .use( vhost( 'admin.*', project.require('backend/app-admin') ) )
-  .use( project.require('backend/app-public') )
+  .use( require( 'static-favicon' )( resolve('static/favicon.ico') ) )
+  .use( vhost( 'static.*', require('./app-static') ) )
+  .use( morgan( production? 'custom' : 'dev' ) )
+  .use( vhost( 'admin.*', require('./app-admin') ) )
+  .use( require('./app-public') )
 ;

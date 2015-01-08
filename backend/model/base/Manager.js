@@ -1,4 +1,4 @@
-var oop = require( '../../../../iai' )( 'oop' )
+var oop = require( 'iai-oop' )
   , Connection = require('./Connection')
   , Factory = require('./Factory')
 ;
@@ -99,6 +99,12 @@ var Manager = module.exports = {
   count: function( filters, callback ){
     this.connect();
     this.dao.count( this.schema, this.db, filters, callback );
+    return this;
+  },
+  // finds ONE entity. If more than 1 entity is found, an error is thrown
+  findOne: function( filters, callback ){
+    this.connect();
+    this.dao.findOne( this.schema, this.db, filters, callback );
     return this;
   },
   /**

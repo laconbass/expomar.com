@@ -13,10 +13,14 @@ function messages(  ){
     res.locals.messages = [];
     res.message = function( msg ){
       msg = f.apply( f, arguments );
-      msg = swig.render( msg , {
-        autoescape: false,
-        locals: res.locals
-      });
+      /*try {
+        msg = swig.render( msg , {
+          autoescape: false,
+          locals: res.locals
+        });
+      } catch( err ){
+        log( err, "skip until development advances" );
+      }*/
       res.locals.messages.push( msg );
       return res;
     }

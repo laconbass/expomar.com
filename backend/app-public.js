@@ -1,11 +1,9 @@
-var iai = require('../../iai')
-  , project = iai.project
-  , public = iai( project.resolve('layouts/public') )
+var resolve = require('path').resolve.bind( 0, process.cwd() )
   , express = require( 'express' )
   , app = express.Router()
   , debug = require( 'debug' )( 'expomar.com:public' )
   , f = require('util').format
-  , utils = project.require( 'backend/utils' )
+  , utils = require( './utils' )
 ;
 
 module.exports = app;
@@ -15,15 +13,15 @@ module.exports = app;
 //
 
 app
-  .use( project.require('backend/middleware/messages')() )
+  .use( require('./middleware/messages')() )
   .use(function( req, res, next ){
     console.log( req.url );
     res.locals.location = req.url;
     res.locals.url = utils.url;
     next();
   })
-  .use( project.require('backend/middleware/i18n')( 'gl', ['es', 'en'], project.require('backend/translator') ) )
-  .use( project.require('backend/middleware/breadcumbs')( app ) )
+  .use( require('./middleware/i18n')( 'gl', ['es', 'en'], require('./translator') ) )
+  .use( require('./middleware/breadcumbs')( app ) )
   //.use( app.router )
 ;
 
@@ -31,8 +29,8 @@ app
 // View Controllers
 //
 
-var Controller = project.require( 'backend/middleware/Controller' )
-  , Layout = project.require( 'backend/middleware/Layout' )
+var Controller = require( './middleware/Controller' )
+  , Layout = require( './middleware/Layout' )
 ;
 
 function redirect( meta ){
@@ -49,7 +47,7 @@ function redirect( meta ){
   return Controller( meta, redirect );
 }
 
-var Document = project.require( 'backend/middleware/Document' );
+var Document = require( './middleware/Document' );
 
 //
 // Routes
@@ -117,7 +115,7 @@ app.use(
   }) )
 );
 
-var romanize = project.require( 'backend/utils' ).romanize
+var romanize = require( './utils' ).romanize
   , format = require( 'util' ).format
 ;
 
@@ -139,8 +137,8 @@ app
 ;
 
 var xornadas = public.concat( 'public/xornadas/xornadas.swig.html' )
-  , aX = project.require( 'data/anosXornadas.json' )
-  , xOps = project.require('backend/operation/xornadas')
+  , aX = require( resolve('data/anosXornadas.json') )
+  , xOps = require('./operation/xornadas')
 ;
 
 app.use(
@@ -187,7 +185,7 @@ app.use(
 );
 
 var encontro = public.concat( 'public/encontro/encontro.swig.html' )
-  , aE = project.require( 'data/anosEncontro.json' )
+  , aE = require( resolve('data/anosEncontro.json') )
 ;
 
 app.use(
@@ -237,7 +235,7 @@ app.use(
 );
 
 var produart = public.concat( 'public/produart/produart.swig.html' )
-  , aP = project.require( 'data/anosProduart.json' )
+  , aP = require( resolve('data/anosProduart.json') )
 ;
 
 app.use(
@@ -280,7 +278,7 @@ var NotFound = Layout({
   "styles": "404.less"
 });
 
-var oldUrl = project.require('data/old-urls');
+var oldUrl = require( resolve('data/old-urls') );
 
 app.use(function( req, res, next ){
   res.status(404);
@@ -306,7 +304,7 @@ app.use(function( err, req, res, next ){
   console.error( err.stack );
   res.status( 500 );
 
-  if( ! iai.production ){
+  if( process.env.NODE_ENV !== 'production' ){
     res.locals.error = err;
   }
 

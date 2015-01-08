@@ -1,14 +1,13 @@
-var iai = require('iai')
-  , express = require( 'express' )
+var express = require('express')
+  , cookieParser = require('cookie-parser')
+  , bodyParser = require('body-parser')
+  , session = require('express-session')
   , passport = require('passport')
   , LocalStrategy = require('passport-local')
-  , UserManager = iai.project.require('backend/model/user/UserManager')
+  , UserManager = require('./model/user/UserManager')
 ;
 
-module.exports = auth;
-
 passport.use(new LocalStrategy(function(username, password, done) {
-  console.log( "before" );
   UserManager.authenticate( username, password, function(err, user, info) {
     if( err ){
       return done(err);
@@ -28,26 +27,25 @@ passport.deserializeUser(function(pk, done) {
   UserManager.read( pk, done );
 });
 
-// pass a view as function(req, res)
+// pass a view as function(req, res) that displays the login form
 module.exports = auth;
 function auth( login ){
   return express.Router()
-    //.use( express.cookieParser() )
-    //.use( express.bodyParser() )
-    //.use( express.session({ secret: 'hola que tal' }) )
+    .use( bodyParser.json() )
+    .use( bodyParser.urlencoded({ extended: true}) )
+    .use( cookieParser('hola que tal') )
+    .use( session({
+      secret: 'hola que tal',
+      resave: true,
+      saveUninitialized: true
+    }) )
     .use( passport.initialize() )
     //.use( passport.session() )
     // ROUTES
-    .get( '/login', function(req, res){ res.end("show login"); } )
+    //.get( '/login', function(req, res){ res.end("show login"); } )
+    .get( '/login', login )
     .all( '*', passport.authenticate('local', {
       successRedirect: '/', failureRedirect: '/login'
-    }) )
+     }) )
   ;
 };
-
-          passport.authenticate('local', {
-            successRedirect: req.session.goingTo || '/profile',
-            failureRedirect: '/login',
-            failureFlash: true
-        })(req, res);
-

@@ -1,6 +1,5 @@
-var iai = require('../../iai')
-  , f = require('util').format
-;
+var f = require('util').format;
+var conf = require('../conf/server.js');
 
 module.exports = {
   // taken from http://blog.stevenlevithan.com/archives/javascript-roman-numeral-converter
@@ -21,7 +20,7 @@ module.exports = {
   url: function url( subdomain, path ){
     return f(
       'http://%s%s%s', subdomain? (subdomain+'.') : '',
-      iai.production? iai.conf.domain : ( iai.conf.domain+':'+iai.conf.port ),
+      conf.production? conf.domain : ( conf.domain+':'+conf.port ),
       path? ( path[0] == '/'? path : ('/'+path) ) : ''
     );
   }
