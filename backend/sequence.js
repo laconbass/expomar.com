@@ -3,6 +3,7 @@
  */
 
 var isFn = function( o ){ return 'function' === typeof o; };
+var assert = require('assert');
 
 
 /**
@@ -35,6 +36,7 @@ function sequence(iterable, step, complete, context) {
     sequence.push( step.bind( context, key, iterable[key], next) );
   }
   // start sequence
+  assert( isFn(sequence[0]), 'got a 0-length sequence' );
   process.nextTick( sequence[0] );
 
   // "next" function for steps

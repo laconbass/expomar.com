@@ -5,10 +5,11 @@ var express = require('express')
   , passport = require('passport')
   , LocalStrategy = require('passport-local')
   , UserManager = require('./model/user/UserManager')
+  , conf = require('../conf/server')
 ;
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  UserManager.authenticate( username, password, function(err, user, info) {
+  UserManager.authenticate( username, password, function(err, user) {
     if( err ){
       return done(err);
     }
@@ -27,25 +28,48 @@ passport.deserializeUser(function(pk, done) {
   UserManager.read( pk, done );
 });
 
-// pass a view as function(req, res) that displays the login form
 module.exports = auth;
-function auth( login ){
+
+function auth( opts ){
+  opts = opts || {};
+  opts.indexUrl = opts.indexUrl || '/';
+  opts.loginUrl = opts.loginUrl || '/login';
+  opts.logoutUrl = opts.logoutUrl || '/logout';
   return express.Router()
     .use( bodyParser.json() )
-    .use( bodyParser.urlencoded({ extended: true}) )
-    .use( cookieParser('hola que tal') )
+    .use( bodyParser.urlencoded({ extended: true }) )
+    .use( cookieParser(conf.secret) )
     .use( session({
-      secret: 'hola que tal',
+      secret: conf.secret,
       resave: true,
       saveUninitialized: true
     }) )
     .use( passport.initialize() )
-    //.use( passport.session() )
-    // ROUTES
-    //.get( '/login', function(req, res){ res.end("show login"); } )
-    .get( '/login', login )
-    .all( '*', passport.authenticate('local', {
-      successRedirect: '/', failureRedirect: '/login'
-     }) )
+    .use( passport.session() )
+    // intercept POST requests to loginUrl, so user can log in
+    .post( opts.loginUrl, function( req, res, next ){
+      passport.authenticate('local', function( err, user ){
+        if( err ) return next(err);
+        if( !user ){
+          res.message( 'Os credenciais inseridos non son válidos' );
+          return next();
+        }
+        req.logIn( user, function( err ){
+          if( err ) return next(err);
+          return res.redirect( opts.indexUrl );
+        });
+      })(req, res, next);
+    })
+    // intercept GET requests to logoutUrl, so user can log out
+    .get( opts.logoutUrl, function( req, res ){
+      req.logout();
+      res.redirect( opts.indexUrl );
+    })
+    // ensure every other request is authenticated
+    .all( '*', function skipIfLoginUrlOrCheckAuth( req, res, next ){
+      if( req.url === opts.loginUrl ) return next();
+      //console.log( 'is authenticated?', req.isAuthenticated() );
+      req.isAuthenticated()? next() : res.redirect( opts.loginUrl );
+    })
   ;
 };

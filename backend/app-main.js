@@ -8,6 +8,8 @@ var express = require( 'express' )
   , bytes = require( 'bytes' )
   , resolve = require('path').resolve
   , production = process.env.NODE_ENV === 'production'
+  , morganFormat = production? 'custom' : 'dev'
+  , morganOpts = production? {} : { inmediate: true }
 ;
 
 module.exports = app;
@@ -64,7 +66,7 @@ morgan.format( 'custom', function(tokens, req, res){
 app
   .use( require( 'static-favicon' )( resolve('static/favicon.ico') ) )
   .use( vhost( 'static.*', require('./app-static') ) )
-  .use( morgan( production? 'custom' : 'dev' ) )
+  .use( morgan( morganFormat, morganOpts ) )
   .use( vhost( 'admin.*', require('./app-admin') ) )
   .use( require('./app-public') )
 ;

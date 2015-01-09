@@ -1,6 +1,5 @@
 var assert = require('chai').assert
-  , iai = require('../../iai')
-  , schema = iai.project.require( 'backend/model/user/UserSchema' )
+  , schema = require( '../backend/model/user/UserSchema' )
 ;
 
 describe.skip( "User Manager (Redis)", function(){

@@ -17,7 +17,7 @@ User.username = Field({
 });
 
 User.password = Field({
-
+  hash: 'sha1'
 });
 
 User.email = Field({
@@ -27,3 +27,4 @@ User.email = Field({
 User.last_login = Field({
 
 });
+

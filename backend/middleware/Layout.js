@@ -11,6 +11,7 @@ function Layout( meta ){
     throw new Error( "Layout controller must has #layout");
   }
 
+
   function layout( req, res, next ){
     res.locals.meta = meta;
 
@@ -39,6 +40,10 @@ function Layout( meta ){
 }
 
 function renderSequence( layouts, req, res, next ){
+  var parts = layouts.slice(1).reverse();
+  if( !parts.length ){
+    return res.render( layouts[0] );
+  }
   sequence(
       layouts.slice(1).reverse(),
       function step( index, layout, done ){

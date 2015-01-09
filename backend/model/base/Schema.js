@@ -1,3 +1,5 @@
+var assert = require('assert');
+var crypto = require('crypto');
 var oop = require( 'iai-oop' );
 
 /**
@@ -101,7 +103,29 @@ var Validator = {
    * @function vals: Returns an array consisting of the stored values.
    */
   vals: function(){
+    // TODO this should use only 1 loop (same as #keys)
     return this.keys().map(function(n){ return this[n]; }, this);
+  },
+  /**
+   * @function each: Iterate over this' enumerable properties
+   */
+  each: function( fn ){
+    assert( 'function' === typeof fn, 'fn must be a function' );
+    for( var property in this ){
+      fn.call( this, property, this[property] );
+    }
+    return this;
+  },
+  /**
+   * @function map: TODO description
+   */
+  map: function( fn ){
+    assert( 'function' === typeof fn, 'fn must be a function' );
+    var map = [];
+    for( var property in this ){
+      map.push(  fn.call( this, property, this[property] )  );
+    }
+    return map;
   },
   /**
    * @function toString: Returns a string representation of the structure.
@@ -130,14 +154,29 @@ var Validator = {
 
 
 function createField( params ){
-  return createValidator( oop.extend(Field, params || {}) );
+  params = params || {};
+  // unique (bool): each new entity must have an unique value on this field
+  // this validation can only be performed at DAO-level (or schema?)
+  params.unique = !! params.unique;
+  // hash (string): algorithm to cipher the value
+  params.hash
+    && assert( ~crypto.getHashes().indexOf(params.hash), 'invalid hash' )
+  ;
+  return oop.extend( createValidator(Field), params );
 }
 
 // Field's prototype
 var Field = {
-  // ensure each new entity has an unique value on this field
-  // this validation can only be performed at DAO-level
-  unique: false
+  unique: false,
+  clean: function( input ){
+    if( this.hash ){
+      return input
+        ? crypto.createHash( this.hash ).update( input ).digest('hex')
+        : input // if no input given, do not create hash digest
+      ;
+    }
+    return input;
+  }
 };
 
 function createSchema( name ){
@@ -147,6 +186,13 @@ function createSchema( name ){
 // Schema's prototype
 var Schema = {
   validate: function( input, callback ){
+  },
+  clean: function( input ){
+    var cleaned = {};
+    this.each(function( fieldName, field ){
+      cleaned[ fieldName ] = field.clean( input[fieldName] );
+    });
+    return cleaned;
   }
 };
 

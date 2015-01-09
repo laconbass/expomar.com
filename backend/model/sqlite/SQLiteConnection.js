@@ -1,5 +1,4 @@
-var iai = require('../../../../iai')
-  , oop = iai( 'oop' )
+var oop = require( 'iai-oop' )
   , Connection = require( '../base/Connection' )
   , sqlite3 = require( 'sqlite3' )
 ;

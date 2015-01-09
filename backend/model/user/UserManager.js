@@ -11,5 +11,17 @@ var exports = module.exports = Manager.extend({
 })
 
 exports.authenticate = function( username, password, callback ){
-  callback( new Error('authenticate is not implemented') );
+  var pass = this.schema.clean({ password: password }).password;
+  this.findOne({ username: username }, function( err, user ){
+    if( err ){
+      return callback( err );
+    }
+    // callbacks:
+    //  null, if no user is found for `username`
+    //  false, if user was found but `password` is not correct
+    //  user object, if authentication was successfull
+    user = ! user? null : user.password === pass? user : false;
+    callback( null, user );
+  });
 };
+

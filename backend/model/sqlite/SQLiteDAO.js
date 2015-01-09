@@ -1,5 +1,4 @@
-var iai = require( '../../../../iai' )
-  , oop = iai( 'oop' )
+var oop = require( 'iai-oop' )
   , f = require( 'util' ).format
   , DAO = require( '../base/DAO' )
 ;
@@ -57,7 +56,8 @@ module.exports = oop.extend( DAO, {
    * semantic validation (i.e, Field.unique) makes sense here.
    */
   create: function( schema, db, input, callback ){
-    // TODO validate input agains schema prior to insert it
+    // TODO validate input against schema prior to insert it
+    input = schema.clean( input );
 
     var keys = schema.keys();
     var names = keys.map(function( k ){ return "`"+k+"`"; }).join(', ');
@@ -106,12 +106,14 @@ module.exports = oop.extend( DAO, {
    * fails if entity does not exist
    */
   update: function( schema, db, input, callback ){
-    // TODO validate input data against schema before update entity
     // TODO sanitize pk to avoid injection
+    var pk = input.pk;
+    // TODO validate input data against schema before update entity
+    input = schema.clean( input );
     var vals = schema.keys().map(function( fname ){
       return f( "%s = %s", fname, input[fname]? JSON.stringify(input[fname]) : "NULL" );
     }).join(', ');
-    var SQL = f( "UPDATE `%s` SET %s WHERE pk = %d;", schema._type, vals, input.pk );
+    var SQL = f( "UPDATE `%s` SET %s WHERE pk = %d;", schema._type, vals, pk );
     // TODO log SQL query for debugging
     // console.log( SQL );
     db.run( SQL, function( err ){
@@ -119,6 +121,7 @@ module.exports = oop.extend( DAO, {
         return callback( err );
       }
       if( this.changes === 1 ){
+        input.pk = pk;
         return callback( err, input );
       }
       if( this.changes === 0 ){

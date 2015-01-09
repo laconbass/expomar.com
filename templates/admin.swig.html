@@ -13,7 +13,7 @@
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <link rel="stylesheet" href="{{ url( 'static', 'css/lib/normalize.css' ) }}">
-        <link rel="stylesheet" href="{{ url( 'static', 'css/theme2-main.css' ) }}">
+        <link rel="stylesheet" href="{{ url( 'static', 'css/theme2/main.css' ) }}">
         {% if content.styles %}
         <style>
           {% if content.hasStyles() %}
@@ -43,13 +43,12 @@
                 </nav>
                 <nav id="menu-top">
                     <a href="{{ url() }}">{{ t('Interface Pública') }}</a>
-                    <a href="#">{{ t('Saír') }}</a>
+                  {% if user %}
+                    <a href="{{ url( 'admin', '/logout' ) }}">{{ t('Saír') }}</a>
+                  {% endif %}
                 </nav>
             </aside>
         </header>
-        <nav id="menu-main">
-            <a href="/actualidade"{{ selected( breadcumbs[0] == 'actualidade' ) }}>{{ t('Actualidade') }}</a>
-        </nav>
 
         <div id="content"{% if content.id %} class="{{ content.id }}"{% endif %}>
             <div id="messages">

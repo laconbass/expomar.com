@@ -1,19 +1,25 @@
 var assert = require('chai').assert
   , fs = require('fs')
-  , iai = require('../../iai')
   , sqlite3 = require( 'sqlite3' )
   , testinput = { username: "testuser", password: "randompass", email: "test@testing.com" }
-  , testdb = iai.project.resolve('data/testing.db')
+  , testdb = require('path').resolve( process.cwd(), 'data/testing.db')
 ;
 
-describe( "User Manager", function(){
+function testUserData( input, output ){
+  for( var key in input ){
+    var method = key === 'password'? 'notEqual' : 'equal';
+    assert[ method ]( output[ key ], input[ key ] );
+  }
+};
+
+describe( "User Manager (Sqlite)", function(){
   var manager;
   before(function( done ){
-    manager = iai.project.require( 'backend/model/user/UserManager' );
+    manager = require( '../backend/model/user/UserManager' );
     // ensure we are not working with important data...
     assert.equal( manager.uses.filename, testdb );
     fs.unlink( testdb, function( err ){
-      if( err ) return done(err);
+      if( err && err.code !== 'ENOENT' ) return done(err);
       manager.connect();
       // ensure connection was created properly
       assert( manager.db instanceof sqlite3.Database, "bad connection" );
@@ -46,9 +52,7 @@ describe( "User Manager", function(){
       manager.db.all(SQL, function( err, rows ){
         assert.isNull( err );
         assert( rows.length == 1, "should get only 1 row" );
-        for( var key in testinput ){
-          assert.equal( rows[0][ key ], testinput[ key ], "field "+key+ " should match" );
-        }
+        testUserData( testinput, rows[0] );
         done();
       });
     });
@@ -66,9 +70,7 @@ describe( "User Manager", function(){
       manager.read( 1, function( err, user ){
         assert.isNull( err );
         assert.isNotNull( user );
-        for( var key in testinput ){
-          assert.equal( user[ key ], testinput[ key ], "field "+key+ " should match" );
-        }
+        testUserData( testinput, user );
         done();
       });
     });
@@ -81,9 +83,7 @@ describe( "User Manager", function(){
         assert.isNull( err );
         assert.isNotNull( user );
         assert.equal( user.pk, 2 );
-        for( var key in data ){
-          assert.equal( user[ key ], data[ key ], "field "+key+ " should match" );
-        }
+        testUserData( data, user );
         done();
       })
     });
@@ -111,9 +111,7 @@ describe( "User Manager", function(){
         assert.equal( user.pk, 1, "pk should be 1" );
         manager.read( user.pk, function( err, user ){
           assert.isNull( err );
-          assert.equal( user.username, data.username, "name should match" );
-          assert.equal( user.password, data.password, "pass should match" );
-          assert.equal( user.email, data.email, "email should match" );
+          testUserData( data, user );
           done();
         });
       })
@@ -144,7 +142,7 @@ describe( "User Manager", function(){
         assert.instanceOf( err, Error );
         done();
       })
-    })
+    });
   });
 
   describe( '#find', function(){
@@ -156,7 +154,7 @@ describe( "User Manager", function(){
         done();
       })
     });
-    it.skip( 'should retrieve only users matching $query if given', function( done ){
+    it.skip( 'should retrieve only users matching $query if given (maybe #search)', function( done ){
       var data = { username: "testuser3", password: "testpass3", email: "email3" };
       var data2 = { username: "rarename", password: "testpass", email: "email3332" };
       manager.create( data, function( err ){
@@ -195,4 +193,49 @@ describe( "User Manager", function(){
     it( 'should retrieve the count of users matching given filters' );
   });
 
+  describe( '#findOne', function(){
+    it('should callback  null if no entity matchs filters', function( done ){
+      manager.findOne({ username: 'unexistent' }, function( err, user ){
+        assert.isNull( err );
+        assert.isNull( user );
+        done();
+      });
+    })
+    it('should callback an user given an existent username', function( done ){
+      var data = { username: "testuser5", password: "testpass", email: "bla@bal.com" };
+      manager.create( data, function( err ){
+        assert.isNull( err );
+        manager.findOne({ username: data.username }, function( err, user ){
+          assert.isNull( err );
+          testUserData( data, user );
+          done();
+        });
+      });
+    });
+  });
+
+  describe( '#authenticate', function(){
+    it('should callback user given valid credentials', function( done ){
+      manager.authenticate( 'testuser5', 'testpass', function( err, user ){
+        assert.isNull( err );
+        assert.isDefined( user.username );
+        assert.isDefined( user.email );
+        done();
+      });
+    });
+    it('should callback false given existent user with bad password', function( done ){
+      manager.authenticate( 'testuser5', 'badpass', function( err, user ){
+        assert.isNull( err );
+        assert.isFalse( user );
+        done();
+      });
+    });
+    it('should callback null given unexistant user', function( done ){
+      manager.authenticate( 'unexistent', 'nomatter', function( err, user ){
+        assert.isNull( err );
+        assert.isNull( user );
+        done();
+      });
+    });
+  });
 })
