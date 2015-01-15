@@ -12,17 +12,26 @@ module.exports = app;
 // Middleware
 //
 
+function menuTop( menu ){
+  return function( req, res, next ){ res.locals.menuTop = menu; next(); };
+}
+
 app
   .use( require('./middleware/messages')() )
   .use(function( req, res, next ){
-    console.log( req.url );
     res.locals.location = req.url;
     res.locals.url = utils.url;
     next();
   })
   .use( require('./middleware/i18n')( 'gl', ['es', 'en'], require('./translator') ) )
   .use( require('./middleware/breadcumbs')( app ) )
-  //.use( app.router )
+  .use( menuTop({
+    "/a-fundacion": { text: 'A Fundación' },
+    "/feira-expomar": { text: 'Feira Expomar' },
+    "/xornadas-tecnicas": { text: 'Xornadas Técnicas' },
+    "/encontro-empresarial": { text: 'Encontro Empresarial' },
+    "/produart": { text: 'Produart' }
+  }) );
 ;
 
 //
@@ -53,7 +62,7 @@ var Document = require( './middleware/Document' );
 // Routes
 //
 
-var public = [ "public.swig.html" ];
+var public = [ "theme2.swig.html" ];
 
 app.get( '/', Layout({
   "name": "Portada",

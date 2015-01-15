@@ -69,7 +69,11 @@ function auth( opts ){
     .all( '*', function skipIfLoginUrlOrCheckAuth( req, res, next ){
       if( req.url === opts.loginUrl ) return next();
       //console.log( 'is authenticated?', req.isAuthenticated() );
-      req.isAuthenticated()? next() : res.redirect( opts.loginUrl );
+      if( req.isAuthenticated() ){
+        res.locals.user = req.user;
+        return next();
+      }
+      res.redirect( opts.loginUrl );
     })
   ;
 };

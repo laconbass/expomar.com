@@ -1,13 +1,15 @@
 <form action="/login" method="post">
+  <fieldset>
+    <p>
+      <label for="login_username">{{ t('Usuario') }}:</label>
+      <input type="text" id="login_username" name="username" placeholder="Usuario"/>
+    </p>
+    <p>
+      <label for="login_password">{{ t('Contrasinal') }}:</label>
+      <input type="password" id="login_password" name="password" placeholder="Contrasinal"/>
+    </p>
     <div>
-        <label>Username:</label>
-        <input type="text" name="username"/>
+      <button type="submit" value="Log In">{{ t('Log In') }}</button>
     </div>
-    <div>
-        <label>Password:</label>
-        <input type="password" name="password"/>
-    </div>
-    <div>
-        <input type="submit" value="Log In"/>
-    </div>
+  </fieldset>
 </form>

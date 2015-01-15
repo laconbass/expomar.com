@@ -17,15 +17,15 @@ function vhost( hostname, server ) {
   if ( !util.isRegExp( hostname ) )
     hostname = new RegExp('^' + hostname.replace(/[*]/g, '(.*?)') + '$', 'i');
 
-  var isApp = 'function' == typeof server.all;
-  if( isApp ) server.use(function( req, res ){ res.send(404); });
+  var isApp = 'function' === typeof server.all;
+  if( isApp ) server.use(function( req, res ){ res.sendStatus(404); });
 
 
   return function vhost(req, res, next) {
-    if ( !req.headers.host ) return res.send(400);
+    if ( !req.headers.host ) return res.sendStatus(400);
     var host = req.headers.host.split(':')[0];
     if ( !hostname.test( host ) ) return next();
-    if ( 'function' == typeof server )
+    if ( 'function' === typeof server )
       return server( req, res, isApp? next : end(res) );
     server.emit( 'request', req, res );
   };

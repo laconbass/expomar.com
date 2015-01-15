@@ -4,19 +4,32 @@ body {
 }
 
 header {
-
   #logo {
-
-    img {
-      width: 200px;
-    }
-
-    h1 {
-      widht: 300px;
-      height: 120px;
+    display: inline-block;
+    vertical-align: bottom;
+    width: 97% / 5 * 3;
+    img { width: 200px; }
+    h1 { width: 300px; height: 120px; }
+  }
+  nav#language {
+    width: 97% / 5 * 2;
+    display: inline-block;
+  }
+  nav#menu-top {
+    float: right;
+    button { display: none }
+    a,
+    a:hover,
+    a:focus,
+    a.selected,
+    &.expanded a {
+      display: inline-block;
+      margin-right: 0;
     }
   }
-
+  nav#breadcumbs {
+    clear: both;
+  }
 }
 
 .xornadas-tecnicas.ponencias #content section >article {

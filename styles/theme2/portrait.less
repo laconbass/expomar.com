@@ -70,10 +70,14 @@ body {
 
 // de momento non
 //a.selected { cursor: default; pointer-events: none; }
+nav#user {
+  position: fixed;
+  width: 100%;
+  text-align: right;
+  z-index: 99;
+}
 
 header {
-  position: relative;
-
   #logo {
     display: inline-block;
     text-decoration: none;
@@ -98,20 +102,14 @@ header {
       background-position: center center;
     }
   }
-  aside {
-    .clearfix();
-    nav {
-      float: right;
-      clear: both;
+  nav {
+    a {
+      display: inline-block;
+      text-decoration: none;
     }
   }
-  nav a {
-    display: inline-block;
-    text-decoration: none;
-  }
   nav#social {
-    //height: 2.5em;
-    height: 0; overflow: hidden;
+    /*height: 2.5em; // */ display: none;
 
     a {
       height: 33px; width: 33px;
@@ -126,6 +124,7 @@ header {
   }
   nav#language {
     margin-bottom: .2em;
+    text-align: right;
     a {
       color: #444;
       margin-right: .5em;
@@ -138,22 +137,29 @@ header {
     position: relative;
     background-color: @azul-logo;
     @toggler-width: 2.5em;
+    @element-vpad: .5em;
     padding-right: @toggler-width;
+    padding-top: @element-vpad;
+    min-height: @toggler-width + @element-vpad;
     button {
+      float: right;
+      position: absolute; right: 0; top: 0; bottom: 0;
+      margin: @element-vpad/2;
+      margin-top: @element-vpad;
+      border: none;
       width: @toggler-width;
-      position: absolute;
-      right: 0; top: 0;
-      height: 100%;
-      background-color: green;
+      //height: 100%;
+      color: @ouro-logo;
+      background: fade(@verde-logo, 20%);
+      .transition( all .3s ease-out );
     }
-    button, button:active { border: 0; outline: 0; }
-    button { height: 100%; }
+    button:hover, button:focus {
+      color: @azul-logo;
+      background: fade(@verde-logo, 80%);
+    }
 
-    a, button { padding: 1em .5em; }
+    a, button { padding: 1em @element-vpad; }
     //&.collapsed { .animated(); .bounceOut(); }
-    &.expanded { .animated(); .bounceIn(); }
-    &.expanded a { display: block; }
-    &.expanded a + a { margin-top: .5em; }
     a {
       display: none;
       margin: 0 .5em;
@@ -168,8 +174,18 @@ header {
         color: @azul-logo;
       }
     }
+    &.expanded {
+      padding-bottom: @element-vpad;
+      .animated(); .fadeInDown();
+      a { display: block; }
+      a + a { margin-top: @element-vpad; }
+      button { margin-bottom: @element-vpad; }
+      & + nav#breadcumbs {
+        .animated(); .fadeInDown();
+        //.background-image( linear-gradient(to top, @ouro-logo 70%, @azul-logo 100%) );
+      }
+    }
   }
-  // & = header
   nav#breadcumbs {
     padding-left: 1em;
 
@@ -181,10 +197,9 @@ header {
       color: lighten(@azul-logo-gris, 6%);
       text-decoration: none;
     }
-    .background-image( linear-gradient(to right, fade(@ouro-logo, 0) 0%, @ouro-logo 80%) );
-    background-repeat: no-repeat;
-    background-position: 0% 100%;
+    background: @ouro-logo;
   }
+  // & = header
 }
 
 #content {
