@@ -1,16 +1,3 @@
-{%- import "../../tags.swig" as tag -%}
-
-<nav>
-    {{ tag.a( "/xornadas-tecnicas/presentacion", t('Presentación'), 2 ) }}
-    {{ tag.a( "/xornadas-tecnicas/programa", t('Programa'), 2 ) }}
-    {{ tag.a( "/xornadas-tecnicas/comite", t('Comité Executivo'), 2 ) }}
-    {{ tag.a( "/xornadas-tecnicas/ponencias", t('Ponencias'), 2 ) }}
-    <!--
-    {{ tag.a( "/xornadas-tecnicas/historico", t('Histórico'), 2 ) }}
-    {{ tag.a( "/xornadas-tecnicas/galeria", t('Galería de fotos'), 2 ) }}
-    -->
-</nav>
-
 {% if html %}
     <article>{{ html|safe }}</article>
 {% else %}

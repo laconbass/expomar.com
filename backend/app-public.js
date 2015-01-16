@@ -25,13 +25,13 @@ app
   })
   .use( require('./middleware/i18n')( 'gl', ['es', 'en'], require('./translator') ) )
   .use( require('./middleware/breadcumbs')( app ) )
-  .use( menuTop({
-    "/a-fundacion": { text: 'A Fundación' },
-    "/feira-expomar": { text: 'Feira Expomar' },
-    "/xornadas-tecnicas": { text: 'Xornadas Técnicas' },
-    "/encontro-empresarial": { text: 'Encontro Empresarial' },
-    "/produart": { text: 'Produart' }
-  }) );
+  .use( menuTop([
+    { href: "/a-fundacion", text: 'A Fundación', title: 'no title' },
+    { href: "/feira-expomar", text: 'Feira Expomar', title: 'no title' },
+    { href: "/xornadas-tecnicas", text: 'Xornadas Técnicas', title: 'no title' },
+    { href: "/encontro-empresarial", text: 'Encontro Empresarial', title: 'no title' },
+    { href: "/produart", text: 'Produart', title: 'no title' }
+  ]) );
 ;
 
 //

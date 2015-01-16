@@ -38,6 +38,23 @@ function debug( input ){
 debug.safe = true;
 production || swig.setFilter( 'debug', debug );
 
+function link( input, _location ){
+  input = input || {};
+  input.text = input.text || '¿?';
+  input.title = input.title || '¿?';
+
+  var href = input.href || '#'
+    , curr = _location || '#'
+    , clas = curr.split('/').slice( 0, href.split('/').length ).join('/') === href
+  ;
+  return format(
+    '<a href="%s" title="%s" class="%s">%s</a>',
+    href, input.title, clas? 'selected' : '', input.text
+  );
+}
+link.safe = true;
+swig.setFilter( 'link', link );
+
 
 swig.setFilter( 'romanize', utils.romanize );
 

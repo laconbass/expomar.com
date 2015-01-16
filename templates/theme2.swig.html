@@ -1,4 +1,3 @@
-{%- import "./tags.swig" as tag -%}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -49,9 +48,9 @@
             </nav>
             <nav id="menu-top">
               <a href="/" {{ selected(location =='/') }}>{{t('Portada')}}</a>
-              {% for path, item in menuTop %}
-              {{ tag.a( path, t(item.text), 1 ) }}
-              {% endfor %}
+              {%- for data in menuTop -%}
+                {{ data|link(location) }}
+              {%- endfor -%}
               <!-- to expand and collapse the menu on portrait mode-->
               <button>M</button>
             </nav>
@@ -76,8 +75,15 @@
             </div>
             {% set content = meta %}
             {% if html %}
-              <code>{{ meta|json() }}</code>
+              {#{ menu|json(4)|debug }#}
+              {#{ view|debug }#}
               <section id="{{ location.split('/')|first|default('portada') }}">
+                {%- for data in menu -%}
+                  {%- if loop.first %}<nav>{% endif %}
+                    {{ data|link(location) }}
+                    <!-- a href="{{ a.href }}" title="{{ a.title|t(lang) }}"{{ selected(a.href == location) }}>{{ a.text|t(lang) }}</a -->
+                  {%- if loop.last %}</nav>{% endif %}
+                {%- endfor -%}
                 {{ html|safe }}
               </section>
             {% else %}
