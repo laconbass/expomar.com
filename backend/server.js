@@ -1,9 +1,12 @@
 var conf = require('../conf/server');
 
-require( conf.mode )
+module.exports = require( conf.mode )
   .createServer( conf.mode === 'https'? conf.httpsConf : undefined )
   .on( 'request', require('./app-main') )
-  .listen( conf.port, function(){
+;
+
+if( require.main === module ){
+  module.exports.listen( conf.port, function(){
     console.log( 'server listening @ %s://%s:%s', conf.mode, conf.domain, conf.port )
   })
-;
+}

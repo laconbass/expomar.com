@@ -1,5 +1,5 @@
 var sequence = require( '../sequence' )
-  , Controller = require( './Controller' )
+  , View = require( './View' )
 ;
 
 module.exports = Layout;
@@ -36,7 +36,7 @@ function Layout( meta ){
 
   layout.render = renderSequence;
 
-  return Controller( meta, layout );
+  return View.create( meta, layout );
 }
 
 function renderSequence( layouts, req, res, next ){

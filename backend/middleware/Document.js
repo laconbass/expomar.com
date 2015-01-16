@@ -1,6 +1,6 @@
 var path = require('path');
 
-var Controller = require('./Controller')
+var View = require('./View')
   , Layout = require( './Layout' )
 ;
 
@@ -42,5 +42,5 @@ function Document( meta ){
 
   document.layout = Layout( meta );
 
-  return Controller( meta, document );
+  return View.create( meta, document );
 }

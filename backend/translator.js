@@ -1,10 +1,16 @@
 var resolve = require('path').resolve.bind( 0, process.cwd() )
-  , debug = require('debug')('iai:translator')
   , fs = require('fs')
   , f = require('util').format
   , slice = Array.prototype.slice.call.bind( Array.prototype.slice )
   , production = process.env.NODE_ENV === 'production'
 ;
+
+function debug(){
+  if( production ){
+    return;
+  }
+  console.error( 'translator:', f.apply(0, arguments) );
+};
 
 
 var files = {

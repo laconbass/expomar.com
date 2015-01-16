@@ -1,13 +1,14 @@
-var iai = require( '../../iai' )
-  , swig = require( 'swig' )
+var swig = require( 'swig' )
+  , format = require( 'util' ).format
   , utils = require( './utils' )
   , marked = require( 'marked' )
+  , production = process.env.NODE_ENV === 'production'
 ;
 
 var exports = module.exports = new swig.Swig({
   // see options [here](http://paularmstrong.github.io/swig/docs/api/#SwigOpts)
   autoescape: true,
-  cache: iai.production? 'memory' : false,
+  cache: production? 'memory' : false,
   locals: {
     selected: function( condition ){
       return condition? ' class="selected"' : '';
@@ -29,6 +30,13 @@ swig.setFilter( 'trim', function( input ){
   }
   return input.trim();
 });
+
+function debug( input ){
+  var mode = ('string' === typeof input)? '%s' : '%j';
+  return format( '<pre>'+mode+'</pre>', input );
+}
+debug.safe = true;
+production || swig.setFilter( 'debug', debug );
 
 
 swig.setFilter( 'romanize', utils.romanize );

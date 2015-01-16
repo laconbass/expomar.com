@@ -40,6 +40,8 @@ app
 
 var Controller = require( './middleware/Controller' )
   , Layout = require( './middleware/Layout' )
+  , Document = require( './middleware/Document' )
+  , Section = require( './middleware/Section' )
 ;
 
 function redirect( meta ){
@@ -56,7 +58,6 @@ function redirect( meta ){
   return Controller( meta, redirect );
 }
 
-var Document = require( './middleware/Document' );
 
 //
 // Routes
@@ -93,7 +94,10 @@ var fundacion = public.concat( "public/a-fundacion/a-fundacion.swig.html" );
 
 app.use(
   '/a-fundacion',
-  express.Router()
+  Section( app, {
+    "name": "A Fundación Expomar",
+    "desc": "Información sobre a Fundación Expomar (Historia, Obxectivos, ...)"
+  })
   .get( '/', redirect({
     "name": "A Fundación",
     "desc": "A Fundación Expomar",
@@ -152,7 +156,10 @@ var xornadas = public.concat( 'public/xornadas/xornadas.swig.html' )
 
 app.use(
   '/xornadas-tecnicas',
-  express.Router()
+  Section( app, {
+    "name": "Xornadas Técnicas",
+    "desc": "Toda a información sobre as Xornadas Técnicas, dende os seus inicios ata a actualidade"
+  })
   .get( '/', redirect({
     "name": "Xornadas Técnicas",
     "desc": format(
@@ -199,7 +206,10 @@ var encontro = public.concat( 'public/encontro/encontro.swig.html' )
 
 app.use(
   '/encontro-empresarial',
-  express.Router()
+  Section( app, {
+    "name": "Encontro Empresarial",
+    "desc": "Toda a información sobre o Encontro Empresarial, dende os seus inicios ata a actualidade"
+  })
   .get( '/', redirect({
     "name": "Encontro Empresarial",
     "desc": "Encontro Empresarial de Organizacións Pesqueiras",
@@ -249,7 +259,10 @@ var produart = public.concat( 'public/produart/produart.swig.html' )
 
 app.use(
   '/produart',
-  express.Router()
+  Section( app, {
+    "name": "Produart",
+    "desc": "Toda a información sobre Produart, dende os seus inicios ata a actualidade"
+  })
   .get( '/', redirect({
     "name": "Produart",
     "desc": "Feira dos Produtos Artesáns e Ecolóxicos",
