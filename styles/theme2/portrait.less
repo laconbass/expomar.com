@@ -81,8 +81,7 @@ header {
   #logo {
     display: inline-block;
     text-decoration: none;
-    margin: .5em;
-    margin-bottom: 0;
+    padding-left: .5em;
 
     * { display: inline-block; vertical-align: middle; }
     img {
@@ -125,79 +124,95 @@ header {
   nav#language {
     margin-bottom: .2em;
     text-align: right;
+    padding-right: 1em;
     a {
       color: #444;
-      margin-right: .5em;
+      margin-left: .5em;
 
       &:hover, &:focus, &:active { color: @ouro-logo; }
       &.selected { color: #ccc; }
     }
   }
   nav#menu-top {
-    position: relative;
     background-color: @azul-logo;
-    @toggler-width: 2.5em;
-    @element-vpad: .5em;
-    padding-right: @toggler-width;
-    padding-top: @element-vpad;
-    min-height: @toggler-width + @element-vpad;
-    button {
-      float: right;
-      position: absolute; right: 0; top: 0; bottom: 0;
-      margin: @element-vpad/2;
-      margin-top: @element-vpad;
-      border: none;
-      width: @toggler-width;
-      //height: 100%;
+    /*button {
       color: @ouro-logo;
       background: fade(@verde-logo, 20%);
-      .transition( all .3s ease-out );
-    }
-    button:hover, button:focus {
-      color: @azul-logo;
-      background: fade(@verde-logo, 80%);
-    }
-
-    a, button { padding: 1em @element-vpad; }
-    //&.collapsed { .animated(); .bounceOut(); }
+      &:hover, &:focus {
+        color: @azul-logo;
+        background: fade(@verde-logo, 80%);
+      }
+    }*/
     a {
-      display: none;
-      margin: 0 .5em;
       color: @ouro-logo;
-
-      &:hover,
-      &:focus,
-      &.selected {
-        display: block;
-        .transition( all .3s ease-out );
+      background-color: fade(@ouro-logo, 20%);
+      &:hover, &:focus, &.selected {
         background-color: @ouro-logo;
         color: @azul-logo;
       }
     }
-    &.expanded {
-      padding-bottom: @element-vpad;
-      .animated(); .fadeInDown();
-      a { display: block; }
-      a + a { margin-top: @element-vpad; }
-      button { margin-bottom: @element-vpad; }
-      & + nav#breadcumbs {
-        .animated(); .fadeInDown();
-        //.background-image( linear-gradient(to top, @ouro-logo 70%, @azul-logo 100%) );
+  }
+  nav#menu-section {
+    background-color: @ouro-logo;
+    a {
+      color: @azul-logo;
+      background-color: fade(@azul-logo, 40%);
+      &:hover, &:focus, &.selected {
+        color: @ouro-logo;
+        background-color: @azul-logo;
       }
     }
   }
-  nav#breadcumbs {
-    padding-left: 1em;
-
-    a, span {
-      font-size: .8em;
+  #menu-top, #menu-section {
+    position: relative;
+    @pad: .5em;
+    @but: 2.5em;
+    padding: @pad @pad 0 @but+@pad*2;
+    //min-height: @but + @pad;
+    .transition( all .3s ease-out );
+    button {
+      position: absolute;
+      top: @pad;
+      left: @pad;
+      bottom: @pad/2;
+      width: @but;
+      .border-radius(@pad);
     }
-    a { text-decoration: underline }
+    a {
+      display: none;
+      padding: @pad*2 @pad*2 @pad @pad*2;
+      .border-radius(@pad @pad 0 0);
+      &.selected { display: block; }
+    }
+    &.expanded {
+      .fadeInLeft();
+      padding-bottom: @pad;
+      a { display: block; .border-radius(@pad); }
+      a + a { margin-top: @pad; }
+      button { bottom: @pad; }
+    }
+  }
+  #menu-top, #menu-section, #breadcumbs {
+    .animated(); .fadeIn();
+  }
+  nav#breadcumbs {
+    padding: .3em 1em;
+    a, span { font-size: .8em; }
+    a {
+      text-decoration: underline;
+    }
     a.selected, span {
       color: lighten(@azul-logo-gris, 6%);
       text-decoration: none;
     }
-    background: @ouro-logo;
+    background-color: @ouro-logo;
+  }
+  nav#menu-section + nav#breadcumbs {
+    background-color: @azul-logo;
+    a {
+      color: @ouro-logo;
+      &.selected { color: lighten(@azul-logo-gris, 6%); }
+    }
   }
   // & = header
 }
@@ -241,36 +256,7 @@ header {
   //
 
   section {
-    @section-nav-width: 7em;
-    @section-nav-pad: 1em;
     @color-empeza: fade(#fff, 85%);
-
-    nav {
-      margin-left: 0;
-      margin-top: 1.5em;
-      padding-left: @section-nav-pad;
-      //width: @section-nav-width;
-      //float: left;
-      //background: fade( #fff, 50%);
-      //.border-radius( 0 .5em .5em 0 );
-      //.box-shadow( -5px 5px 10px 0 fade(#000, 50%) );
-      a {
-        display: block;
-        padding: .2em .6em;
-        color: @azul-logo-gris;
-        text-decoration: none;
-        .transition( all .3s ease-out );
-        &:hover,
-        &:focus {
-          padding-left: 1em;
-          color: @ouro-logo;
-        }
-        &.selected {
-          text-align: right;
-          background-color: #fff;
-        }
-      }
-    }
 
     > article {
       &:first-child { margin-top: .5em; }

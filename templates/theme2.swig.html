@@ -54,6 +54,14 @@
               <!-- to expand and collapse the menu on portrait mode-->
               <button>M</button>
             </nav>
+            {%- if menu -%}
+              <nav id="menu-section">
+                <button>M</button>
+                {%- for data in menu -%}
+                  {{- data|link(location) }}
+                {%- endfor -%}
+              </nav>
+            {%- endif menu -%}
             {% if breadcumbs %}
               <nav id="breadcumbs">
                 {%- for item in breadcumbs -%}
@@ -61,7 +69,7 @@
                   <a href="{{ item.url }}" title="{{ t(item.view.meta.desc) }}"{{ selected(loop.last) }}>{{ t(item.view.meta.name|default('Not found')) }}</a>
                 {%- endfor -%}
               </nav>
-            {% endif %}
+            {% endif breadcumbs %}
         </header>
 
         <div id="content">
@@ -78,12 +86,6 @@
               {#{ menu|json(4)|debug }#}
               {#{ view|debug }#}
               <section id="{{ location.split('/')|first|default('portada') }}">
-                {%- for data in menu -%}
-                  {%- if loop.first %}<nav>{% endif %}
-                    {{ data|link(location) }}
-                    <!-- a href="{{ a.href }}" title="{{ a.title|t(lang) }}"{{ selected(a.href == location) }}>{{ a.text|t(lang) }}</a -->
-                  {%- if loop.last %}</nav>{% endif %}
-                {%- endfor -%}
                 {{ html|safe }}
               </section>
             {% else %}

@@ -20,7 +20,7 @@ function Section( father, details ){
     res.locals.view = instance.seekView( req.method, req.url );
     // determine the menu converting layers to urls
     var usePath = instance.seekUse( req.method, req.url )
-    res.locals.menu = instance.menu.map(function( layer, i, stack ){
+    res.locals.menu = instance.menu.map(function toLink( layer ){
       if( layer.route ){
         var view = layer.route.stack[0].handle.view;
         return {
@@ -65,7 +65,7 @@ Section.prototype.inspection = function inspection( cached ){
   );
 
   // determine this.menu
-  this.menu = this.router.stack.filter(function extractViews( layer ){
+  this.menu = this.router.stack.filter(function isView( layer ){
     // discard layers that aren't routes or routers
     if( !layer.route && !layer.handle.stack ) return false;
 

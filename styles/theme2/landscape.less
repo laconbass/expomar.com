@@ -3,20 +3,29 @@ body {
                 url('/img/fondo-b-verde-alpha.png') no-repeat right 9.5em;
 }
 
+.cell( @grid: 3; @cols: 1 ){
+  width: 100% / @grid * @cols;
+  margin: 0;
+  .box-sizing(border-box);
+}
+
 header {
-  #logo {
-    display: inline-block;
-    vertical-align: bottom;
-    width: 97% / 5 * 3;
-    img { width: 200px; }
-    h1 { width: 300px; height: 120px; }
-  }
+  #logo,
   nav#language {
-    width: 97% / 5 * 2;
-    display: inline-block;
+    float: left;
+    clear: left;
+    .cell( @cols: 2; @grid: 7 );
   }
   nav#menu-top {
     float: right;
+    .cell( @cols: 5; @grid: 7 );
+    .border-radius(.5em 0 0 0);
+    + nav { clear: both; }
+    &, & + nav, & + nav + nav { position: relative; top: -1.5em; }
+  }
+  nav#menu-top,
+  nav#menu-section {
+    padding: .5em 1em 0 .5em;
     button { display: none }
     a,
     a:hover,
@@ -24,11 +33,10 @@ header {
     a.selected,
     &.expanded a {
       display: inline-block;
-      margin-right: 0;
     }
-  }
-  nav#breadcumbs {
-    clear: both;
+    a + a {
+      margin-left: .5em;
+    }
   }
 }
 
