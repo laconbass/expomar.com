@@ -1,11 +1,10 @@
 $(document).ready(function(){
   $('#messages > *').click(function(){ $(this).remove(); });
-  var menu = $('#menu-top');
-  var submenu = $('#menu-section');
-  $('#menu-top button').click(function(){
-    menu.toggleClass('expanded');
+  // TODO custom scroll
+  // see http://stackoverflow.com/questions/7600454/how-to-prevent-page-scrolling-when-scrolling-a-div-element
+  $('#menu-top button, #menu-section button').click(function(){
+    $(this).parent().focus().toggleClass('expanded');
   });
-  $('#menu-section button').click(function(){
-    submenu.toggleClass('expanded');
-  });
-})
+  $('body').addClass('ready');
+});
+

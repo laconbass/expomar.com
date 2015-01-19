@@ -62,10 +62,16 @@ html {
 }
 
 body {
-  background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
-              url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
-  padding-bottom: 5em;
-  min-height: 100%;
+  &.ready {
+    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
+                url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
+    padding-bottom: 5em;
+    min-height: 100%;
+  }
+
+  &:not( .ready ) {
+    > * { display: none; }
+  }
 }
 
 // de momento non
@@ -163,6 +169,16 @@ header {
       a { display: block; .border-radius(@pad); }
       a + a { margin-top: @pad; }
       button { bottom: @pad; }
+      .touch & {
+        position: fixed;
+        z-index: 9;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        .box-sizing(border-box);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }
     }
   }
   #menu-top, #menu-section, #breadcumbs {
