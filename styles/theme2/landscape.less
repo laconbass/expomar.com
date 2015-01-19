@@ -3,48 +3,54 @@ body {
                 url('/img/fondo-b-verde-alpha.png') no-repeat right 9.5em;
 }
 
-.cell( @grid: 3; @cols: 1 ){
-  width: 100% / @grid * @cols;
+.cell( @grid: 2; @cols: 1 ){
+  width: 99.99% / @grid * @cols;
   margin: 0;
   .box-sizing(border-box);
 }
 
 header {
-  #logo,
-  nav#language {
-    float: left;
-    clear: left;
-    .cell( @cols: 2; @grid: 7 );
-  }
-  nav#menu-top {
-    float: right;
-    .cell( @cols: 5; @grid: 7 );
-    .border-radius(.5em 0 0 0);
-    + nav { clear: both; }
-    &, & + nav, & + nav + nav { position: relative; top: -1.5em; }
-  }
-  nav#menu-top,
-  nav#menu-section {
-    padding: .5em 1em 0 .5em;
-    button { display: none }
-    a,
-    a:hover,
-    a:focus,
-    a.selected,
-    &.expanded a {
-      display: inline-block;
-    }
-    a + a {
-      margin-left: .5em;
-    }
-  }
-}
-
-.xornadas-tecnicas.ponencias #content section >article {
-  >article {
+  #logo, #language {
     display: inline-block;
-    vertical-align: top;
-    width: 46%;
-    margin: .8% !important;
+    vertical-align: middle;
+    padding-top: .5em;
+    padding-bottom: .5em;
+    height: 80px;
+  }
+  #logo {
+    width: 100% / 3 * 2;
+    img {
+      width: auto;
+      max-height: 80px;
+    }
+    h1 {
+      width: auto;
+      max-height: 80px;
+      background-image: url('/img/logo-expomar-letras-horizontal.png');
+    }
+  }
+  nav#language {
+    margin: 0;
+    padding-right: 0;
+    width: 90% / 3 * 1;
+    line-height: 90px;
+  }
+  #menu-top,
+  #menu-section {
+    .box-sizing(border-box);
+    width: 49%;
+    float: left;
+  }
+  #breadcumbs { clear: both; }
+  nav#menu-top {
+    .border-radius(0 .5em 0 0);
+  }
+  nav#menu-section {
+    margin-left: 2%;
+    .border-radius(.5em 0 0 0);
+    .nav-menu-color();
+    &.expanded {
+      .fadeInRight();
+    }
   }
 }

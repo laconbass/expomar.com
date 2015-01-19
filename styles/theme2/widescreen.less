@@ -1,0 +1,41 @@
+header {
+  position: relative;
+  #logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28%;
+  }
+  #language { width: 100%; }
+  #menu-top,
+  #menu-section { width: 72%; }
+  nav#menu-top {
+    //float: right;
+    //.cell( @cols: 5; @grid: 7 );
+    //&, & + nav, & + nav + nav { position: relative; top: -1.5em; }
+  }
+  nav#menu-top,
+  nav#menu-section {
+    padding: .5em 1em 0 .5em;
+    button { display: none }
+    a,
+    a:hover,
+    a:focus,
+    a.selected,
+    &.expanded a {
+      display: inline-block;
+    }
+    a + a {
+      margin-left: .5em;
+    }
+  }
+}
+
+.xornadas-tecnicas.ponencias #content section >article {
+  >article {
+    display: inline-block;
+    vertical-align: top;
+    width: 46%;
+    margin: .8% !important;
+  }
+}

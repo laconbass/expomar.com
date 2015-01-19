@@ -81,7 +81,7 @@ header {
   #logo {
     display: inline-block;
     text-decoration: none;
-    padding-left: .5em;
+    padding: .5em 0 0 .5em;
 
     * { display: inline-block; vertical-align: middle; }
     img {
@@ -98,7 +98,7 @@ header {
       background-image: url('/img/logo-expomar-letras-blueok.png');
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: left center;
     }
   }
   nav {
@@ -122,6 +122,7 @@ header {
     }
   }
   nav#language {
+    margin-top: .2em;
     margin-bottom: .2em;
     text-align: right;
     padding-right: 1em;
@@ -133,36 +134,8 @@ header {
       &.selected { color: #ccc; }
     }
   }
-  nav#menu-top {
-    background-color: @azul-logo;
-    /*button {
-      color: @ouro-logo;
-      background: fade(@verde-logo, 20%);
-      &:hover, &:focus {
-        color: @azul-logo;
-        background: fade(@verde-logo, 80%);
-      }
-    }*/
-    a {
-      color: @ouro-logo;
-      background-color: fade(@ouro-logo, 20%);
-      &:hover, &:focus, &.selected {
-        background-color: @ouro-logo;
-        color: @azul-logo;
-      }
-    }
-  }
-  nav#menu-section {
-    background-color: @ouro-logo;
-    a {
-      color: @azul-logo;
-      background-color: fade(@azul-logo, 40%);
-      &:hover, &:focus, &.selected {
-        color: @ouro-logo;
-        background-color: @azul-logo;
-      }
-    }
-  }
+  nav#menu-top { .nav-menu-color(); }
+  nav#menu-section { .nav-menu-color( @bg: @ouro-logo; @fg: @azul-logo ); }
   #menu-top, #menu-section {
     position: relative;
     @pad: .5em;
@@ -197,22 +170,9 @@ header {
   }
   nav#breadcumbs {
     padding: .3em 1em;
-    a, span { font-size: .8em; }
-    a {
-      text-decoration: underline;
-    }
-    a.selected, span {
-      color: lighten(@azul-logo-gris, 6%);
-      text-decoration: none;
-    }
-    background-color: @ouro-logo;
-  }
-  nav#menu-section + nav#breadcumbs {
-    background-color: @azul-logo;
-    a {
-      color: @ouro-logo;
-      &.selected { color: lighten(@azul-logo-gris, 6%); }
-    }
+    a, span { font-size: .85em; }
+    a { text-decoration: underline; }
+    a.selected { text-decoration: none; }
   }
   // & = header
 }
