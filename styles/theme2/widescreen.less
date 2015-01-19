@@ -1,14 +1,13 @@
 header {
-  position: relative;
+  /*position: relative;
   #logo {
     position: absolute;
     top: 0;
     left: 0;
     width: 28%;
   }
-  #language { width: 100%; }
-  #menu-top,
-  #menu-section { width: 72%; }
+  #language { width: 100%; }*/
+  //#menu-top, #menu-section { width: 72%; }
   nav#menu-top {
     //float: right;
     //.cell( @cols: 5; @grid: 7 );
@@ -16,6 +15,10 @@ header {
   }
   nav#menu-top,
   nav#menu-section {
+    float: none;
+    width: auto;
+    margin: 0;
+    .border-radius(0);
     padding: .5em 1em 0 .5em;
     button { display: none }
     a,
@@ -29,6 +32,7 @@ header {
       margin-left: .5em;
     }
   }
+  nav#menu-section { .nav-menu-color( @bg: @ouro-logo; @fg: @azul-logo ); }
 }
 
 .xornadas-tecnicas.ponencias #content section >article {
