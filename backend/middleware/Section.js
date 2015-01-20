@@ -41,8 +41,8 @@ Section.prototype.constructor = Section;
 
 /*
  *  inspects `this.father.stack` and `this.router.stack` to determine:
- *    - `this.uses` (array): layers on father.stack where router is used
- *    - `this.menu` (array): handles on router.stack being Views
+ *    - `this.uses` (array): layers on father.stack where router is "used"
+ *    - `this.menu` (array): layers on router.stack being Views
  *  @param cached (bool): set to false to force the inspection to be done.
  *                        defaults to true when NODE_ENV is 'production'
  *  @returns (bool): whatever the inspection was done.
@@ -50,7 +50,7 @@ Section.prototype.constructor = Section;
 Section.prototype.inspection = function inspection( cached ){
   cached = !!( cached || process.env.NODE_ENV === 'production' );
   // inspect only once when cached is true
-  if( cached && this.uses && this.child ){
+  if( cached && this.uses && this.menu ){
     return false;
   }
 
