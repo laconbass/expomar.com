@@ -1,11 +1,13 @@
+var assert = require('assert');
 var express = require('express');
 var View = require('./View');
+var isArray = Array.isArray;
 
 module.exports = Section;
 
 function Section( father, details ){
   // TODO extra arg to pass options for express.Router()
-  if( !father || !Array.isArray(father.stack) ){
+  if( !father || !isArray(father.stack) ){
     throw new Error( "father must be an object having an array #stack" );
   }
 
@@ -18,8 +20,19 @@ function Section( father, details ){
     instance.inspection();
     // determine the view that will handle the request
     res.locals.view = instance.seekView( req.method, req.url );
-    // determine the menu converting layers to urls
-    var usePath = instance.seekUse( req.method, req.url )
+
+    // initialize the `menus` local variable
+    res.locals.menus = res.locals.menus || [];
+    assert( isArray(res.locals.menus), '`menus` local var must be array');
+
+    // save existing `menu` before overwriting it
+    if( res.locals.menu ){
+      assert( isArray(res.locals.menu), '`menu` local var must be array');
+      res.locals.menus.push( res.locals.menu );
+    }
+
+    // determine this section menu converting layers to urls
+    var usePath = instance.seekUse( req.method, req.url );
     res.locals.menu = instance.menu.map(function toLink( layer ){
       if( layer.route ){
         var view = layer.route.stack[0].handle.view;
@@ -32,6 +45,8 @@ function Section( father, details ){
         throw new Error('lacking implementation for child routers');
       }
     });
+    // push this section menu on menus
+    res.locals.menus.push( res.locals.menu );
     next();
   });
 }
@@ -98,8 +113,8 @@ Section.prototype.inspection = function inspection( cached ){
 // determine the first mount path that matches method and url
 Section.prototype.seekUse = function seekUse( method, url ){
   // inspection must be done and there must be some mount path
-  if( !this.uses ) throw new Error('inspection must be done');
-  if( !this.uses.length ) throw new Error('there is no mount path');
+  assert( isArray(this.uses), 'inspection must be done' );
+  assert( this.uses.length, 'there is no mount path' );
 
   method = method.toLowerCase();
   // TODO the section router could be mounted on more than 1 path
@@ -109,13 +124,15 @@ Section.prototype.seekUse = function seekUse( method, url ){
     // use request method and url to do so
   }
   // TODO may include a parameter!!
+  assert( !~this.uses[0].path.indexOf(':'), 'lacking params implementation');
   return this.uses[0].path;
 }
 
-// determine the first View in layer stack that matches method and url
-// stack defaults to this.router.stack
+// determine the first View in layer array that matches method and url
+// stack defaults to this.menu
 Section.prototype.seekView = function seekView( method, url, stack ){
-  stack = Array.isArray(stack)? stack : this.menu;
+  stack = isArray(stack)? stack : this.menu;
+  assert( isArray(stack), 'inspection not done or stack is non-array');
 
   console.log( "SEEK VIEW %s %s IN %d LAYERS", method, url, stack.length );
   var view = null;
@@ -129,11 +146,13 @@ Section.prototype.seekView = function seekView( method, url, stack ){
       stack = layer.route.stack.filter(function( layer ){
         return layer.method !== method;
       });
-      console.log( "FOUND ROUTE (%d LAYERS)", stack.length );
-      if( !stack.length ) throw new Error("found no layers");
-      if( stack.length > 1 ) throw new Error("found too much layers");
-      console.log( "FOUND HANDLE", stack[0].handle.view );
+      //console.log( "FOUND ROUTE (%d LAYERS)", stack.length );
+      assert( stack.length, 'matched route without view layers' );
+      assert( stack.length === 1, 'matched route with too much layers' );
+      // TODO deal with multiple view routes
+
       view = stack[0].handle.view;
+      console.log( "FOUND VIEW", view );
     } else if( layer.handle.stack ){
       console.log( "FOUND ROUTER (%d LAYERS)", layer.handle.stack.length );
       // reduce the search to the router stack layers
@@ -148,6 +167,8 @@ Section.prototype.seekView = function seekView( method, url, stack ){
       throw new Error("expecting only routes and routers");
     }
     // stop search on first match
+    assert( view !== null, 'seek stoped prematurely (bad implementation)' );
+    assert( view instanceof View, 'matched non-view handle' );
     return true;
   });
   return view;
