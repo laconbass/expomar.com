@@ -8,7 +8,7 @@ var read = require( './read' )
 
 var path = {
   talk: {
-    data: "data/%s/xornadas/ponentes.json",
+    data: "data/xornadas/%s/ponentes.json",
     static: "files/%s/ponencias-xornadas-tecnicas"
   }
 };
@@ -24,7 +24,7 @@ var fields = {
 exports.getPonencias = function( year, callback ){
   try {
     var dry = resolve( process.cwd(), f(path.talk.data, year) );
-    if( production ){
+    if( !production ){
       delete require.cache[ dry ];
     }
     var data = require( dry );

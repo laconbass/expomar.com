@@ -15,7 +15,11 @@ function testUserData( input, output ){
 describe( "User Manager (Sqlite)", function(){
   var manager;
   before(function( done ){
-    manager = require( '../backend/model/user/UserManager' );
+    try {
+      manager = require( '../backend/model/user/UserManager' );
+    } catch( e ){
+      return done( e );
+    }
     // ensure we are not working with important data...
     assert.equal( manager.uses.filename, testdb );
     fs.unlink( testdb, function( err ){
