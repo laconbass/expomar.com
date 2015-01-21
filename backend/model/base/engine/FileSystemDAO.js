@@ -44,6 +44,7 @@ module.exports = oop.extend( DAO, {
     input = schema.clean( input );
 
     // treat unique fields as dirnames inside db.dirname
+    // TODO this is not the way to go. maybe a schema.nextPk(manager, input)
     var dirnames = schema
       .filter(function( field ){ return field.unique; })
       .map(function( key ){ return db.resolve( input[key] ); })
@@ -71,7 +72,16 @@ module.exports = oop.extend( DAO, {
    * @function read: Reads one entity from the database by primary key
    */
   read: function( schema, db, pk, callback ){
-    throw new Error( 'not implemented yet' );
+    db.readdir( pk, function( err, files ){
+      if( err && err.code === 'ENOENT' ){
+        // no entity found
+        return callback( null, null );
+      } else if( err ){
+        return callback( err, null );
+      }
+      // TODO decouple Schema from DAO implementation
+      callback( null, { year: pk } );
+    })
     return this;
   },
   /**
