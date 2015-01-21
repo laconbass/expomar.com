@@ -35,8 +35,7 @@ describe.only( "Feira Manager (filesystem)", function(){
       }
     }
     manager.connect();
-    // TODO ensure connection was created properly
-    assert( manager.db instanceof fsdb, 'connection was not created' );
+    assert( manager.db instanceof fsdb, 'connection created unproperly' );
     done();
   });
 
@@ -49,7 +48,7 @@ describe.only( "Feira Manager (filesystem)", function(){
         assert.isNull( err, 'unexpected error' );
         assert( stats.isDirectory(), 'it should create a directory' );
         done();
-      })
+      });
     });
     it( 'should throw if dirname already exists', function( done ){
       manager.initialize(function( err ){
@@ -62,41 +61,41 @@ describe.only( "Feira Manager (filesystem)", function(){
         assert.isNull( err, 'unexpected error' );
         assert( stats.isDirectory(), 'it should create a directory' );
         done();
-      })
+      });
     });
   });
 
-  describe.skip( '#read', function(){
-     it( 'should callback( null, null ) if not found', function( done ){
-      manager.read( 2, function( err, user ){
-        assert.isNull( err );
-        assert.isNull( user );
+  describe( '#read', function(){
+    it( 'should callback( null, null ) if not found', function( done ){
+      manager.read( 2, function( err, feira ){
+        assert.isNull( err, 'an error was notified' );
+        assert.isNull( feira, 'an entity was found' );
         done();
       });
     });
-    it( 'should get a user from the database', function( done ){
-      manager.read( 1, function( err, user ){
-        assert.isNull( err );
-        assert.isNotNull( user );
-        testUserData( testinput, user );
+    it( 'should get an entity from the database by pk', function( done ){
+      manager.read( 1994, function( err, feira ){
+        assert.isNull( err, 'an error was notified' );
+        assert.isNotNull( feira, 'no entity was found' );
+        assert.deepEqual( feira, testinput, 'data lost' );
         done();
       });
     });
   });
 
   describe.skip( '#create', function(){
-    it( 'should add a new user to the database', function( done ){
-      var data = { username: "testuser2", password: "testpass2", email: "email@domain.com" };
-      manager.create( data, function( err, user ){
+    it( 'should add a new entity to the database', function( done ){
+      var data = { year: 1995 };
+      manager.create( data, function( err, entity ){
         assert.isNull( err );
-        assert.isNotNull( user );
-        assert.equal( user.pk, 2 );
+        assert.isNotNull( entity );
+        assert.equal( entity.pk, 2 );
         testUserData( data, user );
         done();
-      })
+      });
     });
     it( 'should fail if username already exists on db', function( done ){
-      var data = { username: "testuser2", password: "testpass2", email: "email123" };
+      var data = { year: 1995 };
       manager.create( data, function( err, user ){
         assert.instanceOf( err, Error );
         done();
@@ -122,7 +121,7 @@ describe.only( "Feira Manager (filesystem)", function(){
           testUserData( data, user );
           done();
         });
-      })
+      });
     });
     it( 'should fail if user does not exist', function( done ){
       var data = { pk: 100, username: "does", password: "not", email: "exist" };
