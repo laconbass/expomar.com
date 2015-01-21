@@ -128,6 +128,18 @@ var Validator = {
     return map;
   },
   /**
+   * @function filter: TODO description
+   * TODO standarize param orders => fn(field, name) vs fn(name, field)
+   */
+  filter: function( fn ){
+    assert( 'function' === typeof fn, 'fn must be a function' );
+    var map = [];
+    for( var property in this ){
+      fn.call( this, this[property], property ) && map.push( property );
+    }
+    return map;
+  },
+  /**
    * @function toString: Returns a string representation of the structure.
    *
    * The convention is `<_type [trueBoolProp, property=value, property2=value]>`

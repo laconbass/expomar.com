@@ -1,7 +1,7 @@
 var assert = require('chai').assert
-  , fs = require('fs')
+  , fs = require('fs-extra')
   , resolve = require('path').resolve
-  , mkdirp = require('mkdirp')
+  , fsdb = require('../backend/model/base/engine/FileSystemConnection').Database
 ;
 
 var testdb = resolve( process.cwd(), 'data-test' );
@@ -16,30 +16,40 @@ var testinput = {
   }
 };*/
 
-describe( "Feira Manager (filesystem)", function(){
+describe.only( "Feira Manager (filesystem)", function(){
   var manager;
   before(function( done ){
     manager = require( '../backend/model/feira/FeiraManager' );
-    // TODO ensure we are working with test data...
+
+    // ensure we are working with test data...
+    fs.ensureDirSync( testdb );
+    testdb = resolve( testdb, manager.schema._type );
     assert.equal( manager.uses.dirname, testdb );
+
+    // delete the db directory to test #initialize
     try {
-      var stats = fs.statSync(testdb);
+      fs.removeSync( testdb );
     } catch( e ){
       if( e.code !== 'ENOENT' ){
         throw e;
       }
-      mkdirp.sync( testdb );
     }
     manager.connect();
     // TODO ensure connection was created properly
+    assert( manager.db instanceof fsdb, 'connection was not created' );
     done();
   });
 
-  describe.skip( '#initialize', function(){
+  describe( '#initialize', function(){
     it( 'should execute without errors on empty database', function( done ){
       manager.initialize( testinput, done );
     });
     it( 'should create the directory structure', function( done ){
+      fs.stat( testdb, function( err, stats ){
+        assert.isNull( err, 'unexpected error' );
+        assert( stats.isDirectory(), 'it should create a directory' );
+        done();
+      })
     });
     it( 'should throw if dirname already exists', function( done ){
       manager.initialize(function( err ){
@@ -47,14 +57,12 @@ describe( "Feira Manager (filesystem)", function(){
         done();
       });
     })
-    it( 'should insert given data on the table with pk=1', function( done ){
-      var SQL = "SELECT * FROM user;";
-      manager.db.all(SQL, function( err, rows ){
-        assert.isNull( err );
-        assert( rows.length == 1, "should get only 1 row" );
-        testUserData( testinput, rows[0] );
+    it( 'should create a directory whose name is the year', function( done ){
+      fs.stat( resolve(testdb, ''+testinput.year), function( err, stats ){
+        assert.isNull( err, 'unexpected error' );
+        assert( stats.isDirectory(), 'it should create a directory' );
         done();
-      });
+      })
     });
   });
 

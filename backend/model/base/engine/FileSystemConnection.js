@@ -1,7 +1,8 @@
 var oop = require( 'iai-oop' )
   , assert = require( 'assert' )
   , Connection = require( '../Connection' )
-  , fs = require( 'fs' )
+  , fs = require( 'fs-extra' )
+  , p = require( 'path' )
 ;
 
 var exports = module.exports = createConnection;
@@ -37,6 +38,15 @@ function FileSystemDB( dirname ){
 
   var instance = Object.create( FileSystemDB );
   instance.dirname = dirname;
+
+  fs.ensureDir( dirname, function( err ){
+    if( err ){
+      // TODO this could be emited if instance is an EventEmitter
+      throw err;
+    }
+    instance.ready = true;
+  });
+
   return instance;
 }
 
@@ -47,4 +57,24 @@ FileSystemDB.constructor.prototype = FileSystemDB;
 FileSystemDB.close = function close( callback ){
   process.nextTick( callback );
   return true;
-}
+};
+
+FileSystemDB.resolve = function resolve( path ){
+  return p.resolve( this.dirname, path+'' );
+};
+
+FileSystemDB.stat = function stat( path, callback ){
+  if( arguments.length < 2 ){
+    callback = path;
+    path = '';
+  }
+  return fs.stat( this.resolve(path), callback );
+};
+
+FileSystemDB.readdir = function readdir( path, callback ){
+  if( arguments.length < 2 ){
+    callback = path;
+    path = '';
+  }
+  return fs.readdir( this.resolve(path), callback );
+};
