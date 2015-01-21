@@ -10,14 +10,12 @@ body {
 }
 
 header {
-  #logo, #language {
-    .ready & { display: inline-block; height: 80px; }
+  #logo {
+    .ready & { display: inline-block; }
     vertical-align: middle;
     padding-top: .5em;
-    padding-bottom: .5em;
   }
   #logo {
-    width: 100% / 3 * 2;
     img {
       width: auto;
       max-height: 80px;
@@ -30,9 +28,6 @@ header {
   }
   nav#language {
     margin: 0;
-    padding-right: 0;
-    width: 90% / 3 * 1;
-    line-height: 90px;
   }
   #menu-top,
   #menu-section {
