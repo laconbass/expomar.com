@@ -20,7 +20,7 @@
         {%- endif -%}
         <script src="{{ url( 'static', 'js/vendor/modernizr-2.6.2.min.js' ) }}"></script>
     </head>
-    <body class="{{ location.split('/')|join(' ')|trim }}" lang="{{ lang }}">
+    <body class="{{ location.split('/')|join(' ')|trim|default('portada') }}" lang="{{ lang }}">
 
         {% if user %}
           <nav id="user">

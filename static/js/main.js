@@ -5,6 +5,13 @@ $(document).ready(function(){
   $('#menu-top button, #menu-section button').click(function(){
     $(this).parent().focus().toggleClass('expanded');
   });
-  $('body').addClass('ready');
+  var body = $('body');
+  var intro = $('#intro');
+  var wait = $('html').hasClass('cssanimations') && body.hasClass('portada');
+  var ready = body.addClass.bind( body, 'ready' );
+  var animationend = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+  wait? intro.find('.futuro').one( animationend, introend ) : ready();
+  function introend(){
+    $('#intro').addClass('animated fadeOut').one( animationend, ready );
+  }
 });
-

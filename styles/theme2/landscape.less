@@ -1,6 +1,6 @@
 body {
-    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
-                url('/img/fondo-b-verde-alpha.png') no-repeat right 9.5em;
+  background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
+              url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
 }
 
 .cell( @grid: 2; @cols: 1 ){
@@ -11,11 +11,10 @@ body {
 
 header {
   #logo, #language {
-    display: inline-block;
+    .ready & { display: inline-block; height: 80px; }
     vertical-align: middle;
     padding-top: .5em;
     padding-bottom: .5em;
-    height: 80px;
   }
   #logo {
     width: 100% / 3 * 2;
@@ -51,9 +50,9 @@ header {
     .nav-menu-color();
     &.expanded {
       .fadeInRight();
-      .touch & {
+      /*.touch & {
         margin-left: 0;
-      }
+      }*/
     }
   }
 }
