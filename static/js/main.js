@@ -10,8 +10,12 @@ $(document).ready(function(){
   var wait = $('html').hasClass('cssanimations') && body.hasClass('portada');
   var ready = body.addClass.bind( body, 'ready' );
   var animationend = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
+  //false && 
   wait? intro.find('.futuro').one( animationend, introend ) : ready();
   function introend(){
+    console.log('intro end');
     $('#intro').addClass('animated fadeOut').one( animationend, ready );
   }
+  // temporary workaround for strange bug
+  setTimeout(ready, 4000);
 });
