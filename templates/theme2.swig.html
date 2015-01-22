@@ -10,6 +10,11 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="alternate" hreflang="{{ i18n.main }}" href="{{ url('www', location) }}" />
+        {%- for code, name in i18n.available -%}
+        <link rel="alternate" hreflang="{{ code }}" href="{{ url( code, location ) }}"/>
+        {%- endfor -%}
+
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
         <!--link rel="stylesheet" href="{{ url( 'static', 'css/lib/normalize.css' ) }}">
@@ -41,7 +46,7 @@
                 <a href="#">Etc?</a>
             </nav>
             <nav id="language">
-              <a href="{{ url( '', location ) }}"{{ selected(lang == i18n.main) }}>{{ i18n.mainName }}</a>
+              <a href="{{ url( 'www', location ) }}"{{ selected(lang == i18n.main) }}>{{ i18n.mainName }}</a>
               {% for code, name in i18n.available %}
                 <a href="{{ url( code, location ) }}"{{ selected(lang == code) }}>{{ name }}</a>
               {% endfor %}
