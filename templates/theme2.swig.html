@@ -6,8 +6,8 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Expomar.com</title>
-        <meta name="description" content="">
+        <title>{{ view.title|default('expomar.com') }}</title>
+        <meta name="description" content="{{ view.description|default('A Fundación Expomar pretende ser unha plataforma de comunicación entre a administración, os empresarios do sector mariño e os profesionais que traballan nel, para deste xeito acadar maior conciencia e sensibilidade sobre o mundo do mar, potenciando o seu afianzamento como marco creador de emprego e desenvolvemento socioeconómico.') }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="alternate" hreflang="{{ i18n.main }}" href="{{ url('www', location) }}" />
