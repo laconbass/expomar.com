@@ -1,4 +1,5 @@
 var assert = require('assert');
+var join = require('path').join;
 var express = require('express');
 var View = require('./View');
 var isArray = Array.isArray;
@@ -13,7 +14,8 @@ function Section( father, details ){
 
   var instance = View.constructor.call( Section.prototype, details );
   instance.father = father;
-  instance.router = express.Router();
+  instance.router = express.Router({
+  });
   instance.router.view = instance;
 
   return instance.router.use(function section( req, res, next ){
@@ -33,11 +35,13 @@ function Section( father, details ){
 
     // determine this section menu converting layers to urls
     var usePath = instance.seekUse( req.method, req.url );
+    console.log( 'building menu for', usePath );
     res.locals.menu = instance.menu.map(function toLink( layer ){
       if( layer.route ){
         var view = layer.route.stack[0].handle.view;
         return {
-          "href": usePath + layer.route.path,
+          // TODO replace only if express router option `strict` is false
+          "href": join( usePath, layer.route.path ).replace(/\/$/, ''),
           "text": view.title,
           "title": view.description
         };

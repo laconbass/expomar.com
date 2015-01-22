@@ -1,0 +1,8 @@
+<h1>esta é a portada</h1>
+{% if html %}
+    <article>{{ html|safe }}</article>
+{% else %}
+    <article>
+        <p>Lorem ipsum bla bla bla</p>
+    </article>
+{% endif %}
