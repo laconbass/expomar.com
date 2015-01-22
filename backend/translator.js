@@ -43,7 +43,7 @@ module.exports = function t( lang, string ){
     debug( '%s transtable ADD "%s"', lang, string );
     strings[ lang ][ string ] = null;
 
-    var path = project.resolve( files[lang] );
+    var path = resolve( files[lang] );
     fs.writeFileSync( path, JSON.stringify( strings[lang], null, 4 ) );
 
     debug( '%s transtable REFRESH', lang );
