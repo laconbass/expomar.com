@@ -3,7 +3,7 @@ $(document).ready(function(){
   // TODO custom scroll
   // see http://stackoverflow.com/questions/7600454/how-to-prevent-page-scrolling-when-scrolling-a-div-element
   $('#menu-top button, #menu-section button').click(function(){
-    $(this).parent().focus().toggleClass('expanded');
+    $(this).toggleClass('fa-flip-vertical').parent().focus().toggleClass('expanded');
   });
   var body = $('body');
   var intro = $('#intro');

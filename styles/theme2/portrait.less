@@ -49,11 +49,13 @@ textarea {
 html,
 input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: darken(@azul-logo, 6%);
+  color: @azul-logo;
 }
 
 a {
-  color: lighten(@azul-logo, 6%);
+  text-decoration: none;
+  &, &:link, &:visited { color: darken(@verde-logo, 15%); }
+  &:hover, &:focus, &:active { color: @ouro-logo; }
 }
 
 html {
@@ -178,12 +180,14 @@ header {
       left: @pad;
       bottom: @pad/2;
       width: @but;
+      border: none;
       .border-radius(@pad);
     }
     a {
       display: none;
-      padding: @pad*2 @pad*2 @pad @pad*2;
+      padding: @pad*1.5 @pad*2 @pad/1.5 @pad*2;
       .border-radius(@pad @pad 0 0);
+      font-weight: bold;
       &.selected { display: block; }
     }
     &.expanded {
@@ -210,8 +214,6 @@ header {
   nav#breadcumbs {
     padding: .3em 1em;
     a, span { font-size: .85em; }
-    a { text-decoration: underline; }
-    a.selected { text-decoration: none; }
   }
   // & = header
 }
@@ -255,12 +257,10 @@ header {
   //
 
   section {
-    @color-empeza: fade(#fff, 85%);
+    padding: 1em;
 
     > article {
-      &:first-child { margin-top: .5em; }
-      //margin-left: @section-nav-width + @section-nav-pad;
-      padding: 1.5em;
+      //&:first-child { margin-top: .5em; }
       //.border-radius( .5em 0 0 .5em );
       //.background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
       //.box-shadow( 5px 0 10px 0 fade(#000, 50%) );
@@ -268,22 +268,142 @@ header {
 
     h1 {
       margin-top: 0;
+      text-align: center;
       span { color: #bbb; }
     }
 
     p { text-align: justify; }
+
+    p > a { font-weight: bold; }
 
     li p { margin: .5em 0; }
 
     img { max-width: 100%; height: auto; text-align: center; }
 
     figure {
-      img { display: block; margin: 0 auto; }
+      img {
+        display: block;
+        margin: 0 auto;
+        .border-radius(.5em);
+      }
       figcaption { font-style: italic; text-align: center; }
     }
 
-    iframe.youtube { display: block; margin: 0 auto }
-  }
+    iframe.youtube { display: block; margin: 0 auto; max-width: 100%; }
+
+    button, .button, nav.buttons > * {
+      @c1: @azul-logo;
+      @c2: @verde-logo;
+      @c: fade(@c1, 70%);
+
+      margin: .5em;
+      border: none;
+      padding: .8em;
+      text-align: center;
+      color: @c1;
+      background: fade(@c2, 50%);
+      font-weight: bold;
+
+      .border-radius(.7em);
+      .user-select(none);
+
+      &.disabled {
+        color: desaturate(@c1, 30%);
+        background: desaturate(@c2, 30%);
+      }
+
+      &:not(.disabled) {
+        .box-shadow(0 0 1em);
+        .transition(all .2s ease-out);
+        &:hover, &:focus {
+          color: @c2;
+          //background: @c;
+          border-color: @c1;
+          .background-image( linear-gradient(to bottom, @c 0%, @c1 100%) );
+          .box-shadow(0 0 2.5em);
+        }
+        &:active {
+          .background-image( linear-gradient(to top, @c 0%, @c1 100%) );
+        }
+      }
+    }
+
+    nav.destacados {
+      a {
+        display: inline-block;
+        margin: 1%;
+        &:first-child { font-size: 1.7em; }
+        font-size: 1.1em;
+        figure {
+          //border: 2px dashed;
+          @pad: 1em;
+          padding: @pad;
+
+          @c1: @azul-claro;
+          @c2: @ouro-logo;
+          @bg: fade(@c1, 50%);
+
+          color: @azul-logo;
+          background-color: @bg;
+          border-color: @bg;
+
+          .box-shadow( 0 0 .3em @bg );
+          &, & > * { .border-radius(.5em); }
+
+          position: relative;
+          figcaption {
+            position: absolute;
+            top: @pad; left: @pad; bottom: @pad; right: @pad;
+            padding-top: @pad/2;
+            @start: 1em + @pad/2 + 1em;
+
+            font-style: normal;
+            font-weight: bold;
+            text-transform: uppercase;
+            .background-image( linear-gradient(to bottom, fade(@c1, 90%) @start, fade(@c1, 0%) @start+4em) );
+          }
+          // & = .destacados a
+          &:hover, &:focus {
+            @c: fade(@c2, 50%);
+            background-color: @c;
+            .box-shadow( 0 0 .2em .3em @c );
+            figcaption {
+              color: transparent;
+              background: transparent;
+              text-shadow: 0 0 .2em @c2;
+            }
+          }
+        }
+
+        /*> * { display: block; }
+        > i.fa { font-size: 5em; min-height: 1em; }
+        > span {
+          margin-top: .3em;
+          font-size: 1.2em;
+          font-weight: bold;
+        }*/
+      }
+    }
+
+    nav.buttons {
+      display: flex;
+      flex-direction: row;
+
+      a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        > * { display: block; }
+        > i.fa { font-size: 5em; min-height: 1em; }
+        > span {
+          margin-top: .3em;
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+    }
+  } // & = #content section
 }
 
 

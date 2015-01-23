@@ -1,8 +1,6 @@
-<h1>esta é a portada</h1>
-{% if html %}
-    <article>{{ html|safe }}</article>
-{% else %}
-    <article>
-        <p>Lorem ipsum bla bla bla</p>
-    </article>
-{% endif %}
+<h1>{{ view.title }}</h1>
+
+{{ view|debug }}
+
+<img src="{{ url('static', '/files/2015/cartaz.jpg') }}" title="{{ view.desc }}" alt="{{ view.desc }}"/>
+

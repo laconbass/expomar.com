@@ -18,17 +18,9 @@
 
 .nav-menu-color( @bg: @azul-logo; @fg: @ouro-logo ){
   background-color: @bg;
-  /*button {
-    color: @ouro-logo;
-    background: fade(@verde-logo, 20%);
-    &:hover, &:focus {
-      color: @azul-logo;
-      background: fade(@verde-logo, 80%);
-    }
-  }*/
-  a {
+  a, button {
     color: @fg;
-    background-color: fade(@fg, 20%);
+    background-color: fade(@fg, 27%);
     &:hover, &:focus, &.selected {
       background-color: @fg;
       color: @bg;
@@ -36,6 +28,7 @@
   }
   & + nav#breadcumbs {
     background-color: @fg;
+    color: @bg;
     a {
       color: @bg;
       &.selected { color: lighten(@azul-logo-gris, 6%); }

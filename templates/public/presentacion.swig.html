@@ -1,11 +1,9 @@
-{{ html|safe }}
-
-<p>
-    <a href="./programa">{{ t('Ver o programa completo') }}</a>
-</p>
-
 <figure>
     {% set alt = t('Cartaz da edición de %s', meta.anos|last ) %}
     <img src="{{ url('static', '/files/'+meta.anos|last+'/cartaz.jpg') }}" alt="{{ alt }}" width="496px" height="921px">
     <figcaption>{{ alt }}</figcaption>
 </figure>
+
+{{ html|safe }}
+
+

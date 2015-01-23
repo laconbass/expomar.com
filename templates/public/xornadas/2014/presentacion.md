@@ -26,3 +26,8 @@ Antonio Veiga Outeiro, vicepresidente primeiro da Deputación.
 "A sustentabilidade pesqueira" será o centro dos relatorios e debates
 moderados por Sebastián Villasante, investigador e profesor da
 Universidade de Santiago, durante a segunda xornada do evento.
+
+<nav class="buttons">
+  [Programa](./organizacions)
+  [Relatorios](./ponencias)
+</nav>

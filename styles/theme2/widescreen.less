@@ -19,7 +19,7 @@ header {
     width: auto;
     margin: 0;
     .border-radius(0);
-    padding: .5em 1em 0 .5em;
+    padding: .7em 1em 0 .5em;
     button { display: none }
     a,
     a:hover,
@@ -33,14 +33,32 @@ header {
     }
   }
   nav#menu-top {
-    background-color: transparent;
     padding-top: 0;
     a { color: darken(@ouro-logo, 15%); }
   }
-  nav#menu-section { .nav-menu-color( @bg: @ouro-logo; @fg: @azul-logo ); }
+  nav#menu-section {
+    &, &:not(.expanded) {
+      .nav-menu-color( @bg: @ouro-logo; @fg: @azul-logo );
+    }
+  }
 }
 
-.portada #destacados a + a img { position: relative; top: -50%; z-index: -1; }
+#content {
+  font-size: 1.25em;
+
+  section {
+    //padding: 2em;
+    > article > figure:first-child, & > figure:first-child {
+      float: left;
+      margin-right: 1em;
+    }
+    nav.destacados {
+      max-width: 50em;
+      margin: 0 auto;
+    }
+    // & = #content section
+  }
+}
 
 .xornadas-tecnicas.ponencias #content section >article {
   >article {
@@ -50,3 +68,4 @@ header {
     margin: .8% !important;
   }
 }
+

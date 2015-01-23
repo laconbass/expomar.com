@@ -29,25 +29,62 @@ header {
   nav#language {
     margin: 0;
   }
-  #menu-top,
-  #menu-section {
+  nav#menu-top,
+  nav#menu-section {
     .box-sizing(border-box);
+    background-color: transparent;
     width: 49%;
     float: left;
+    
+    a:hover, a:focus, a.selected { .box-shadow(0 .2em .3em @azul-logo); }
+    .nav-menu-color();
+    &:not(.expanded) {
+      background-color: transparent;
+      button { color: @azul-logo }
+    }
+    &.expanded { .border-radius(.5em); margin-bottom: .5em; }
   }
-  #breadcumbs { clear: both; }
+  #breadcumbs {
+    clear: both;
+    .box-shadow(0 .15em .15em @azul-logo);
+  }
   nav#menu-top {
     .border-radius(0 .5em 0 0);
   }
   nav#menu-section {
     margin-left: 2%;
     .border-radius(.5em 0 0 0);
-    .nav-menu-color();
     &.expanded {
       .fadeInRight();
       /*.touch & {
         margin-left: 0;
       }*/
+    }
+  }
+}
+
+#content {
+  font-size: 1.2em;
+
+  section {
+    padding: 1em 2em;
+
+    nav.destacados {
+      position: relative;
+      a {
+        max-width: 48%;
+        &:first-child {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          figure { margin: auto; }
+        }
+        + a {
+          margin-left: 51%;
+        }
+      }
     }
   }
 }

@@ -20,6 +20,7 @@
         <!--link rel="stylesheet" href="{{ url( 'static', 'css/lib/normalize.css' ) }}">
         <link rel="stylesheet" href="{{ url( 'static', 'css/lib/animate.css' ) }}"-->
         <link rel="stylesheet" href="{{ url( 'static', 'css/theme2/main.css' ) }}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         {%- if meta.styles -%}
             <link rel="stylesheet" href="{{ url( 'static', 'css/' + meta.styles|replace('.less$', '.css') ) }}">
         {%- endif -%}
@@ -52,16 +53,17 @@
               {% endfor %}
             </nav>
             <nav id="menu-top">
+              <!-- to expand and collapse the menu on some layouts -->
+              <button class="fa">&#xf160;</button>
               <a href="/" {{ selected(location =='/') }}>{{t('Portada')}}</a>
               {%- for data in menuTop -%}
                 {{ data|link(location) }}
               {%- endfor -%}
-              <!-- to expand and collapse the menu on portrait mode-->
-              <button>M</button>
             </nav>
             {%- if menu -%}
               <nav id="menu-section">
-                <button>M</button>
+                <!-- to expand and collapse the menu on some layouts -->
+                <button class="fa">&#xf160;</button>
                 {%- for data in menu -%}
                   {{- data|link(location) }}
                 {%- endfor -%}
@@ -99,6 +101,10 @@
                 </section>
             {% endif %}
         </div>
+
+        <footer>
+          
+        </footer>
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script>window.jQuery || document.write('<script src="{{ url( 'static', 'js/vendor/jquery-1.10.2.min.js' ) }}"><\/script>')</script>
