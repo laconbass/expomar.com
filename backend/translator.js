@@ -45,9 +45,9 @@ module.exports = function t( lang, string, values ){
   // removed util.format features, warn about a bad call
   if( ! production && 'undefined' !== typeof values && ! isObject(values) ){
     debug( 'WARN: translator was called expecting util.format features' );
-    debug( 'arguments:', arguments );
+    debug( 'WARN:', arguments );
     debug( Error('debug trace').stack );
-    values = {};
+
   }
 
   // removed util.format features, warn to use tag-style
