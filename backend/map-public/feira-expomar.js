@@ -2,7 +2,7 @@ var app = ( require.main === module )
   ? require( 'express' ).Router()
   : require( '../app-public' )
 ;
-var layout = [ "theme2.swig.html" ];
+var layout = [ 'theme2.swig.html' ];
 
 var redirect = require('../middleware/redirect');
 var Section = require('../middleware/Section');
@@ -18,9 +18,9 @@ var resolve = path.resolve.bind( 0, process.cwd() );
 var anos = require( resolve('data/anosFeira.json') );
 
 var exports = module.exports = Section( app, {
-  "name": "Feira Expomar",
-  "desc": "A Feira monográfica náutico-pesqueira Expomar ao detalle, dende a súa primeira edición en 1994 ata a actualidade.",
-  "layout": [] // TODO?? é lóxico ou non?
+  'name': 'Feira Expomar',
+  'desc': 'A Feira monográfica náutico-pesqueira Expomar ao detalle, dende a súa primeira edición en 1994 ata a actualidade.',
+  'layout': [] // TODO?? é lóxico ou non?
 });
 
 var actual = anos[ anos.length - 1 ];
@@ -29,9 +29,9 @@ var coletilla = 'edición da feira monográfica náutico-pesqueira Expomar';
 
 exports
   .get( '/', redirect({
-    "name": "Feira Expomar",
-    "desc": "A Feira monográfica náutico-pesqueira Expomar ao detalle, dende a súa primeira edición en 1994 ata a actualidade.",
-    "location": format( '/%s/%s', base, actual )
+    'name': 'Feira Expomar',
+    'desc': 'A Feira monográfica náutico-pesqueira Expomar ao detalle, dende a súa primeira edición en 1994 ata a actualidade.',
+    'location': format( '/%s/%s', base, actual )
   }) )
   // TODO index de todolos anos
   // .get( '/historico' )
@@ -62,10 +62,11 @@ anos.forEach(function( ano, n ){
 
   // a partir deste punto está claro que como mínimo existe presentacion.md
 
-  var romano = romanize( n+1 );
+  var data = { ano: ano, romano: romanize( n+1 ) };
   var router = Section( exports, {
-    'name': "Expomar "+ ano,
-    'desc': format( romano, coletilla, ano )
+    'name': 'Feira Expomar {ano}',
+    'desc': '{romano} ' + coletilla + ' {ano}',
+    'data': data
   });
 
   // esto non encaixa coa maneira de inspeccionar (debería usar #all)
@@ -74,21 +75,27 @@ anos.forEach(function( ano, n ){
 
   // redireccionar a raíz á presentación
   router.get( '/', redirect({
-    'name': "Expomar "+ ano,
-    'desc': format( romano, coletilla, ano ),
+    'name': 'Feira Expomar {ano}',
+    'desc': '{romano} ' + coletilla + ' {ano}',
+    'data': data,
     'location': format( '/%s/%s/presentacion', base, ano )
   }) );
 
   // routear a presentación
   var documents = { gl: 'public/feira/'+ano+'/presentacion.md' };
+  // TODO DRY checkeo da existencia de cada traducción menos zarapalleiro
+  var file = path.join( templates, 'presentacion-es.md' );
+  if( fs.existsSync(file) ) documents.es = 'public/feira/'+ano+'/presentacion-es.md';
+  var file = path.join( templates, 'presentacion-en.md' );
+  if( fs.existsSync(file) ) documents.en = 'public/feira/'+ano+'/presentacion-en.md';
   // TODO checkear si existen traduccións e engadilas
   router.get('/presentacion', Document({
       'name': 'Presentación',
-      'desc': format( 'Presentación da', romano, coletilla, ano ),
+      'desc': 'Presentación da {romano} ' + coletilla + ' {ano}',
+      'data': data,
       // TODO ¿? presentación especial para a feira
-      'layout': layout.concat( "public/presentacion.swig.html" ),
+      'layout': layout.concat( 'public/presentacion.swig.html' ),
       'document': documents,
-      "anos": anos
   }) );
 
   // a partir deste punto hai que checkear que exista cada sección
@@ -98,28 +105,33 @@ anos.forEach(function( ano, n ){
   var file = path.join( templates, 'programa.md' );
   if( fs.existsSync(file) ){
     var documents = { gl: 'public/feira/'+ano+'/programa.md' };
-    // TODO checkear si existen traduccións e engadilas
+    // TODO DRY checkeo da existencia de cada traducción menos zarapalleiro
+    var file = path.join( templates, 'programa-es.md' );
+    if( fs.existsSync(file) ) documents.es = 'public/feira/'+ano+'/programa-es.md';
+    var file = path.join( templates, 'programa-en.md' );
+    if( fs.existsSync(file) ) documents.en = 'public/feira/'+ano+'/programa-en.md';
     router.get('/programa', Document({
         'name': 'Programa',
-        'desc': format( 'Programa da', romano, coletilla, ano ),
+        'desc': 'Programa da {romano} ' + coletilla + ' {ano}',
+        'data': data,
         'layout': layout,
         'document': documents,
-        "anos": anos
     }) ); 
   } else {
     console.error( '  SKIP ENOENT "%s"', file );
   }
   /*.get('/organizacions', Layout({
-      "name": "Organizacións Invitadas",
-      "desc": "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
+      'name': 'Organizacións Invitadas',
+      'desc': 'Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras',
+      'layout': layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
   }) )*/
   var file = path.join( templates, 'documentacion.swig.html' );
   if( fs.existsSync(file) ){
     router.get('/documentacion', Layout({
-        "name": "Documentación",
-        "desc": "Documentación para entidades expositoras en Expomar " + ano,
-        "layout": layout.concat( 'public/feira/' + actual + '/documentacion.swig.html' )
+        'name': 'Documentación',
+        'desc': 'Documentación para entidades expositoras en Expomar {ano}',
+        'data': data,
+        'layout': layout.concat( 'public/feira/' + actual + '/documentacion.swig.html' )
     }) );
   } else {
     console.error( '  SKIP ENOENT "%s"', file );
@@ -128,8 +140,9 @@ anos.forEach(function( ano, n ){
   // routear o comite
   // TODO debera checkearse que existe o comité de `ano` en vez de reusar o actual
   router.get('/comite', Layout({
-      'name': "Comité Executivo",
-      'desc': format('Persoas que conforman o Comité Executivo da', romano, coletilla, ano),
+      'name': 'Comité Executivo',
+      'desc': 'Persoas que conforman o Comité Executivo da {romano} ' + coletilla + ' {ano}',
+      'data': data,
       'layout': layout.concat( 'public/comite-executivo.swig.html' )
   }) );
 

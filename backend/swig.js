@@ -32,8 +32,8 @@ swig.setFilter( 'trim', function( input ){
 });
 
 function debug( input ){
-  var mode = ('string' === typeof input)? '%s' : '%j';
-  return format( '<pre>'+mode+'</pre>', input );
+  input = JSON.stringify( input, "[Function]", 4 );
+  return format( '<pre>%s</pre>', input );
 }
 debug.safe = true;
 production || swig.setFilter( 'debug', debug );

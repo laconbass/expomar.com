@@ -3,6 +3,7 @@ var join = require('path').join;
 var express = require('express');
 var View = require('./View');
 var isArray = Array.isArray;
+var t = require('../translator');
 
 //
 // Express layer inspection utilities
@@ -23,23 +24,33 @@ function isRouteOrRouter( layer ){
   return !! layer.route || !! layer.handle.stack;
 }
 
-// determine if an express layer handles GET requests
+// create a function that determines whatever given express layer handles
+// requests whose http method is `verb`
 // TODO save calls until isRoute or isRouter need advanced logic
-// TODO ¿? rename to handlesGET ¿?
-function isGetLayer( layer ){
-  if( 'undefined' !== typeof layer.method ){
-    return layer.method === 'get';
-  }
-  if( isRoute(layer) ){
-    return layer.route.methods.get || layer.route.methods._all;
-  }
-  if( isRouter(layer) ){
-    return layer.handle.stack.some( isGetLayer );
-  }
-  // TODO a layer can be a route and a router at time
-  // return isRouteAndRouter(layer)? route && router : route || router;
-  return false;
+function verbFilter( verb ){
+  assert( 'string' === typeof verb, 'verb must be a string' );
+  assert( verb, 'verb must be non-empty string' );
+  verb = verb.toLowerCase();
+
+  return function isVERBLayer( layer ){
+    if( 'undefined' !== typeof layer.method ){
+      return layer.method === verb;
+    }
+    if( isRoute(layer) ){
+      return layer.route.methods[verb] || layer.route.methods._all;
+    }
+    if( isRouter(layer) ){
+      return layer.handle.stack.some( isVERBLayer );
+    }
+    // TODO a layer can be a route and a router at time
+    // return isRouteAndRouter(layer)? route && router : route || router;
+    return false;
+  };
 }
+
+// determine if an express layer handles GET requests
+// TODO ¿? rename to handlesGET ¿?
+var isGetLayer = verbFilter( 'get' );
 
 // determine if the handler of an express layer is decorated with a View
 function isViewLayer( layer ){
@@ -48,6 +59,21 @@ function isViewLayer( layer ){
     return true;
   }
   return false;
+}
+
+// creates a function that determines whatever given express layer handle
+// has been decorated with a property data descriptor named `name`
+// If function `assert` is provided, it will be called when the property
+// is found receiving the property value so it's a hook for aditional checks
+// behaves exactly as "isViewLayer"
+function propertyFilter( name, hook ){
+  return function isDecorated( layer ){
+    if( 'undefined' !== typeof layer.handle[ name ] ){
+      'function' === typeof hook && hook( layer.handle[name] );
+      return true;
+    }
+    return false;
+  }
 }
 
 // determine if an express layer is view-decorated and handles GET requests
@@ -63,27 +89,51 @@ function seekView( layer ){
   }
   if( isRoute(layer) ){
     //console.log( 'seek view in route "%s"', layer.route.path );
-    var view = seekViewIn( layer.route.stack );
+    var view = seekIn( layer.route.stack, seekView );
     if( view !== null ) return view;
   }
   // NOTE: a layer can be a route and a router at time
   if( isRouter(layer) ){
     //console.log( 'seek view in router', layer.route );
-    var view = seekViewIn( layer.handle.stack );
+    var view = seekIn( layer.handle.stack, seekView );
     if( view !== null ) return view;
   }
   return null;
 }
 
-// attempt to find a View instance in the express layer array `stack`
-function seekViewIn( stack ){
+
+// attempt to find something in the array `stack` with the function `seek`
+function seekIn( stack, seek ){
   assert( isArray(stack), 'stack must be an array' );
+  assert( 'function' === typeof seek, 'seek must be a function' );
   for( var n in stack ){
-    var view = seekView( stack[n] );
-    if( view !== null ) return view;
+    var data = seek( stack[n] );
+    if( data !== null ) return data;
   }
   return null;
 }
+
+function propertySeeker( name, hook ){
+  var isPropertyLayer = propertyFilter( name, hook );
+  return function seekProperty( layer ){
+    if( isPropertyLayer(layer) ){
+      return layer.handle[ name ];
+    }
+    if( isRoute(layer) ){
+      var data = seekIn( layer.route.stack, seekProperty );
+      if( data !== null ) return data;
+    }
+    // NOTE: a layer can be a route and a router at time
+    if( isRouter(layer) ){
+      //console.log( 'seek view in router', layer.route );
+      var data = seekIn( layer.handle.stack, seekProperty );
+      if( data !== null ) return data;
+    }
+    return null;
+  };
+}
+
+var seekMeta = propertySeeker('meta');
 
 // creates an array of link data from the express layer array `stack`
 function inspect( stack ){
@@ -120,31 +170,40 @@ function inspect( stack ){
     // after here we know the layer is a Route.
     return !! layer.route.stack.filter( isGetViewLayer ).length;
   })
-  // TODO this is actually a LinkVO constructor
-  .map(function convertViewLayerToLinkData( layer ){
-    var view = seekView( layer );
-    assert( view instanceof View, 'non-view layer detected' );
-    return {
-      // TODO replace only if express router option `strict` is false
-      "href": layer.route.path,
-      "text": view.title,
-      "title": view.description
-    };
-    // TODO if Router
-    // - ¿? return array instead an object
-    // - ¿? add a "submenu" property or something like that
-  });
+  .map(function( layer ){
+    return kindOfViewLinkVO( layer.route.path, layer );
+  })
 }
 
-// determine the first view instance in an express layer array `stack`
-// whose layer handle will match http `verb` and `url`
-function seekViewByUrl( stack, verb, url ){
+function kindOfViewLinkVO( href, layer ){
+  var view = seekView( layer );
+  assert( view, 'expecting view layer' );
+  return {
+    "href": href,
+    "text": view.title,
+    "title": view.description
+  };
+  // TODO if Router
+  // - ¿? return array instead an object
+  // - ¿? add a "submenu" property or something like that
+};
+
+function kindOfMetaLinkVO( href, layer ){
+  var meta = seekMeta( layer );
+  assert( meta, 'expecting meta layer' );
+  return {
+    "href": href,
+    "text": meta.name,
+    "title": meta.desc
+  };
+};
+
+// determine the first route in an express layer array `stack` that accepts
+// the http method `verb` and whose regexp (layer.regexp) will match `url`.
+function seekByUrl( stack, verb, url ){
   assert( isArray(stack), 'stack must be an array' );
-
-  console.log( "SEEK VIEW %s %s IN %d LAYERS", verb, url, stack.length );
-
-  var view = null;
-  stack.some(function( layer ){
+  var result = null, isVerbLayer = verbFilter(verb);
+  stack.some(function matches( layer ){
     // discard layers that aren't routes or routers
     if( ! isRouteOrRouter(layer) ) return false;
 
@@ -152,36 +211,32 @@ function seekViewByUrl( stack, verb, url ){
     var match = url.match( layer.regexp );
     if( !match ) return false;
 
+    // discard layers not matching verb
+    if( ! isVerbLayer(layer) ) return false;
+
     if( isRoute(layer) ){
-      // TODO this should use #some and return the first layer matching verb
-      // reduce the search to the route stack layers that match verb
-      stack = layer.route.stack.filter(function( layer ){
-        return layer.method !== verb;
-      });
-      //console.log( "FOUND ROUTE (%d LAYERS)", stack.length );
-      assert( stack.length, 'matched route without view layers' );
-      assert( stack.length === 1, 'matched route with too much layers' );
-      // TODO deal with multiple view routes
-      view = stack[0].handle.view;
-    } else if( isRouter(layer) ){
-      //console.log( "  FOUND ROUTER (%d LAYERS)", layer.handle.stack.length );
-      //console.log( 'predicted the view will be the router' );
-      view = layer.handle.view;
-    } else {
-      throw new Error("expecting only routes and routers");
+      result = layer;
+      // stop iteration on match
+      return true;
     }
-    // stop search on first match
-    // ensure a instanceof View was found
-    assert( view !== null, 'seek stoped prematurely (bad implementation)' );
-    if( view instanceof View ){
-      console.log( 'FOUND "%s" (%s)', view.title, view.description );
-    } else {
-      throw new Error( verb + ' ' + url + ' matched a non-view handle' )
-    }
-    assert( view instanceof View, 'matched non-view handle' );
-    return true;
+    // search through Router's stack
+    // reuse this function so it's no need a whole seekLayerByUrl call
+    url = url.replace( RegExp('^' + match), '' );
+    return layer.handle.stack.some( matches );
   });
-  return view;
+  return result;
+}
+
+function linkTranslator( req, res ){
+  var base = req.originalUrl.slice( 0, -req.url.length );
+  var values = res.locals.view? res.locals.view.data : res.locals;
+  return function( link ){
+    var link = Object.create(link);
+    link.href = join( base, link.href );
+    link.text = res.locals.t(link.text, values);
+    link.title = res.locals.t(link.title, values);
+    return link;
+  };
 }
 
 module.exports = Section;
@@ -201,24 +256,32 @@ function Section( father, details ){
   // mount section middleware with use so it's skiped by seek algorithms
   return instance.router
   // TODO refactor this spliting middleware
+  .use(function breadcumbs( req, res, next ){
+    // skip if breadcumbs were already built
+    if( Array.isArray(res.locals.links) ) return next();
+
+    var view, views, links = [], url = '', parts = req.url.split('/');
+    while( parts.length ){
+      url = join( url, parts.shift() || '/' );
+      var layer = seekByUrl( instance.router.stack, req.method, url );
+      view = seekView( layer );
+      if( view ){
+        links.push( kindOfViewLinkVO(url, layer) );
+      } else {
+        view = seekMeta( layer );
+        links.push( kindOfMetaLinkVO(url, layer) );
+      }
+    }
+    // set view before so linkTranslator uses its data instead req.locals
+    res.locals.view = view.translate? view.translate( res.locals.t ) : view;
+    res.locals.links = links.map( linkTranslator(req, res) );
+    //console.log('MONKEY PATCH BREADCUMBS', res.locals.links );
+    next();
+  })
   // - "inspector" middleware to reuse the instance.inspection() thing (cached)
   .use(function inspection( req, res, next ){
     // catched by default, inspection will execute only once
     instance.inspection( /* false */ );
-    next();
-  })
-  .use(function breadcumbs( req, res, next ){
-    // determine the view that will handle the request
-    // TODO ¿? this should determine the end point?
-    //res.locals.view = seekViewByUrl( instance.router.stack, req.method, req.url );
-
-    /*console.log('MONKEY PATCH BREADCUMBS', req.url.split('/') );
-    var parts = req.url.split('/'), url = '';
-    while( parts.length ){
-      url = join( url, parts.shift() || '/' );
-      var view = seekViewByUrl( instance.router.stack, req.method, url );
-      console.log( url, view );
-    }*/
     next();
   })
   .use(function section_menus( req, res, next ){
@@ -232,14 +295,8 @@ function Section( father, details ){
       res.locals.menus.push( res.locals.menu );
     }
 
-    // determine this section menu converting layers to urls
-    var base = req.originalUrl.slice( 0, -req.url.length );
-    //console.log( 'Original: %s Base: %s Req:', req.originalUrl, base, req.url );
-    res.locals.menu = instance.menu.map(function( link ){
-      var link = Object.create(link);
-      link.href = join( base, link.href );
-      return link;
-    });
+    // determine this section menu translating instance.menu links
+    res.locals.menu = instance.menu.map( linkTranslator(req, res) );
     // push this section menu on menus
     res.locals.menus.push( res.locals.menu );
     next();

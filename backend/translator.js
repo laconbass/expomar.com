@@ -1,4 +1,5 @@
 var resolve = require('path').resolve.bind( 0, process.cwd() )
+  , assert = require('assert')
   , fs = require('fs')
   , f = require('util').format
   , slice = Array.prototype.slice.call.bind( Array.prototype.slice )
@@ -12,6 +13,9 @@ function debug(){
   console.error( 'translator:', f.apply(0, arguments) );
 };
 
+function isObject( o ){
+  return Object.prototype.toString.call(o) === '[object Object]';
+}
 
 var files = {
   gl: resolve('locale/strings-gl.json'),
@@ -27,18 +31,33 @@ langs.forEach(function( code ){
   strings[ code ] = require( files[code] );
 });
 
-module.exports = function t( lang, string ){
+module.exports = function t( lang, string, values ){
+  assert( arguments.length <= 3, 'bad translator call' );
 
-  if( ! string ){
-    return string;
-  }
+  // do nothing with empty strings
+  if( ! string ) return string;
 
-  if( !production && !~langs.indexOf(lang) ){
+  // don't check lang exists in production
+  if( ! production && !~langs.indexOf(lang) ){
     throw new Error( "Unavailable lang: "+lang )
   }
 
+  // removed util.format features, warn about a bad call
+  if( ! production && 'undefined' !== typeof values && ! isObject(values) ){
+    debug( 'WARN: translator was called expecting util.format features' );
+    debug( 'arguments:', arguments );
+    debug( Error('debug trace').stack );
+    values = {};
+  }
+
+  // removed util.format features, warn to use tag-style
+  ! production && ~string.indexOf('%') && debug(
+     'WARN: removed util.format features, use tag-style on string:\n'
+    +'      "%s"', string
+  );
+
   // auto-add new strings to translation tables
-  if( ! production && typeof strings[ lang ][ string ] == 'undefined' ){
+  if( ! production && typeof strings[ lang ][ string ] === 'undefined' ){
 
     debug( '%s transtable ADD "%s"', lang, string );
     strings[ lang ][ string ] = null;
@@ -51,15 +70,21 @@ module.exports = function t( lang, string ){
     strings[ lang ] = require( path );
   }
 
-  if( ! strings[ lang ][ string ] ){
+  var value = strings[ lang ][ string ];
+  if( !value && value !== false ){
     debug( '%s transtable MISS "%s"', lang, string );
   }
 
   string = strings[ lang ][ string ] || string;
 
-  // provide util.format features
-  if( arguments.length > 2 ){
-    return f.apply( f, [ string ].concat( slice(arguments, 2) ) );
+  // TODO
+  if( ~string.indexOf('{') ){
+    values = values || {};
+    for( var tag in values ){
+      string = string.replace( RegExp('\{'+tag+'\}', 'g'), values[tag] );
+      // stop replacing if there are no more tags on string
+      if( !~string.indexOf('{') ) break;
+    }
   }
 
   return string;

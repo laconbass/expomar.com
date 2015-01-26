@@ -22,10 +22,10 @@ function Layout( meta ){
       layout.render( meta.layout, req, res, next );
     }
 
-    if( !meta.data ){
+    if( !meta.operation ){
       return finish();
     }
-    meta.data(function( err, data ){
+    meta.operation(function( err, data ){
       if( err ){
         return next( err );
       }

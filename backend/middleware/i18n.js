@@ -15,12 +15,14 @@ var langNames = {
  */
 
 function i18n( main, available, translate ){
+  // TODO main atribute should be removed in favor of available[0]
   if( !Array.isArray(available) ){
     throw Error('you must provide available languages as array')
   }
   var langs = {};
   available.forEach(function( code ){ langs[code] = langNames[code]; });
 
+  // TODO why the hell i wrote this instead doing a simple join?
   available = available.reduce(function( prev, curr ){ return prev + '|' + curr }, main)
   available = new RegExp( '^('+available+')\..*', 'i' )
 
@@ -42,6 +44,6 @@ function i18n( main, available, translate ){
  * default implementation of the translate function
  */
 
-function t( lang, string ){
+function t( lang, string, values ){
   return string;
 }
