@@ -49,7 +49,6 @@
     "Onde estamos e como contactar con nós": "About us",
     "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.": "You are using an <strong>outdated</strong> browser. Please <a href=\"http://browsehappy.com/\">upgrade your browser</a> to improve your experience.",
     "Ver o programa completo": "View the full schedule",
-    "Cartaz da edición de %s de Xornadas Técnicas": "Flyer of Technical Meetings' %s edition",
     "Conclusións": "Conclusions",
     "Encontro Empresarial de Organizacións Pesqueiras": "Fishing Organizations Professional Meeting",
     "Presentación do Encontro Empresarial de Organizacións Pesqueiras": "Introduction to the Fishing Organizations Professional Meeting",
@@ -78,7 +77,6 @@
     "Descargar powerpoint": "Download powerpoint",
     "Descarga": "Download",
     "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.": "At this section you can view all the information about our speakers and their talks, that most times are available to download.",
-    "Cartaz da edición de %s": "Main flyer of the %s edition",
     "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras": "Relation of invited organizations",
     "Organizacións Invitadas": "Invited Organizations",
     "Conclusións do Encontro Empresarial de Organizacións Pesqueiras": "Professional Meeting Conclusions",
@@ -101,5 +99,6 @@
     "{romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "{romano} edition of the monographic nautical fishery fair Expomar {ano}",
     "Documentación": "Documents",
     "Documentación para entidades expositoras en Expomar {ano}": "Reference documents for exhibitors on the Expomar Fair {ano}",
-    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Executive Comitee for the {romano} edition of the monographic nautical fishery fair Expomar {ano}"
+    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Executive Comitee for the {romano} edition of the monographic nautical fishery fair Expomar {ano}",
+    "Cartaz da {romano} edición ({ano})": "Main flyer of the {romano} edition ({ano})"
 }

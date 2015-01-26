@@ -68,8 +68,6 @@
     "Páxina principal": "Páxina principal",
     "Onde estamos e como contactar con nós": "Onde estamos e como contactar con nós",
     "Ver o programa completo": "Ver o programa completo",
-    "Cartaz da edición de %s de Xornadas Técnicas": "Cartaz da edición de %s das Xornadas Técnicas",
-    "Cartaz da edición de %s de Encontro Empresarial": "Cartaz da edición de %s do Encontro Empresarial",
     "Organizacións invitadas": "Organizacións invitadas",
     "Conclusións": "Conclusións",
     "Encontro Empresarial de Organizacións Pesqueiras": "Encontro Empresarial de Organizacións Pesqueiras",
@@ -87,7 +85,6 @@
     "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.": false,
     "Listado de integrantes do Comité Executivo do Encontro Empresarial de Organizacións Pesqueiras": false,
     "Listado de integrantes do Comité Executivo das Xornadas Técnicas": false,
-    "Cartaz da edición de %s": false,
     "Non dispoñible": false,
     "Descarga": false,
     "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras": false,
@@ -110,5 +107,6 @@
     "Feira Expomar {ano}": false,
     "Presentación da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": false,
     "Documentación para entidades expositoras en Expomar {ano}": false,
-    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": false
+    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": false,
+    "Cartaz da {romano} edición ({ano})": false
 }

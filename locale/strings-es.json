@@ -85,7 +85,6 @@
     "Conclusións do Encontro Empresarial de Organizacións Pesqueiras": "Conclusiones del Encuentro Empresarial de Organizaciones Pesqueras",
     "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras": "Listado de organizaciones invitadas al Encuentro Empresarial de Organizaciones Pesqueras",
     "Organizacións Invitadas": "Organizaciones Invitadas",
-    "Cartaz da edición de %s": "Cartel de la edición de %s",
     "Presentación do Encontro Empresarial de Organizacións Pesqueiras": "Presentación del Encuentro Empresarial de Organizaciones Pesqueras",
     "Vaites! Ocorreu un erro no servidor.": "Vaya! Ha ocurrido un error en el servidor.",
     "Traducción non dispoñible": "Traducción no disponible",
@@ -107,5 +106,6 @@
     "Feira Expomar {ano}": "Feria Expomar {ano}",
     "{romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "{romano} edición de la feria monográfica náutico-pesquera Expomar {ano}",
     "Documentación para entidades expositoras en Expomar {ano}": false,
-    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Personas que integran el Comité Ejecutivo de la {romano} edición de la feria monográfica náutico-pesquera Expomar {ano}"
+    "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Personas que integran el Comité Ejecutivo de la {romano} edición de la feria monográfica náutico-pesquera Expomar {ano}",
+    "Cartaz da {romano} edición ({ano})": "Cartel de la {romano} edición (%s)",
 }
