@@ -1,6 +1,6 @@
 # Listado de sectores representados en Expomar 2015
 
-## 1) CAMARA DE MAQUINAS.
+## 1) Cámara de máquinas.
 
 - Equipo propulsor.
 - Compoñentes de Motores Diesel.
@@ -8,47 +8,47 @@
 - Equipos de Cámara de Máquinas.
 - Equipos e compoñentes para a manipulación dos fluidos.
 
-## 2) EQUIPAMENTOS DE CUBERTA, CASCO E CARGA.
+## 2) Equipamentos de cuberta, casco e carga.
 
 - Equipos de cuberta.
 - Equipos e elementos de casco, arboladura e xarcia.
 - Artes de pesca, equipos e accesorios.
 
-## 3) ELECTRICIDADE E ELECTRONICA NAVAL.
+## 3) Electricidade e electrónica naval.
 
 - Electricidade Naval.
 - Equipos de axuda á navegación.
 - Sistemas de navegación.
 
-## 4) EQUIPAMENTOS DE HABILITACION.
+## 4) Equipamentos de habilitación.
 
 - Habilitación e aire acondicionado.
 
-## 5) EQUIPAMENTOS ESPECIAIS PARA BUQUES.
+## 5) Equipamentos especiais para buques.
 
 - Equipos e Instalacións especiais.
 
-## 6) EQUIPAMENTOS DE PROCESO E CONSERVACION EN BUQUES PESQUEIROS.
+## 6) Equipamentos de proceso e conservación en buques pesqueiros.
 
 - Equipos, Manipulación, Elaboración e Conservación do Peixe.
 
-## 7) INDUSTRIA NAVAL.
+## 7) Industria naval.
 
 - Construcción naval.
 - Productos e equipos para a construcción e mantenemento naval e offshore.
 
-## 8) TRANSFORMADORES DE PEIXE.
+## 8) Transformadores de peixe.
 
 - Maquinaria
 
-## 9) OUTRAS ACTIVIDADES ANEXAS O MAR.
+## 9) Outras actividades anexas ao mar.
 
 - Acuicultura.
 - Portos.
 - Salvamento Marítimo.
 - Outras actividades: Publicacións, Asociacións, Centros de Información, etc...
 
-## 10) NAUTICA:
+## 10) Náutica
 
 - Embarcacións a vela e motor.
 - Embarcacións neumáticas.

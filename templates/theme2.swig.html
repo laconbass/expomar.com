@@ -100,7 +100,7 @@
             {% if html %}
               {#{ menu|json(4)|debug }#}
               {#{ view|debug }#}
-              <section id="{{ location.split('/')|first|default('portada') }}">
+              <section id="{{ location.split('/')[1]|default('portada') }}">
                 {{ html|safe }}
               </section>
             {% else %}

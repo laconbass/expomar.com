@@ -1,6 +1,6 @@
-# TECHNOLOGICAL LIST EXPOMAR 2015
+# Technological List Expomar 2015
 
-## 1) ENGINE ROOM.
+## 1) Engine room.
 
 - Drive equipment.
 - Diesel Engine Components.
@@ -8,47 +8,47 @@
 - Engineroom Equipment.
 - Fluid transfer equipment and components.
 
-## 2) EQUIPMENT FOR DECK, HULL AND CARGO.
+## 2) Equipment for deck, hull and cargo.
 
 - Deck equipment.
 - Equipment and elements for hull, masrting and rigging.
 - Fishing tackles, equipment and accesories.
 
-## 3) NAVAL ELECTRICITY AND ELECTRONICS.
+## 3) Naval electricity and electronics.
 
 - Naval Electricity.
 - Navigation aid equipment.
 - Navegation systems.
 
-## 4) OUTFIT OF ACCOMMODATION.
+## 4) Outfit of accommodation.
 
 - Accommodation and air conditioning.
 
-## 5) SPECIAL EQUIPMENT FOR SHIPS.
+## 5) Special equipment for ships.
 
 - Special equipment and facilities.
 
-## 6) EQUIPMENT FOR FISH PROCESSING AND PRESERVATION IN FISHING SHIPS.
+## 6) Equipment for fish processing and preservation in fishing ships.
 
 - Fish Handling, Processing and Preservation Equipment.
 
-## 7) SHIPBUILDING INDUSTRY.
+## 7) Shipbuilding industry.
 
 - Shipbuilding.
 - Products and equipment for shipbuilding naval maintenance & offshore.
 
-## 8) INDUSTRIA AUXILIAR. FISH PROCESSORS AND AUXILIARY INDUSTRY.
+## 8) Fish processors and auxiliary industry.
 
 - Machinery
 
-## 9) OTHER SEA RELATED ACTIVITIES.
+## 9) Other sea related activities.
 
 - Aquiaculture.
 - Harbours.
 - Other activities related to the naval sector.
 - Lifeboats for Marine Service.
 
-## 10) NAUTICAL:
+## 10) Nautical.
 
 - Sailing boats and motor boats.
 - Pneumatic sailing.
