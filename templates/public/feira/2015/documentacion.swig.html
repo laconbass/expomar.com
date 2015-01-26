@@ -1,9 +1,6 @@
-<h1>Documentación para entidades expositoras</h1>
+<h1>{{ view.title }}</h1>
 <p>
-  A continuación facilítanse ligazóns para a descarga en formato pdf da
-  documentación relativa á XVI edición da feira monográfica
-  náutico-pesqueira Expomar 2015. Para calquera dúbida pode poñerse en
-  contacto connosco nos teléfonos de información da Feira.
+  {{t('A continuación facilítanse ligazóns para a descarga en formato pdf da documentación relativa á {romano} edición da feira monográfica náutico-pesqueira Expomar 2015. Para calquera dúbida pode poñerse en contacto connosco nos teléfonos de información da Feira.', view.data)}}
 <p>
 <nav class="download buttons">
   <a
@@ -11,20 +8,20 @@
     href="{{ url('static', '/files/2015/carpeta-servicios.pdf') }}"
   >
     <i class="fa fa-file-pdf-o"></i>
-    <span>Carpeta de Servicios</span>
+    <span>{{t('Carpeta de Servicios')}}</span>
   </a>
   <a
     class="pdf download button" target="_blank"
     href="{{ url('static', '/files/2015/anexos.pdf') }}"
   >
     <i class="fa fa-file-pdf-o"></i>
-    <span>Anexos</span>
+    <span>{{t('Anexos')}}</span>
   </a>
   <a
     class="pdf download button" target="_blank"
     href="{{ url('static', '/files/2015/tipos-stand-mobiliario.pdf') }}"
   >
     <i class="fa fa-file-pdf-o"></i>
-    <span>Tipos de stands e mobiliario</span>
+    <span>{{t('Tipos de stands e mobiliario')}}</span>
   </a>
 </nav>
