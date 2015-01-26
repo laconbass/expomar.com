@@ -107,7 +107,7 @@
     "{romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "{romano} edición de la feria monográfica náutico-pesquera Expomar {ano}",
     "Documentación para entidades expositoras en Expomar {ano}": false,
     "Persoas que conforman o Comité Executivo da {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Personas que integran el Comité Ejecutivo de la {romano} edición de la feria monográfica náutico-pesquera Expomar {ano}",
-    "Cartaz da {romano} edición ({ano})": "Cartel de la {romano} edición (%s)",
+    "Cartaz da {romano} edición ({ano})": "Cartel de la {romano} edición ({ano})",
     "A continuación facilítanse ligazóns para a descarga en formato pdf da documentación relativa á {romano} edición da feira monográfica náutico-pesqueira Expomar 2015. Para calquera dúbida pode poñerse en contacto connosco nos teléfonos de información da Feira.": "A continuación se facilitan enlaces para la descarga en formato pdf de la documentación relativa a la {romano} edición de la feria monográfica náutico-pesquera Expomar {ano}. Para cualquier duda puede ponerse en contacto con nosotros en los teléfonos de información de la Feria.",
     "Carpeta de Servicios": "Carpeta de Servicios",
     "Anexos": "Formularios para la solicitud de servicios",
@@ -115,5 +115,7 @@
     "Sectores": false,
     "Sectores representados na {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}": "Presentación de la {romano} edición de la feria monográfica náutico-pesquera Expomar {ano}",
     "Nesta sección relaciónanse tódalas edicións anteriores á Feira Expomar {ano}": "En esta sección se relacionan todas las ediciones anteriores a la Feria Expomar {ano}",
-    "Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}. Lamentamos as molestias que isto lle poda causar.": "Debido a que estamos reestructurando nuestra base de datos, en estos momentos no podemos mostrarle la información relativa a la {romano} edición de la feira monográfica náutico-pesquera Expomar {ano}. Lamentamos las molestias que esto le pueda causar."
+    "Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}. Lamentamos as molestias que isto lle poda causar.": "Debido a que estamos reestructurando nuestra base de datos, en estos momentos no podemos mostrarle la información relativa a la {romano} edición de la feira monográfica náutico-pesquera Expomar {ano}. Lamentamos las molestias que esto le pueda causar.",
+    "Oficinas Fundación Expomar": false,
+    "Localización exacta das oficinas da Fundación Expomar": "Coordenadas exactas de la oficina de la Fundación Expomar"
 }
