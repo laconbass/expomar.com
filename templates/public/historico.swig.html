@@ -1,0 +1,22 @@
+<h1>{{ view.title }}</h1>
+
+<p>{{ view.description }}</p>
+
+{% for n, ano in view.data.history %}
+<article>
+  {% set n = view.data.history.length - n %}
+  {% set event = {ano: ano, romano: n|romanize} %}
+  <h1>{{t(view.data.namePattern, event)}}</h1>
+  {%- if view.data.hasdata[ano] -%}
+  <p>existe info</p>
+  {{ event|debug }}
+  {%- else -%}
+  <p class="nodata">
+  {{t('Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á '+view.data.descPattern+'. Lamentamos as molestias que isto lle poda causar.', event)}}
+  </p>
+  {%- endif -%}
+</article>
+{% endfor %}
+
+
+

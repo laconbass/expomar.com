@@ -257,6 +257,8 @@ function Section( father, details ){
   return instance.router
   // TODO refactor this spliting middleware
   .use(function breadcumbs( req, res, next ){
+    // TODO could this simply push the view instance¿?
+    // TODO sure, but it will skip non-sections unless some work is done
     // skip if breadcumbs were already built
     if( Array.isArray(res.locals.links) ) return next();
 
@@ -265,6 +267,7 @@ function Section( father, details ){
       url = join( url, parts.shift() || '/' );
       var layer = seekByUrl( instance.router.stack, req.method, url );
       view = seekView( layer );
+      // TODO traducir cada link coa sua view, non coa view resultante da peticion
       if( view ){
         links.push( kindOfViewLinkVO(url, layer) );
       } else {

@@ -17,6 +17,7 @@ var resolve = path.resolve.bind( 0, process.cwd() );
 var assert = require('assert');
 
 var anos = require( resolve('data/anosFeira.json') );
+var history = [];
 
 var exports = module.exports = Section( app, {
   'name': 'Feira Expomar',
@@ -63,11 +64,22 @@ anos.forEach(function( ano, n ){
   }
 
   // a partir deste punto está claro que como mínimo existe presentacion.md
+  // almacenar a info deste ano para o histórico
+  history.push(ano);
 
-  var data = { ano: ano, romano: romanize( n+1 ) };
+  // data común a tódalas rutas
+  var data = {
+    namePattern: 'Feira Expomar {ano}',
+    descPattern: '{romano} ' + coletilla + ' {ano}',
+    current: n+1,
+    romano: romanize( n+1 ),
+    ano: +ano
+  };
+
+  // crear a seccion deste ano
   var router = Section( exports, {
-    'name': 'Feira Expomar {ano}',
-    'desc': '{romano} ' + coletilla + ' {ano}',
+    'name': data.namePattern,
+    'desc': data.descPattern,
     'data': data
   });
 
@@ -77,8 +89,8 @@ anos.forEach(function( ano, n ){
 
   // redireccionar a raíz á presentación
   router.get( '/', redirect({
-    'name': 'Feira Expomar {ano}',
-    'desc': '{romano} ' + coletilla + ' {ano}',
+    'name': data.namePattern,
+    'desc': data.descPattern,
     'data': data,
     'location': format( '/%s/%s/presentacion', base, ano )
   }) );
@@ -123,10 +135,11 @@ anos.forEach(function( ano, n ){
 
   routeDocument('presentacion.md', {
       'name': 'Presentación',
-      'desc': 'Presentación da {romano} ' + coletilla + ' {ano}',
+      'desc': 'Presentación da ' + data.descPattern,
       'layout': 'public/presentacion.swig.html'
   });
 
+  // TODO documentación recibe unha lista de docs mostrar
   var file = path.join( templates, 'documentacion.swig.html' );
   if( fs.existsSync(file) ){
     router.get('/documentacion', Layout({
@@ -139,18 +152,18 @@ anos.forEach(function( ano, n ){
     console.error( '  SKIP ENOENT "%s"', file );
   }
 
-  // routear o comite
+
   // TODO debera checkearse que existe o comité de `ano` en vez de reusar o actual
   router.get('/comite', Layout({
       'name': 'Comité Executivo',
-      'desc': 'Persoas que conforman o Comité Executivo da {romano} ' + coletilla + ' {ano}',
+      'desc': 'Persoas que conforman o Comité Executivo da ' + data.descPattern,
       'data': data,
       'layout': layout.concat( 'public/comite-executivo.swig.html' )
   }) );
 
   routeDocument('programa.md', {
       'name': 'Programa',
-      'desc': 'Programa da {romano} ' + coletilla + ' {ano}',
+      'desc': 'Programa da ' + data.descPattern,
   }); 
 
   // a partir deste punto hai que checkear que exista cada sección
@@ -161,11 +174,35 @@ anos.forEach(function( ano, n ){
       'layout': layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
   }) )*/
 
-
   routeDocument('sectores.md', {
     'name': 'Sectores',
-    'desc': 'Sectores representados na {romano} ' + coletilla + ' {ano}'
+    'desc': 'Sectores representados na ' + data.descPattern
   });
+
+  // routear histórico
+  console.log('xerar historico para', ano);
+  function desc( a, b ){ return b-a; }
+
+  data.history = anos.slice(0, n).sort( desc );
+  data.hasdata = {};
+  history
+    // sort modifica o array orixinal
+    .slice(0).sort( desc )
+    .forEach(function( ano, n ){ data.hasdata[ ano ] = true; });
+  ;
+
+  /*var nodata = {};
+  anos
+    .filter(function(ano){ return !~years.indexOf(ano) });
+    .forEach(function( ano ){ nodata[ ano ] = true; })
+  ;*/
+
+  router.get('/historico', Layout({
+      'name': 'Histórico',
+      'desc': 'Nesta sección relaciónanse tódalas edicións anteriores á ' + data.namePattern,
+      'data': data,
+      'layout': layout.concat( 'public/historico.swig.html' )
+  }) );
 
   console.error( 'ROUTED /%s/%s', base, ano );
 });
