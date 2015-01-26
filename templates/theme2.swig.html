@@ -57,7 +57,7 @@
               <button class="fa">&#xf160;</button>
               <a href="/" {{ selected(location =='/') }}>{{t('Portada')}}</a>
               {%- for data in menuTop -%}
-                {{ data|link(location) }}
+                {{- data|link(location) }}
               {%- endfor -%}
             </nav>
             {%- if menu -%}
@@ -69,14 +69,22 @@
                 {%- endfor -%}
               </nav>
             {%- endif menu -%}
-            {% if breadcumbs %}
+            {% if links %}
+              <nav id="breadcumbs">
+                {%- for data in links -%}
+                  {% if loop.first %}<a class="home" href="/" title="{{t('Páxina principal')}}"><span class="fa fa-home"></span></a>{% endif %}
+                  <span class="sep fa fa-hand-o-right"></span>
+                  {{ data|link(location) }}
+                {%- endfor -%}
+              </nav>
+            {% elif breadcumbs %}
               <nav id="breadcumbs">
                 {%- for item in breadcumbs -%}
                   {% if not loop.first %}<span class="sep">&nbsp;&gt;&nbsp;</span>{% endif %}
                   <a href="{{ item.url }}" title="{{ t(item.view.meta.desc) }}"{{ selected(loop.last) }}>{{ t(item.view.meta.name|default('Not found')) }}</a>
                 {%- endfor -%}
               </nav>
-            {% endif breadcumbs %}
+            {% endif links %}
         </header>
 
         <div id="content">

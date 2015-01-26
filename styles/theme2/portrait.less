@@ -212,8 +212,15 @@ header {
     .animated(); .fadeIn();
   }
   nav#breadcumbs {
-    padding: .3em 1em;
-    a, span { font-size: .85em; }
+    padding: .4em 1em;
+    a { font-size: .9em; }
+    .home {
+      @size: 1.3em;
+      line-height: @size;
+      vertical-align: middle;
+      span { font-size: @size; }
+    }
+    span.sep { font-size: .85em; margin: 0 .5em; }
   }
   // & = header
 }
