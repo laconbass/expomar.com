@@ -14,6 +14,7 @@ var format = require( 'util' ).format;
 var path = require('path');
 var fs = require('fs');
 var resolve = path.resolve.bind( 0, process.cwd() );
+var assert = require('assert');
 
 var anos = require( resolve('data/anosFeira.json') );
 
@@ -37,6 +38,7 @@ exports
   // .get( '/historico' )
 ;
 var templatesdir = resolve('templates/public/feira');
+
 anos.forEach(function( ano, n ){
   console.error( 'ROUTING /%s/%s', base, ano );
   // checkear que existe información deste ano
@@ -81,50 +83,50 @@ anos.forEach(function( ano, n ){
     'location': format( '/%s/%s/presentacion', base, ano )
   }) );
 
-  // routear a presentación
-  var documents = { gl: 'public/feira/'+ano+'/presentacion.md' };
-  // TODO DRY checkeo da existencia de cada traducción menos zarapalleiro
-  var file = path.join( templates, 'presentacion-es.md' );
-  if( fs.existsSync(file) ) documents.es = 'public/feira/'+ano+'/presentacion-es.md';
-  var file = path.join( templates, 'presentacion-en.md' );
-  if( fs.existsSync(file) ) documents.en = 'public/feira/'+ano+'/presentacion-en.md';
-  // TODO checkear si existen traduccións e engadilas
-  router.get('/presentacion', Document({
+  var urlbase = path.join( 'public/feira', ano );
+  function routeDocument( docname, details ){
+    var ext = path.extname(docname);
+    assert( ext === '.md', 'document routes must be .md documents' );
+
+    // checkear que existe polo menos o documento principal
+    var fspath = path.join( templates, docname );
+    if( ! fs.existsSync(fspath) ){
+      console.error( '  SKIP ENOENT "%s"', fspath );
+      return;
+    }
+
+    // xa que existe o principal, engadir as traduccións que existan
+    var doc = { gl: path.join( urlbase, docname ) };
+    var extra = ['es', 'en'];
+    extra.map(function( code ){
+        return path.basename(docname, ext) + '-' + code + ext;
+      })
+      .forEach(function( filename, n ){
+        var fspath = path.join( templates, filename );
+        if( ! fs.existsSync(fspath) ){
+          return console.error( '  SKIP ENOENT "%s"', fspath );
+        }
+        doc[ extra[n] ] = path.join( urlbase, filename );
+      })
+    ;
+
+    // preparar os detalles da Vista para a súa creación
+    details = details || {};
+    details.data = data;
+    details.layout = details.layout? layout.concat(details.layout) : layout;
+    details.document = doc;
+
+    // routear o Documento en base ao nome do arquivo
+    var url = path.join( '/', path.basename(docname, ext) );
+    router.get( url, Document(details) );
+  }
+
+  routeDocument('presentacion.md', {
       'name': 'Presentación',
       'desc': 'Presentación da {romano} ' + coletilla + ' {ano}',
-      'data': data,
-      // TODO ¿? presentación especial para a feira
-      'layout': layout.concat( 'public/presentacion.swig.html' ),
-      'document': documents,
-  }) );
+      'layout': 'public/presentacion.swig.html'
+  });
 
-  // a partir deste punto hai que checkear que exista cada sección
-
-  // TODO isto pode facerse cun forEach ¿?
-  // TODO skiped cause probably premature optimization
-  var file = path.join( templates, 'programa.md' );
-  if( fs.existsSync(file) ){
-    var documents = { gl: 'public/feira/'+ano+'/programa.md' };
-    // TODO DRY checkeo da existencia de cada traducción menos zarapalleiro
-    var file = path.join( templates, 'programa-es.md' );
-    if( fs.existsSync(file) ) documents.es = 'public/feira/'+ano+'/programa-es.md';
-    var file = path.join( templates, 'programa-en.md' );
-    if( fs.existsSync(file) ) documents.en = 'public/feira/'+ano+'/programa-en.md';
-    router.get('/programa', Document({
-        'name': 'Programa',
-        'desc': 'Programa da {romano} ' + coletilla + ' {ano}',
-        'data': data,
-        'layout': layout,
-        'document': documents,
-    }) ); 
-  } else {
-    console.error( '  SKIP ENOENT "%s"', file );
-  }
-  /*.get('/organizacions', Layout({
-      'name': 'Organizacións Invitadas',
-      'desc': 'Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras',
-      'layout': layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
-  }) )*/
   var file = path.join( templates, 'documentacion.swig.html' );
   if( fs.existsSync(file) ){
     router.get('/documentacion', Layout({
@@ -145,6 +147,25 @@ anos.forEach(function( ano, n ){
       'data': data,
       'layout': layout.concat( 'public/comite-executivo.swig.html' )
   }) );
+
+  routeDocument('programa.md', {
+      'name': 'Programa',
+      'desc': 'Programa da {romano} ' + coletilla + ' {ano}',
+  }); 
+
+  // a partir deste punto hai que checkear que exista cada sección
+
+  /*.get('/organizacions', Layout({
+      'name': 'Organizacións Invitadas',
+      'desc': 'Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras',
+      'layout': layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
+  }) )*/
+
+
+  routeDocument('sectores.md', {
+    'name': 'Sectores',
+    'desc': 'Sectores representados na {romano} ' + coletilla + ' {ano}'
+  });
 
   console.error( 'ROUTED /%s/%s', base, ano );
 });
