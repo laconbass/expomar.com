@@ -258,40 +258,30 @@ header {
     &:hover { cursor: pointer; }
   }
 
-
   //
   // Generic section styles
   //
 
-  section {
-    padding: 1em;
+  // be consistent with hierarchy: each child section adds padding
+  // TODO this should be each child section not being a main section
+  section { padding: 1em; }
 
-    > article {
-      //&:first-child { margin-top: .5em; }
-      //.border-radius( .5em 0 0 .5em );
-      //.background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
-      //.box-shadow( 5px 0 10px 0 fade(#000, 50%) );
-    }
+  // keep consistency within headings hierarchy through font-size
+  h1 {
+    margin-top: .5em;
+    // TODO decide if move centering specifically to > article
+    text-align: center;
+    font-size: 1.7em;
+    span { color: #bbb; }
+  }
+  h2 { font-size: 1.3em; }
+  h3 { font-size: 1.1em; }
 
-    h1 {
-      margin-top: .5em;
-      text-align: center;
-      font-size: 1.7em;
-      span { color: #bbb; }
-    }
+  // section childs of #content are the top-level navigation
+  > section {
 
-    h2 {
-      font-size: 1.2em;
-    }
-
-    p { text-align: justify; }
-
-    p > a { font-weight: bold; }
-
-    li p { margin: .5em 0; }
-
-    img { max-width: 100%; height: auto; text-align: center; }
-
+    // figures within a main section are often asides for full articles
+    // anyway provide default styles for any figure in the hierarchy
     figure {
       img {
         display: block;
@@ -301,8 +291,80 @@ header {
       figcaption { font-style: italic; text-align: center; }
     }
 
+    // one article can fit a whole section, often preceded by a figure
+    > article {
+      // expect a first child article to be one-article-only
+      &:first-child {
+      }
+      // multiple articles mean main section is a collection, often without
+      // preceding figures
+      + article { margin-top: .5em; }
+    }
+
+    // categorized collections are a main section with child sections as categories
+    > section, > section.category {
+      // keep heading consistency through each level
+      h2 { }
+      padding: .2em;
+      // within categories multiple articles are items of the category
+      > article {
+        border: .1em solid @azul-claro;
+        .border-radius(.5em);
+        padding: 0 1em 1em 1em;
+        > i, > h3 { display: inline-block; vertical-align: middle; }
+        > i { font-size: 3em; }
+        > h3 { margin-left: .6em; line-height: 3em; }
+        > address { margin-left: .3em; }
+        + article {
+          margin-top: 1em;
+        }
+      }
+      & + section {
+        // TODO maybe collapse extra categories by default?
+      }
+    }
+
+    // miscellaneous content formating shared within all hierarchy
+    p { text-align: justify; }
+    p > a { font-weight: bold; }
+    li p { margin: .5em 0; }
+    img { max-width: 100%; height: auto; text-align: center; }
+
+    address {
+      .clearfix();
+      max-width: 28em;
+      margin: 0 auto;
+      * {
+        float: left;
+        margin: .3em;
+      }
+      i { clear: left; }
+      a { }
+    }
+
     iframe.youtube { display: block; margin: 0 auto; max-width: 100%; }
 
+    // button navigation within any section
+    nav.buttons {
+      display: flex;
+      flex-direction: row;
+
+      a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        > * { display: block; }
+        > i.fa { font-size: 5em; min-height: 1em; }
+        > span {
+          margin-top: .3em;
+          font-size: 1.2em;
+          font-weight: bold;
+        }
+      }
+    }
+
+    // effects for buttons
     button, .button, nav.buttons > * {
       @c1: @azul-logo;
       @c2: @verde-logo;
@@ -340,6 +402,7 @@ header {
       }
     }
 
+    // featured content navigator
     nav.destacados {
       a {
         display: inline-block;
@@ -399,25 +462,6 @@ header {
           font-size: 1.2em;
           font-weight: bold;
         }*/
-      }
-    }
-
-    nav.buttons {
-      display: flex;
-      flex-direction: row;
-
-      a {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-
-        > * { display: block; }
-        > i.fa { font-size: 5em; min-height: 1em; }
-        > span {
-          margin-top: .3em;
-          font-size: 1.2em;
-          font-weight: bold;
-        }
       }
     }
   } // & = #content section

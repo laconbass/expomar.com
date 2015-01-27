@@ -110,5 +110,15 @@
     "Nesta sección relaciónanse tódalas edicións anteriores á Feira Expomar {ano}": "This sections lists the editions of the Expomar Fair up to the year {ano}",
     "Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á {romano} edición da feira monográfica náutico-pesqueira Expomar {ano}. Lamentamos as molestias que isto lle poda causar.": "At this moment we can't show info about the {romano} edition of the monographic nautical and fishery fair Expomar {ano} because we are rearranging our databases. Please receive our apologies for the inconvenience.",
     "Oficinas Fundación Expomar": "Expomar Foundation Office",
-    "Localización exacta das oficinas da Fundación Expomar": "Exact coordinates of the Expomar Foundation Office"
+    "Localización exacta das oficinas da Fundación Expomar": "Exact coordinates of the Expomar Foundation Office",
+    "Aloxamento": "Hotels",
+    "Relación de hoteis e outros aloxamentos dispoñíbeis na Mariña Lucense": "List of Hotels, hostels and other bussiness offering similar services",
+    "Internal Server Error": false,
+    "Vaites! Ocorreu un erro no servidor.": "Oops! An error was thrown on the server",
+    "O erro foi notificado automáticamente ao noso equipo de desenvolvemento para solucionalo.": null,
+    "Tente recargar a páxina, se o problema persiste ténteo de novo transcurridos uns intres.": null,
+    "Chamar": "Call",
+    "Enviar Fax": "Send fax",
+    "Enviar email": "Send email",
+    "Ir á páxina web": "Go to the web site"
 }

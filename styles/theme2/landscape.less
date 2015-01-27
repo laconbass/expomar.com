@@ -67,7 +67,13 @@ header {
   font-size: 1.2em;
 
   section {
-    padding: 1em 2em;
+    // one article can fit a whole section, often preceded by a figure
+    > article {
+      // do not put borders here, as it will can be one-article-only
+      &:first-child {
+        padding: 0 1em;
+      }
+    }
 
     nav.destacados {
       position: relative;

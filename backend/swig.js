@@ -31,6 +31,18 @@ swig.setFilter( 'trim', function( input ){
   return input.trim();
 });
 
+swig.setFilter( 'chunks', function( input, n ){
+  n = n || 1;
+  if( !input.match ) return input;
+  return input.match( RegExp('.{1,'+n+'}', 'g') );
+});
+
+function repeat( input, n ){
+  return Array( n + 1 ).join( input );
+}
+repeat.safe = true;
+swig.setFilter( 'repeat', repeat );
+
 function debug( input ){
   input = JSON.stringify( input, "[Function]", 4 );
   return format( '<pre>%s</pre>', input );

@@ -48,16 +48,47 @@ header {
 
   section {
     //padding: 2em;
-    dl, menu, ol, ul {
-      //position: relative; left: 2em;
-    }
+    .clearfix();
 
-    > article > figure:first-child, & > figure:first-child {
+    // expect them to be aside to articles
+    & > figure:first-child {
       float: left;
-      margin-right: 1em;
-      margin-bottom: 1em;
+      .box-sizing(border-box);
+      width: 40%;
+      padding-right: 1em;
+      padding-bottom: 1em;
+      // one article after a figure should fit the whole section
+      & + article {
+        float: left;
+        .box-sizing(border-box);
+        width: 60%;
+      }
     }
-    &, & > article { .clearfix(); }
+    > article {
+      &:first-child {
+        //border: .1em solid @azul-claro;
+        //.border-radius(.5em);
+        margin: 0 auto;
+        max-width: 40em;
+      }
+    }
+    section.category {
+      h2 {
+        text-align: center;
+        border-bottom: .1em solid @ouro-logo;
+        width: 98%; // pola marxe dos artigos
+        margin: 1em auto;
+      }
+      article {
+        float: left;
+        .box-sizing(border-box);
+        width: 48%;
+        height: 15em;
+        margin: 0 1%;
+        + article { margin-top: 0; }
+        + article + article { margin-top: 1em; }
+      }
+    }
 
     nav.destacados {
       max-width: 30em;

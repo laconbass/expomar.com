@@ -125,7 +125,8 @@ anos.forEach(function( ano, n ){
     // preparar os detalles da Vista para a súa creación
     details = details || {};
     details.data = data;
-    details.layout = details.layout? layout.concat(details.layout) : layout;
+    details.layout = details.layout || 'public/article.swig.html';
+    details.layout = layout.concat(details.layout);
     details.document = doc;
 
     // routear o Documento en base ao nome do arquivo
@@ -155,22 +156,20 @@ anos.forEach(function( ano, n ){
 
   // TODO debera checkearse que existe o comité de `ano` en vez de reusar o actual
   router.get('/comite', Layout({
-      'name': 'Comité Executivo',
-      'desc': 'Persoas que conforman o Comité Executivo da ' + data.descPattern,
-      'data': data,
-      'layout': layout.concat( 'public/comite-executivo.swig.html' )
+    'name': 'Comité Executivo',
+    'desc': 'Persoas que conforman o Comité Executivo da ' + data.descPattern,
+    'data': data,
+    'layout': layout.concat( 'public/comite-executivo.swig.html' )
   }) );
 
   routeDocument('programa.md', {
-      'name': 'Programa',
-      'desc': 'Programa da ' + data.descPattern,
+    'name': 'Programa',
+    'desc': 'Programa da ' + data.descPattern,
   }); 
 
-  // a partir deste punto hai que checkear que exista cada sección
-
-  /*.get('/organizacions', Layout({
-      'name': 'Organizacións Invitadas',
-      'desc': 'Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras',
+  /*.get('/expositores', Layout({
+      'name': 'Expositores',
+      'desc': 'Listado de expositores...',
       'layout': layout.concat( 'public/encontro/' + actual + '/organizacions.md' ),
   }) )*/
 
@@ -179,29 +178,35 @@ anos.forEach(function( ano, n ){
     'desc': 'Sectores representados na ' + data.descPattern
   });
 
-  // routear histórico
-  console.log('xerar historico para', ano);
-  function desc( a, b ){ return b-a; }
+  // hoteis
+  var file = path.join( process.cwd(), 'static/files/', ano, 'hoteis.json' );
+  if( fs.existsSync(file) ){
+    var hot = Object.create(data);
+    hot.hoteis = require(file);
+    router.get('/aloxamento', Layout({
+      'name': 'Aloxamento',
+      'desc': 'Relación de hoteis e outros aloxamentos dispoñíbeis na Mariña Lucense',
+      'data': hot,
+      'layout': layout.concat( 'public/hoteis.swig.html' )
+    }) );
+  } else {
+    console.error( '  SKIP ENOENT "%s"', file );
+  }
 
+  // routear histórico
+  // Note: sort operates over the original array
+  function desc( a, b ){ return b-a; }
   data.history = anos.slice(0, n).sort( desc );
   data.hasdata = {};
   history
-    // sort modifica o array orixinal
     .slice(0).sort( desc )
     .forEach(function( ano, n ){ data.hasdata[ ano ] = true; });
   ;
-
-  /*var nodata = {};
-  anos
-    .filter(function(ano){ return !~years.indexOf(ano) });
-    .forEach(function( ano ){ nodata[ ano ] = true; })
-  ;*/
-
   router.get('/historico', Layout({
-      'name': 'Histórico',
-      'desc': 'Nesta sección relaciónanse tódalas edicións anteriores á ' + data.namePattern,
-      'data': data,
-      'layout': layout.concat( 'public/historico.swig.html' )
+    'name': 'Histórico',
+    'desc': 'Nesta sección relaciónanse tódalas edicións anteriores á ' + data.namePattern,
+    'data': data,
+    'layout': layout.concat( 'public/historico.swig.html' )
   }) );
 
   console.error( 'ROUTED /%s/%s', base, ano );
