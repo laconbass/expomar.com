@@ -1,6 +1,6 @@
 <h1>{{ view.title }}</h1>
 
-<p>{{ view.description }}</p>
+<p>{{t('Nesta sección relaciónanse toda a información dispoñible sobre as edicións anteriores á')}} {{t(view.data.descPattern, view.data) }}.</p>
 
 {% for n, ano in view.data.history %}
 <article>
@@ -12,7 +12,7 @@
   {{ event|debug }}
   {%- else -%}
   <p class="nodata">
-  {{t('Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á '+view.data.descPattern+'. Lamentamos as molestias que isto lle poda causar.', event)}}
+  {{t('Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á')+' '+t(view.data.descPattern, event)+'. '+t('Lamentamos as molestias que isto lle poda causar.', event)}}
   </p>
   {%- endif -%}
 </article>

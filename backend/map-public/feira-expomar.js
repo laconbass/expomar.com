@@ -95,7 +95,7 @@ anos.forEach(function( ano, n ){
     'location': format( '/%s/%s/presentacion', base, ano )
   }) );
 
-  var urlbase = path.join( 'public/feira', ano );
+  var tplbase = path.join( 'public/feira', ano );
   function routeDocument( docname, details ){
     var ext = path.extname(docname);
     assert( ext === '.md', 'document routes must be .md documents' );
@@ -108,7 +108,7 @@ anos.forEach(function( ano, n ){
     }
 
     // xa que existe o principal, engadir as traduccións que existan
-    var doc = { gl: path.join( urlbase, docname ) };
+    var doc = { gl: path.join( tplbase, docname ) };
     var extra = ['es', 'en'];
     extra.map(function( code ){
         return path.basename(docname, ext) + '-' + code + ext;
@@ -118,7 +118,7 @@ anos.forEach(function( ano, n ){
         if( ! fs.existsSync(fspath) ){
           return console.error( '  SKIP ENOENT "%s"', fspath );
         }
-        doc[ extra[n] ] = path.join( urlbase, filename );
+        doc[ extra[n] ] = path.join( tplbase, filename );
       })
     ;
 
@@ -204,7 +204,7 @@ anos.forEach(function( ano, n ){
   ;
   router.get('/historico', Layout({
     'name': 'Histórico',
-    'desc': 'Nesta sección relaciónanse tódalas edicións anteriores á ' + data.namePattern,
+    'desc': 'Sección dende a que pode acceder a toda a información dispoñible sobre as edicións anteriores',
     'data': data,
     'layout': layout.concat( 'public/historico.swig.html' )
   }) );
