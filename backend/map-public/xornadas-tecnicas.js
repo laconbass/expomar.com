@@ -18,7 +18,7 @@ var assert = require('assert');
 
 var anos = require( resolve('data/anosXornadas.json') );
 var history = [];
-var inspections = {}
+var inspections = {};
 var xOps = require('../operation/xornadas');
 
 var exports = module.exports = Section( app, {
@@ -138,9 +138,9 @@ anos.forEach(function( ano, n ){
   }
 
   routeDocument('presentacion.md', {
-      'name': 'Presentación',
-      'desc': 'Presentación da ' + data.descPattern,
-      'layout': 'public/presentacion.swig.html'
+    'name': 'Presentación',
+    'desc': 'Presentación da ' + data.descPattern,
+    'layout': 'public/presentacion.swig.html'
   });
 
   // TODO debera checkearse que existe o comité de `ano` en vez de reusar o actual

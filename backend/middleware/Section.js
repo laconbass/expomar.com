@@ -266,6 +266,10 @@ function Section( father, details ){
     while( parts.length ){
       url = join( url, parts.shift() || '/' );
       var layer = seekByUrl( instance.router.stack, req.method, url );
+
+      // abort if no layer found, caused probably by a 404
+      if( !layer ){ return next(); }
+
       view = seekView( layer );
       // TODO traducir cada link coa sua view, non coa view resultante da peticion
       if( view ){

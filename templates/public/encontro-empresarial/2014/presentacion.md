@@ -1,4 +1,4 @@
-# XXI Encontro Empresarial de Organizacións Pesqueiras
+# XV Encontro Empresarial de Organizacións Pesqueiras
 
 A Fundación Expomar volverá reunir ás organizacións da pesca para ser
 o tambor de resonancia das súas reflexións, na que será a XV edición

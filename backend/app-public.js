@@ -4,6 +4,7 @@ var resolve = require('path').resolve.bind( 0, process.cwd() )
   , debug = require( 'debug' )( 'expomar.com:public' )
   , f = require('util').format
   , utils = require( './utils' )
+  , t = require('./translator')
 ;
 
 module.exports = app;
@@ -13,7 +14,21 @@ module.exports = app;
 //
 
 function menuTop( menu ){
-  return function( req, res, next ){ res.locals.menuTop = menu; next(); };
+  var menus = { gl: menu };
+  ['es', 'en' ].forEach(function( code ){
+    menus[ code ] = menu.map(function(link){
+      return {
+        href: link.href,
+        text: t( code, link.text ),
+        title: link.title
+      };
+    });
+  });
+  return function( req, res, next ){
+    console.log( req.lang );
+    res.locals.menuTop = menus[ req.language ];
+    next();
+  };
 }
 
 app
@@ -23,7 +38,7 @@ app
     res.locals.url = utils.url;
     next();
   })
-  .use( require('./middleware/i18n')( 'gl', ['es', 'en'], require('./translator') ) )
+  .use( require('./middleware/i18n')( 'gl', ['es', 'en'], t ) )
   .use( require('./middleware/breadcumbs')( app ) )
   .use( menuTop([
     { href: "/a-fundacion", text: 'A Fundación', title: 'no title' },
