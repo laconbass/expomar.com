@@ -263,7 +263,8 @@ header {
   //
 
   // be consistent with hierarchy: each child section adds padding
-  // TODO this should be each child section not being a main section
+  // TODO this should be each child section not being a main section??
+  // TODO it's not clear really, sometimes that hierarchy seems not clear
   section { padding: 1em; }
 
   // keep consistency within headings hierarchy through font-size
@@ -303,9 +304,13 @@ header {
 
     // categorized collections are a main section with child sections as categories
     > section, > section.category {
+      // use all with available because contained articles count may be high
+      padding: 0;
       // keep heading consistency through each level
-      h2 { }
-      padding: .2em;
+      // but contained articles may have h2 headings anyway
+      > h2 {
+        border-bottom: .1em solid @ouro-logo;
+      }
       // within categories multiple articles are items of the category
       > article {
         border: .1em solid @azul-claro;
@@ -342,13 +347,14 @@ header {
       a { }
     }
 
-    iframe.youtube { display: block; margin: 0 auto; max-width: 100%; }
+    iframe.youtube { display: block; margin: .5em auto; max-width: 100%; }
 
     // button navigation within any section
     nav.buttons {
       display: flex;
       flex-direction: row;
 
+      margin: 1em auto 0;
       a {
         flex: 1;
         display: flex;
@@ -387,7 +393,7 @@ header {
       }
 
       &:not(.disabled) {
-        .box-shadow(0 0 1em);
+        .box-shadow(0 0 .5em);
         .transition(all .2s ease-out);
         &:hover, &:focus {
           color: @c2;
@@ -454,14 +460,22 @@ header {
             }
           }
         }
-
-        /*> * { display: block; }
-        > i.fa { font-size: 5em; min-height: 1em; }
-        > span {
-          margin-top: .3em;
-          font-size: 1.2em;
-          font-weight: bold;
-        }*/
+      }
+    }
+    // isto é específico das ponencias
+    article.relatorio > h2 { text-align: center; }
+    figure.person {
+      margin: 1em 0;
+      img {
+        margin: 0 auto;
+        max-height: 8em;
+        .border-radius(~'50%');
+        .box-shadow( 0 0 10px @gris-shadow );
+      }
+      figcaption{
+        > * { margin: .35em 0; }
+        h3 { margin-top: 0; }
+        h4, h5 { font-weight: normal; }
       }
     }
   } // & = #content section

@@ -1,17 +1,11 @@
-<h1>{{ t( meta.name ) }}</h1>
-<p>{{ meta.desc }}</p>
+<h1>{{ t( view.title ) }}</h1>
+<p>{{ view.description }}</p>
 
+<section class="category">
 {% for ponente in data %}
-<article>
-    <h2>{{ ponente.talk_title }}</h2>
-    <div>
-        {% if ponente.slideshow_url %}
-        <a class="button" href="{{ ponente.slideshow_url }}" title="{{ t('Descargar')+' '+ponente.talk_title }}">{{ t('Descargar powerpoint') }}</a>
-        {% else %}
-        <a class="button disabled">{{ t('Descarga')+' '+t('non dispoñible') }}</a>
-        {% endif %}
-    </div>
-    <figure>
+  <article class="relatorio">
+    <h2><span>{{ ponente.talk_title }}</span></h2>
+    <figure class="person">
         {% if ponente.photo_url %}
             <img src="{{ ponente.photo_url }}" alt="{{ ponente.name }}"/>
         {%- endif -%}
@@ -25,6 +19,16 @@
         </figcaption>
         {{ ponente.resume|marked }}
     </figure>
+    {% if ponente.yt_id %}
+    <iframe class="youtube" width="560" height="315" src="//www.youtube.com/embed/{{ponente.yt_id}}" frameborder="0" allowfullscreen></iframe>
+    {% endif video %}
+    <nav class="buttons">
+        {% if ponente.slideshow_url %}
+        <a class="button" href="{{ ponente.slideshow_url }}" title="{{ t('Descargar')+' '+ponente.talk_title }}">{{ t('Descargar powerpoint') }}</a>
+        {% else %}
+        <a class="button disabled">{{ t('Descarga')+' '+t('non dispoñible') }}</a>
+        {% endif %}
+    </nav>
     {% if ponente.talk_summary %}
     <figure>
         <figcaption>
@@ -33,5 +37,6 @@
         {{ ponente.talk_summary|marked }}
     </figure>
     {% endif %}
-</article>
+  </article>
 {% endfor %}
+</section>

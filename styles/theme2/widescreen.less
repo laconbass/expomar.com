@@ -73,17 +73,17 @@ header {
       }
     }
     section.category {
-      h2 {
+      > h2 {
         text-align: center;
-        border-bottom: .1em solid @ouro-logo;
         width: 98%; // pola marxe dos artigos
         margin: 1em auto;
       }
-      article {
+      > article {
         float: left;
         .box-sizing(border-box);
         width: 48%;
-        height: 15em;
+        // esto é específico dos hoteis...
+        &.place { height: 15em; }
         margin: 0 1%;
         + article { margin-top: 0; }
         + article + article { margin-top: 1em; }
@@ -93,6 +93,43 @@ header {
     nav.destacados {
       max-width: 30em;
       margin: 0 auto;
+    }
+
+    // isto é específico das ponencias
+    article.relatorio {
+      font-size: 90%;
+      > h2 {
+        margin: 0;
+        height: 5em;
+        &::before, &::after, span {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        &::before, &::after {
+          content: ' ';
+          height: 100%;
+          width: 0.5%;
+        }
+        span {
+          width: 99%;
+        }
+      }
+      > figure.person { height: 6em; }
+    }
+
+    figure.person {
+      .clearfix();
+      img {
+        float: left;
+        max-width: 19%;
+        margin-left: 5%;
+      }
+      // os relatores poden non ter foto
+      img + figcaption {
+        max-width: 75% - 3%;
+        margin-left: 25% + 3%;
+        * { text-align: left; }
+      }
     }
     // & = #content section
   }

@@ -154,11 +154,10 @@ anos.forEach(function( ano, n ){
   }); 
 
   // TODO crear a seccion de ponencias de maneira similar aos hoteis en feira-expomar
-  router.get('/ponencias', Layout({
-      'name': 'Ponencias',
+  router.get('/relatorios', Layout({
+      'name': 'Relatorios',
       'desc': 'Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.',
       'layout': layout.concat( path.join('public', base, 'ponencias.swig.html') ),
-      'styles': 'public/ponencias.less',
       'data': data,
       'operation': xOps.getPonencias.bind( null, anos[ anos.length-1 ] )
   }) );
