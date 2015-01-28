@@ -58,13 +58,29 @@ anos.forEach(function( ano, n ){
     console.error( '  ABORT EMPTY "%s"', templates );
     return;
   }
-  var file = path.join( templates, 'presentacion.md' );
+  /*var file = path.join( templates, 'presentacion.md' );
   if( ! fs.existsSync(file) ){
     console.error( '  ABORT ENOENT "%s"', file );
     return;
+  }*/
+
+  // a partir deste punto está claro que hai algo no directorio
+  // seleccionar un arquivo para usalo como portada
+  var home;
+  var homes = [
+    'presentacion.md', 'presentacion-es.md', 'presentacion-en.md',
+    'conclusions.md', 'conclusions-es.md', 'conclusions-en.md',
+    'programa.md', 'programa-es.md', 'programa-en.md',
+  ];
+
+  if( files.some(function( f ){ home = f; return ~homes.indexOf(f); }) ){
+    home = path.basename( home, '.md' ).replace( /-(es|en)/, '' );
+    console.log( '  WILL USE HOME "%s"', home );
+  } else {
+    console.error( '  ABORT NO HOME %s', ano, files );
+    return;
   }
 
-  // a partir deste punto está claro que como mínimo existe presentacion.md
   // almacenar a info deste ano para o histórico
   history.push(ano);
 
@@ -86,12 +102,12 @@ anos.forEach(function( ano, n ){
     'data': data
   });
 
-  // redireccionar a raíz á presentación
+  // redireccionar a raíz á principal
   router.get( '/', redirect({
     'name': data.namePattern,
     'desc': data.descPattern,
     'data': data,
-    'location': format( '/%s/%s/presentacion', base, ano )
+    'location': format( '/%s/%s/%s', base, ano, home )
   }) );
 
   // esto non encaixa coa maneira de inspeccionar (debería usar #all)
@@ -103,15 +119,17 @@ anos.forEach(function( ano, n ){
     var ext = path.extname(docname);
     assert( ext === '.md', 'document routes must be .md documents' );
 
-    // checkear que existe polo menos o documento principal
+    var doc = {};
+
+    // checkear si existe o documento principal (galego)
     var fspath = path.join( templates, docname );
-    if( ! fs.existsSync(fspath) ){
-      console.error( '  SKIP ENOENT "%s"', fspath );
-      return;
+    if( fs.existsSync(fspath) ){
+      doc.gl = path.join( tplbase, docname );
+    } else {
+      console.error( '  SKIP ENOENT "%s" (%s)', docname, ano );
     }
 
-    // xa que existe o principal, engadir as traduccións que existan
-    var doc = { gl: path.join( tplbase, docname ) };
+    // engadir as traduccións que existan
     var extra = ['es', 'en'];
     extra.map(function( code ){
         return path.basename(docname, ext) + '-' + code + ext;
@@ -119,11 +137,17 @@ anos.forEach(function( ano, n ){
       .forEach(function( filename, n ){
         var fspath = path.join( templates, filename );
         if( ! fs.existsSync(fspath) ){
-          return console.error( '  SKIP ENOENT "%s"', fspath );
+          return console.error( '  SKIP ENOENT "%s" (%s)', filename, ano );
         }
         doc[ extra[n] ] = path.join( tplbase, filename );
       })
     ;
+
+    // anular o routeo si non existe o documento en ningun idioma
+    if( !doc.gl && !doc.es && !doc.en ){
+      console.error( '  SKIP ALL "%s" (%s)', docname, ano );
+      return;
+    }
 
     // preparar os detalles da Vista para a súa creación
     details = details || {};
@@ -162,8 +186,8 @@ anos.forEach(function( ano, n ){
   }); 
 
   routeDocument('conclusions.md', {
-    'name': 'Organizacións Invitadas',
-    'desc': 'Conclusións do ' + data.descPattern
+    'name': 'Conclusións',
+    'desc': 'Conclusións da ' + data.descPattern
   }); 
 
   // routear histórico
