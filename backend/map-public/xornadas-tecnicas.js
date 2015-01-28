@@ -18,6 +18,7 @@ var assert = require('assert');
 
 var anos = require( resolve('data/anosXornadas.json') );
 var history = [];
+var inspections = {}
 var xOps = require('../operation/xornadas');
 
 var exports = module.exports = Section( app, {
@@ -69,8 +70,10 @@ anos.forEach(function( ano, n ){
 
   // data común a tódalas rutas
   var data = {
+    baseUrl: '/'+base,
     namePattern: 'Xornadas Técnicas {ano}',
     descPattern: '{romano} ' + coletilla + ' {ano}',
+    ultimo: anos[ anos.length - 1 ],
     current: n+1,
     romano: romanize( n+1 ),
     ano: +ano
@@ -153,14 +156,20 @@ anos.forEach(function( ano, n ){
     'desc': 'Programa da ' + data.descPattern,
   }); 
 
-  // TODO crear a seccion de ponencias de maneira similar aos hoteis en feira-expomar
-  router.get('/relatorios', Layout({
-      'name': 'Relatorios',
-      'desc': 'Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.',
-      'layout': layout.concat( path.join('public', base, 'ponencias.swig.html') ),
-      'data': data,
-      'operation': xOps.getPonencias.bind( null, anos[ anos.length-1 ] )
-  }) );
+  // routear relatorios
+  // TODO decidir que argallo coa forma de cargar a info en json
+  var file = resolve( 'static/files/', ano, 'ponentes.json' );
+  if( fs.existsSync(file) ){
+    router.get('/relatorios', Layout({
+        'name': 'Relatorios',
+        'desc': 'Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.',
+        'layout': layout.concat( path.join('public', base, 'ponencias.swig.html') ),
+        'data': data,
+        'operation': xOps.getPonencias.bind( null, ano )
+    }) );
+  } else {
+    console.error( '  SKIP ENOENT "%s"', file );
+  }
 
   // routear histórico
   // Note: sort operates over the original array
@@ -169,7 +178,9 @@ anos.forEach(function( ano, n ){
   data.hasdata = {};
   history
     .slice(0).sort( desc )
-    .forEach(function( ano, n ){ data.hasdata[ ano ] = true; });
+    .forEach(function( ano, n ){
+      data.hasdata[ ano ] = inspections[ ano ];
+    })
   ;
   router.get('/historico', Layout({
     'name': 'Histórico',
@@ -179,4 +190,5 @@ anos.forEach(function( ano, n ){
   }) );
 
   console.error( 'ROUTED /%s/%s', base, ano );
+  inspections[ano] = router.view.inspect();
 });

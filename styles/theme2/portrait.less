@@ -229,7 +229,7 @@ header {
   #messages > * {
     position: relative;
     margin: .5em auto;
-    padding: 1em 1em .5em;
+    padding: 1em 2em .5em;
     width: 80%;
     text-align: center;
     background: #fff;
@@ -246,7 +246,7 @@ header {
     &::after {
       content: 'Click para ocultar';
       display: block;
-      margin-top: 1em;
+      margin-top: .5em;
     }
     *:lang(en) &::after {
       content: 'Click to dismiss';
@@ -302,15 +302,18 @@ header {
       + article { margin-top: .5em; }
     }
 
+    > section.category > h2,
+    > article.event.summary h2 {
+      border-bottom: .1em solid @ouro-logo;
+    }
+
     // categorized collections are a main section with child sections as categories
-    > section, > section.category {
+    > section.category {
       // use all with available because contained articles count may be high
       padding: 0;
       // keep heading consistency through each level
       // but contained articles may have h2 headings anyway
-      > h2 {
-        border-bottom: .1em solid @ouro-logo;
-      }
+      > h2 { }
       // within categories multiple articles are items of the category
       > article {
         border: .1em solid @azul-claro;
@@ -347,12 +350,23 @@ header {
       a { }
     }
 
-    iframe.youtube { display: block; margin: .5em auto; max-width: 100%; }
+    // youtube widgets
+    figure.youtube {
+      display: table;
+      margin: 0 auto;
+      figcaption { font-style: italic; font-size: 70%; }
+    }
+    // format iframes too including those outside figures
+    iframe.youtube {
+      display: block;
+      margin: .5em auto;
+      max-width: 100%;
+    }
 
     // button navigation within any section
     nav.buttons {
       display: flex;
-      flex-direction: row;
+      flex-direction: column;
 
       margin: 1em auto 0;
       a {

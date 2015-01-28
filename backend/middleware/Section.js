@@ -339,3 +339,8 @@ Section.prototype.inspection = function inspection( cached ){
   return true;
 };
 
+Section.prototype.inspect = function inspect( ){
+  this.inspection( false );
+  return this.menu;
+}
+

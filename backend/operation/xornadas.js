@@ -8,7 +8,7 @@ var read = require( './read' )
 
 var path = {
   talk: {
-    data: "data/xornadas/%s/ponentes.json",
+    data: "static/files/%s/ponentes.json",
     static: "files/%s/ponencias-xornadas-tecnicas"
   }
 };

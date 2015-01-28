@@ -89,11 +89,14 @@
 
         <div id="content">
             <div id="messages">
-                <!--[if lt IE 7]>
-                    <p class="message browsehappy">{{ 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'|t(lang) }}</p>
-                <![endif]-->
+              <!--[if lt IE 7]>
+                  <p class="message browsehappy">{{ 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'|t(lang) }}</p>
+              <![endif]-->
+              {%- if view.data.ano && view.data.ultimo && view.data.ano < view.data.ultimo -%}
+              <p class="message">{{t('Está a ver a información dun evento do ano {ano}. A información de actualidade pertence ao ano {ultimo}.', view.data)}}</p>
+              {%- endif -%}
               {%- for message in messages -%}
-                <div class="message">{{ message|safe }}</div>
+                <p class="message">{{ message|safe }}</p>
               {%- endfor -%}
             </div>
             {% set content = meta %}

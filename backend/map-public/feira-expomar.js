@@ -179,7 +179,7 @@ anos.forEach(function( ano, n ){
   });
 
   // hoteis
-  var file = path.join( process.cwd(), 'static/files/', ano, 'hoteis.json' );
+  var file = resolve( 'static/files/', ano, 'hoteis.json' );
   if( fs.existsSync(file) ){
     var hot = Object.create(data);
     hot.hoteis = require(file);

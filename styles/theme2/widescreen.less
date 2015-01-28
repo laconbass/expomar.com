@@ -50,6 +50,9 @@ header {
     //padding: 2em;
     .clearfix();
 
+    // 
+    p.short { text-align: center; max-width: 40em; margin: 1em auto; }
+
     // expect them to be aside to articles
     & > figure:first-child {
       float: left;
@@ -72,6 +75,7 @@ header {
         max-width: 40em;
       }
     }
+    article.event.summary h2 { text-align: center; }
     section.category {
       > h2 {
         text-align: center;
@@ -88,6 +92,10 @@ header {
         + article { margin-top: 0; }
         + article + article { margin-top: 1em; }
       }
+    }
+
+    nav.buttons {
+      flex-direction: row;
     }
 
     nav.destacados {
@@ -132,15 +140,6 @@ header {
       }
     }
     // & = #content section
-  }
-}
-
-.xornadas-tecnicas.ponencias #content section >article {
-  >article {
-    display: inline-block;
-    vertical-align: top;
-    width: 46%;
-    margin: .8% !important;
   }
 }
 

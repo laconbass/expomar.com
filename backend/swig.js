@@ -50,7 +50,7 @@ function debug( input ){
 debug.safe = true;
 production || swig.setFilter( 'debug', debug );
 
-function link( input, _location ){
+function link( input, _location, baseUrl ){
   input = input || {};
   input.text = input.text || '¿?';
   input.title = input.title || '¿?';
@@ -59,6 +59,9 @@ function link( input, _location ){
     , curr = _location || '#'
     , clas = curr.split('/').slice( 0, href.split('/').length ).join('/') === href
   ;
+  if( baseUrl ){
+    href = baseUrl + href;
+  }
   return format(
     '<a href="%s" title="%s" class="%s">%s</a>',
     href, input.title, clas? 'selected' : '', input.text
