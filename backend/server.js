@@ -8,7 +8,7 @@ var mode = 'http';
 
 conf
   .set( 'domain', iai.production? 'expomar.com' : 'expomar.loc' )
-  .set( 'port', 3000 )
+  .set( 'port', 61337 )
 ;
 
 require( mode )
