@@ -51,3 +51,14 @@ _Conselleira do Medio Rural e do Mar  da  Xunta de Galicia_.
 
 * 12.00h.  Clausura  EXPOMAR 2013, A cargo do **Sr.D. Francisco Conde López**, 
 _Conselleiro de Economía e Industria  da  Xunta de Galicia_.
+
+## Outras actividades paralelas a Expomar 2013
+
+
+###Embarcación do Servizo Marítimo da Garda Civil
+
+Durante os días de feira poderase visitar un patrulleiro de altura do Servizo Marítimo da Garda Civil que tamén realizará bautismos de mar.
+
+### Barco Museo Boniteiro Reina del Carmen
+
+Visitas guiadas a esta embarcación emblemática da flota boniteira local dos anos sesenta. Este barco conta nas súas bodegas con unha ampla mostra das artes de pesca tradicionais así como de outros aparellos relacionados coa vida abordo e co mundo mariño en xeral. 
