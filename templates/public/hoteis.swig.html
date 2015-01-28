@@ -1,0 +1,64 @@
+<h1>{{ view.title }}</h1>
+
+{#{ view.data.hoteis|debug }#}
+
+<p>{{ view.description }}</p>
+
+{% for title, places in view.data.hoteis %}
+<section class="category places">
+  <h2>{{title}}</h2>
+  {% for place in places %}
+  <article class="place">
+    <i class="fa fa-h-square"></i>
+    <h3>
+      {% if place.stars and place.stars.match %}
+      <span>{{ place.stars }}</span>
+      {% elif place.stars and +place.stars %}
+      <span class="fa">{{ '&#xf005;'|repeat(place.stars) }}</span>
+      {% endif %}
+      {% if place.web %}
+      <a href="{{place.web}}" title="{{t('Ir á páxina web')}}" target="_blank">
+      {% endif web %}
+      {{place.name}}
+      {% if place.web %}</a>{% endif web %}
+    </h3>
+    <address>
+    {# TODO think on refactoring to avoid duplication #}
+    {%- for phone in place.phones -%}
+      {% set display = phone|chunks(3)|join(' ') %}
+      <i class="fa fa-fw">&#xf095;</i>
+      <a href="tel:{{phone}}" title="{{t('Chamar')}}">{{display}}</a>
+    {% endfor %}
+    {% if place.phone %}
+      {% set display = place.phone|chunks(3)|join(' ') %}
+      <i class="fa fa-fw">&#xf095;</i>
+      <a href="tel:{{place.phone}}" title="{{t('Chamar')}}">{{display}}</a>
+    {%- endif phone -%}
+    {%- if place.postal -%}
+      <i class="fa fa-fw">&#xf041;</i>
+      <span>{{ place.postal }}</span>
+    {%- endif postal -%}
+    {%- if place.fax -%}
+      {% set display = place.fax|chunks(3)|join(' ') %}
+      <i class="fa fa-fw">&#xf1ac;</i>
+      <a href="tel:{{place.fax}}" title="{{t('Enviar Fax')}}">{{display}}</a>
+    {%- endif fax -%}
+    {%- if place.email -%}
+      <i class="fa fa-fw">&#xf0e0;</i>
+      <a href="mailto:{{place.email}}" title="{{t('Enviar email')}}">
+        {{place.email}}
+      </a>
+    {%- endif email -%}
+    {% if place.rooms %}
+    <i class="fa fa-fw">&#xf236;</i>
+      <span>
+        {{place.rooms}}
+        {% if +place.rooms %}hab. total{% endif %}
+      </span>
+    {% endif rooms %}
+    </address>
+    {# % for text in place.notes %}<p>{{text}}</p>{% endfor notes % #}
+  </article>
+  {% endfor places %}
+</section>
+{% endfor titles %}

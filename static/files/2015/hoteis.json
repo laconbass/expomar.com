@@ -1,0 +1,534 @@
+{
+  "Establecementos destacados": [
+    {
+      "name": "Hotel Complexo Alameda",
+      "postal": "C/ Brieiro, 67 - 27863 Faro - Plaia Area (Viveiro)",
+      "phone": "+34982551088",
+      "fax": "+34982551132",
+      "web": "http://www.complexoalameda.com",
+      "email": "reservas@complexoalameda.com",
+      "notes": [
+        "Condiciones especiales para expositores y visitantes de EXPOMAR",
+        "Distancia a Burela: 20Km"
+      ]
+    },
+    {
+      "name": "Hotel Vila do Val",
+      "postal": "Plaza de Sta. María, 2 - 27770 - O Valadouro",
+      "phone": "+34982571653",
+      "web": "http://www.hotelviladoval.com",
+      "email": "info@hotelviladoval.com"
+    }
+  ],
+  "Concello de Burela": [
+    {
+      "name": "Hotel Nordés",
+      "postal": "Avenida da Mariña, 57",
+      "phone": "+34982575143 ",
+      "fax": "+34982586563",
+      "email": "info@hotelnordes.com",
+      "web": "http://www.hotelnordes.com"
+    },
+    {
+      "name": "Hotel Sargo",
+      "postal": "Rosalía de Castro, 7",
+      "phone": "+34982581079",
+      "phone": "98257 50 80",
+      "email": "reservas@hotelsargo.com",
+      "web": "http://www.hotelsargo.com"
+    },
+    {
+      "name": "Hotel Palacio de Cristal",
+      "postal": "Arcadio Pardiñas, s/n",
+      "phone": "+34982585803",
+      "rooms": 30,
+      "stars": 2
+    },
+    {
+      "name": "Hotel Canabal",
+      "postal": "Pascual Veiga, 19",
+      "phone": "+34982585960",
+      "rooms": 40,
+      "stars": 1
+    },
+    {
+      "name": "Hostal Mesón A Pedra",
+      "postal": "Rúa da Lamestra, s/n",
+      "phone": "+34982585357",
+      "rooms": 12,
+      "stars": 1
+    },
+    {
+      "name": "Hostal Mesón O Poeta",
+      "postal": "Arcadio Pardiñas s/n",
+      "phone": "+34982585730",
+      "rooms": 15,
+      "stars": "C.H."
+    },
+    {
+      "name": "Hotel Galatea",
+      "postal": "Calle do río, 4",
+      "phone": "+34982575186",
+      "fax": "+34982575131",
+      "email": "belenexposito@galateahotel.com",
+      "web": "https://hotel.galateahotel.com"
+    },
+    {
+      "name": "Hostal Rompeolas",
+      "postal": "Rafael Lobeto, s/n",
+      "phone": "+34982581835",
+      "rooms": 13,
+      "stars": 1
+    },
+    {
+      "name": "Hostal Luzern",
+      "postal": "Arcadio Pardiñas, 171",
+      "phone": "+34982585570",
+      "rooms": 19,
+      "stars": 2
+    },
+    {
+      "name": "Hostal Valle de Oro",
+      "postal": "Eijo Garay, 30",
+      "phone": "+34982580080",
+      "rooms": 15,
+      "stars": 1
+    },
+    {
+      "name": "Hostal Mesón O Pepe",
+      "postal": "Arcadio Pardiñas, s/n",
+      "phone": "+34982581704",
+      "rooms": 32,
+      "stars": "C.H."
+    }
+  ],
+  "Concello de Ribadeo": [
+    {
+      "name": "Hotel Casona de Lazurtegui",
+      "postal": "Julio Lazurtegui, 26-28",
+      "phone": "982120 097",
+      "fax": "+34982120682",
+      "web": "http://www.lacasonaribadeo.com",
+      "email": "reservas@lacasonaribadeo.com"
+    },
+    {
+      "name": "Parador de Turismo",
+      "postal": "Amador Fernández nº7",
+      "phone": "+34982128825",
+      "rooms": 47,
+      "stars": 4
+    },
+    {
+      "name": "Hotel Residencia Eo",
+      "postal": "Avda. Asturias, 5",
+      "phone": "+34982128750",
+      "rooms": 48,
+      "stars": 3
+    },
+    {
+      "name": "Hotel Restaurante Voar",
+      "postal": "Ctra. N-634 km 554",
+      "phone": "+34982128685",
+      "rooms": 43,
+      "stars": 3
+    },
+    {
+      "name": "Hostal Ribanova",
+      "postal": "San Roque, 8-10",
+      "phone": "+34982130921",
+      "rooms": 45,
+      "stars": 1
+    },
+    {
+      "name": "Hostal Rest. Ros Mary",
+      "postal": "San Francisco, 3",
+      "phone": "+34982128678",
+      "rooms": 24,
+      "stars": 1
+    },
+    {
+      "name": "H.R. Asador O Forno",
+      "postal": "Avda de Asturias, 8-10",
+      "phone": "+34982130802",
+      "rooms": 17,
+      "stars": 1
+    },
+    {
+      "name": "Hotel R. Mediante",
+      "postal": "Plaza de España, 16",
+      "phone": "+34982130453",
+      "rooms": 20,
+      "stars": 1
+    },
+    {
+      "name": "Hotel R. Oviedo Bar",
+      "postal": "Amando Pérez, 5",
+      "phone": "+34982128131",
+      "rooms": 14,
+      "stars": 1
+    },
+    {
+      "name": "Hotel R. Santa Cruz",
+      "postal": "Diputación, 22",
+      "phone": "+34982130549",
+      "rooms": 17,
+      "stars": 1
+    },
+    {
+      "name": "Hotel R. Bouza",
+      "postal": "José Vicente Pérez Martínez, 13",
+      "phone": "+34982128690",
+      "rooms": 28,
+      "stars": 2
+    },
+    {
+      "name": "Hostal R. Costa Verde",
+      "postal": "Plaza de España, 13",
+      "phone": "+34982130305",
+      "rooms": 10,
+      "stars": 2
+    },
+    {
+      "name": "Hostal R. Orol",
+      "postal": "Rinconada de S.Fco. 11",
+      "phone": "+34982128742",
+      "rooms": 15,
+      "stars": 1
+    },
+    {
+      "name": "Hostal R. Presidente",
+      "postal": "Virgen del Camino, 3",
+      "phone": "+34982128092",
+      "rooms": 18,
+      "stars": 1
+    },
+    {
+      "name": "Casa de Turismo Rural \"Huerta de Ove\"",
+      "phone": "+34982128715"
+    }
+  ],
+  "Concello de Lourenzá": [
+    {
+      "name": "Hostal La Unión",
+      "postal": "Avda. do Val, 25",
+      "phone": "+34982121028",
+      "rooms": 22,
+      "stars": 1
+    }
+  ],
+  "Concello de Foz": [
+    {
+      "name": "Hostal O Norte",
+      "postal": "Avda Viveiro, 1, 49",
+      "phone": "+34982132181",
+      "rooms": 30,
+      "stars": 1
+    },
+    {
+      "name": "Hotel Leytón",
+      "postal": "Avda da Mariña, Nº 6",
+      "phone": "+34982140800",
+      "rooms": 50,
+      "stars": 2
+    },
+    {
+      "name": "Hotel Rego",
+      "postal": "Isla Nova, 17",
+      "phone": "+34982141819",
+      "rooms": 55,
+      "stars": 2
+    },
+    {
+      "name": "Casa de Turismo Rural \"Genara\"",
+      "postal": "Nois 22-24"
+    }
+  ],
+  "Concello de Mondoñedo": [
+    {
+      "name": "Hotel Padornelo",
+      "postal": "Avda. Buenos Aires, 1",
+      "phone": "+34982521892",
+      "rooms": 14,
+      "stars": 2
+    },
+    {
+      "name": "Hospedaxe Seminario",
+      "postal": "Plaza do Seminario, 1",
+      "phone": "+34982521010",
+      "rooms": 27
+    },
+    {
+      "name": "Hotel Mirador",
+      "postal": "Ctra. Nacional 634 km 592.5",
+      "phone": "+34982521400",
+      "rooms": 25,
+      "stars": 2
+    }
+  ],
+  "Concellos de A Pontenova e Trabada": [
+    {
+      "name": "Hostal R. Puente",
+      "postal": "Avda. Generalísimo, 41",
+      "phone": "+34982342215",
+      "rooms": 5,
+      "stars": 2
+    },
+    {
+      "name": "Casa de Turismo Rural \"Ferreira do Bogo\"",
+      "postal": "San Pedro de Bogo",
+      "phone": "+34982338009"
+    },
+    {
+      "name": "Casa de Turismo Rural \"Terrafeita\"",
+      "postal": "O Pacio - Trabada.",
+      "phone": "+34982135077"
+    }
+  ],
+  "Concello de Xove": [
+    {
+      "name": "Hotel Restaurante Mera",
+      "postal": "Avda. Diputación, 58",
+      "phones": [ "+34982592078", "+34982592762" ],
+      "rooms": 12,
+      "stars": 1
+    },
+    {
+      "name": "Casa de Turismo Rural \"Casa de Teixide\"",
+      "postal": "Ctra. Beltran - Playa de Lago.",
+      "phone": "+34982592211"
+    }
+  ],
+  "Concello de Cervo": [
+    {
+      "name": "H. R. Buenavista",
+      "postal": "O Torno, 8",
+      "phone": "+34982594086",
+      "rooms": 18,
+      "stars": 1
+    },
+    {
+      "name": "H. Klein",
+      "postal": "Ctra. Viveiro-San Ciprián",
+      "phone": "+34982594354",
+      "rooms": 17,
+      "stars": 2
+    },
+    {
+      "name": "H.R. O Castelo",
+      "postal": "Castelo s/n",
+      "phone": "+34982594402",
+      "rooms": 22,
+      "stars": 2
+    },
+    {
+      "name": "Casa de Turismo Rural \"O Almacen\"",
+      "postal": "Ctra. Sargadelos, 2",
+      "phone": "+34982557836"
+    }
+  ],
+  "Concello de Barreiros": [
+    {
+      "name": "Hostal Oliñas do Mar",
+      "postal": "Playa de Benquerencia-Barreiros",
+      "phone": "+34982124158",
+      "rooms": 12,
+      "stars": "C.H."
+    },
+    {
+      "name": "Alojamiento Veiga",
+      "postal": "Villa, San Cosme de Barreiros",
+      "phone": "+34982124241",
+      "rooms": 13,
+      "stars": "C.H."
+    },
+    {
+      "name": "Hostal Moderno",
+      "postal": "Estrada Xeral, Barreiros",
+      "phone": "+34982124085",
+      "rooms": 7,
+      "stars": 1
+    },
+    {
+      "name": "Casa de Turismo Rural \"Brais\"",
+      "postal": "Benquerencia",
+      "phone": "+34982134388"
+    }
+  ],
+  "Concello de O Vicedo": [
+    {
+      "name": "Hostal Don Manuel",
+      "postal": "Dr. Prado Villapol, 13",
+      "phone": "+34982590355",
+      "rooms": 25,
+      "stars": 2
+    },
+    {
+      "name": "Casa de Turismo Rural \"Casa Lamelas\"",
+      "postal": "Morgallón, 8 - Negradas.",
+      "phone": "+34982590143"
+    }
+  ],
+  "Concello de Viveiro": [
+    {
+      "name": "Hotel Val do Naseiro",
+      "postal": "San Pedro",
+      "phone": "+34982598434",
+      "rooms": 41,
+      "stars": 3
+    },
+    {
+      "name": "Hotel Las Sirenas",
+      "postal": "Sacido-Covas",
+      "phone": "+34982560200",
+      "rooms": 30,
+      "stars": 3
+    },
+    {
+      "name": "H.R. Ego",
+      "postal": "Playa de Area",
+      "phone": "+34982560987",
+      "rooms": 30,
+      "stars": 3
+    },
+    {
+      "name": "H.R. Augadoce",
+      "postal": "Playa de Area",
+      "phone": "+34982550642",
+      "rooms": 25,
+      "stars": 2
+    },
+    {
+      "name": "H.R. Orfeo",
+      "postal": "Navia Castrillón, 2",
+      "phone": "+34982562104",
+      "rooms": 32,
+      "stars": 2
+    },
+    {
+      "name": "H.R. As Areas II",
+      "postal": "Granxas - Covas.",
+      "phone": "+34982550523",
+      "rooms": 25,
+      "stars": 1
+    },
+    {
+      "name": "H.R. Galaico",
+      "postal": "Cruz, 20 - Covas",
+      "phone": "+34982550800",
+      "rooms": 11,
+      "stars": 1
+    },
+    {
+      "name": "H.R. El Millón",
+      "postal": "Ctra. De Ribadeo, 3 - Celeiro.",
+      "phone": "+34982561191",
+      "rooms": 30,
+      "stars": 2
+    },
+    {
+      "name": "Hotel Dolusa",
+      "postal": "Suasbarras, 28",
+      "phone": "+34982560866",
+      "rooms": 15,
+      "stars": 1
+    },
+    {
+      "name": "H.S.R. Vila",
+      "postal": "Nicolás Cora, 57",
+      "phone": "+34982561331",
+      "rooms": 13,
+      "stars": 2
+    },
+    {
+      "name": "H.S.R. Mayfre",
+      "postal": "Nicolás Cora, 68",
+      "phone": "+34982562803"
+    },
+    {
+      "name": "H.S.R. Serra",
+      "postal": "Antonio Bas, 2",
+      "phone": "+34982560013",
+      "rooms": 8,
+      "stars": 2
+    },
+    {
+      "name": "Hostal As Areas I",
+      "postal": "Granxas, 62 - Covas",
+      "phone": "+34982560605",
+      "stars": 2
+    },
+    {
+      "name": "H.S.R. Boavista",
+      "postal": "Ctra. Ribadeo, 32",
+      "phone": "+34982562290",
+      "rooms": 24,
+      "stars": 1
+    },
+    {
+      "name": "H.S.R. La Terraza",
+      "postal": "Ctra. De la Coruña Covas",
+      "phone": "+34982560606",
+      "rooms": 22,
+      "stars": 1
+    },
+    {
+      "name": "Hospedaje \"García\"",
+      "postal": "Praza Maior, 18",
+      "phone": "+34982560675"
+    },
+    {
+      "name": "Hospedaje \"Nuevo Mundo\"",
+      "postal": "Teodora de Quirós, 14",
+      "phone": "+34982560025"
+    },
+    {
+      "name": "Casa de Turismo Rural \"Pazo da Trave\"",
+      "postal": "Trave - Galdo",
+      "phone": "+34982598163"
+    },
+    {
+      "name": "Hospedaje \"Casa Seara\"",
+      "postal": "Xunqueira, 25",
+      "phone": "+34982560003"
+    },
+    {
+      "name": "Hospedaje \"Bossa Nova\"",
+      "postal": "Avda. de Galicia, 11",
+      "phone": "+34982560150"
+    },
+    {
+      "name": "Apartamentos \"As Sirenas\"",
+      "postal": "Sacido - Covas",
+      "phone": "+34982560200"
+    }
+  ],
+  "Concellos de O Valadouro e Alfoz": [
+    {
+      "name": "Hostal Asturias",
+      "postal": "Avda. de Viveiro, 1",
+      "phone": "+34982574002",
+      "rooms": "3 individuales y 9 dobles.",
+      "stars": 1
+    },
+    {
+      "name": "Casa de Turismo Rural Finca Galea",
+      "postal": "Castro de Ouro.",
+      "phone": "+34982558323"
+    },
+    {
+      "name": "Pensión \"Casa Pereiras\"",
+      "postal": "A Seara, 19",
+      "phone": "+34982558340",
+      "rooms": "5 individuales, 5 dobles."
+    }       
+  ],
+  "Concello de Riotorto": [
+    {
+      "name": "Hostal \"San Cristobal\"",
+      "postal": "La Groba, 22",
+      "phone": "+34982346203",
+      "rooms": 8,
+      "stars": 1
+    }
+  ]
+}

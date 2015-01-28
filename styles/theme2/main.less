@@ -16,8 +16,33 @@
 // vars, colors, effects
 @import "../colores.less";
 
+.nav-menu-color( @bg: @azul-logo; @fg: @ouro-logo ){
+  background-color: @bg;
+  a, button {
+    color: @fg;
+    background-color: fade(@fg, 27%);
+    &:hover, &:focus, &.selected {
+      background-color: @fg;
+      color: @bg;
+    }
+  }
+  & + nav#breadcumbs {
+    background-color: @fg;
+    color: @bg;
+    a {
+      color: @bg;
+      &:hover, &:focus {
+        color: lighten(@bg, 15%);
+      }
+    }
+    .sep{ color: lighten(@azul-logo-gris, 10%); }
+  }
+}
+
 // layouts
 @import "portrait.less";
 // ( desired px / parent font )
-@landscape-min-width: (900 / 16 * 1em);
+@landscape-min-width: (640 / 16 * 1em);
+@widescreen-min-width: (1280 / 16 * 1em);
 @import "landscape.less" only screen and ( min-width: @landscape-min-width );
+@import "widescreen.less" only screen and ( min-width: @widescreen-min-width );

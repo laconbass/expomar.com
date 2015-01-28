@@ -6,4 +6,6 @@ Para los artesanos y productores ecológicos, la celebración de esta feria es s
 
 PRODUART, como exposición comercial, se convierte en una estupenda oportunidad, ya que en las mismas fechas se celebra la ya reconocida **“Feira do Bonito”**, declarada de Interés Turístico y que atrae en cada edición a más de 10.000 personas en un entorno de turismo y ocio.
 
-[Información sobre la inscripción](./inscricion)
+<nav class="buttons">
+  [Información sobre la inscripción](./inscricion)
+</nav>

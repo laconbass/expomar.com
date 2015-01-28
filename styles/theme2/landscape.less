@@ -1,49 +1,96 @@
 body {
-    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
-                url('/img/fondo-b-verde-alpha.png') no-repeat right 9.5em;
+  background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
+              url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
+}
+
+.cell( @grid: 2; @cols: 1 ){
+  width: 99.99% / @grid * @cols;
+  margin: 0;
+  .box-sizing(border-box);
 }
 
 header {
-
   #logo {
-    display: inline-block;
-
+    .ready & { display: inline-block; }
+    vertical-align: middle;
+    padding-top: .5em;
+  }
+  #logo {
     img {
-      width: 200px;
+      width: auto;
+      max-height: 80px;
     }
-
     h1 {
-      widht: 300px;
-      height: 120px;
+      width: auto;
+      max-height: 80px;
+      background-image: url('/img/logo-expomar-letras-horizontal.png');
     }
   }
-
-  aside {
-    position: absolute;
-    right: 0;
-    bottom: .5em;
+  nav#language {
+    margin: 0;
+  }
+  nav#menu-top,
+  nav#menu-section {
+    .box-sizing(border-box);
+    background-color: transparent;
+    width: 49%;
+    float: left;
+    
+    a:hover, a:focus, a.selected { .box-shadow(0 .2em .3em @azul-logo); }
+    .nav-menu-color();
+    &:not(.expanded) {
+      background-color: transparent;
+      button { color: @azul-logo }
+    }
+    &.expanded { .border-radius(.5em); margin-bottom: .5em; }
+  }
+  #breadcumbs {
+    clear: both;
+    .box-shadow(0 .15em .15em @azul-logo);
+  }
+  nav#menu-top {
+    .border-radius(0 .5em 0 0);
+  }
+  nav#menu-section {
+    margin-left: 2%;
+    .border-radius(.5em 0 0 0);
+    &.expanded {
+      .fadeInRight();
+      /*.touch & {
+        margin-left: 0;
+      }*/
+    }
   }
 }
 
-nav#menu-main {
-  position: absolute;
-  top: 200px;
-  width: 9em;
-}
+#content {
+  font-size: 1.2em;
 
-div#content {
-  margin-left: 11em;
+  section {
+    // one article can fit a whole section, often preceded by a figure
+    > article {
+      // do not put borders here, as it will can be one-article-only
+      &:first-child {
+        padding: 0 1em;
+      }
+    }
 
-  & > * {
-    //padding-left: 1em;
-  }
-}
-
-.xornadas-tecnicas.ponencias #content section >article {
-  >article {
-    display: inline-block;
-    vertical-align: top;
-    width: 46%;
-    margin: .8% !important;
+    nav.destacados {
+      position: relative;
+      a {
+        max-width: 48%;
+        &:first-child {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          display: flex;
+          figure { margin: auto; }
+        }
+        + a {
+          margin-left: 51%;
+        }
+      }
+    }
   }
 }

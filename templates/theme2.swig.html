@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ view.title|default('expomar.com') }}</title>
+        <meta name="description" content="{{ view.description|default('A Fundación Expomar pretende ser unha plataforma de comunicación entre a administración, os empresarios do sector mariño e os profesionais que traballan nel, para deste xeito acadar maior conciencia e sensibilidade sobre o mundo do mar, potenciando o seu afianzamento como marco creador de emprego e desenvolvemento socioeconómico.') }}">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="alternate" hreflang="{{ i18n.main }}" href="{{ url('www', location) }}" />
+        {%- for code, name in i18n.available -%}
+        <link rel="alternate" hreflang="{{ code }}" href="{{ url( code, location ) }}"/>
+        {%- endfor -%}
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!--link rel="stylesheet" href="{{ url( 'static', 'css/lib/normalize.css' ) }}">
+        <link rel="stylesheet" href="{{ url( 'static', 'css/lib/animate.css' ) }}"-->
+        <link rel="stylesheet" href="{{ url( 'static', 'css/theme2/main.css' ) }}">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        {%- if meta.styles -%}
+            <link rel="stylesheet" href="{{ url( 'static', 'css/' + meta.styles|replace('.less$', '.css') ) }}">
+        {%- endif -%}
+        <script src="{{ url( 'static', 'js/vendor/modernizr-2.6.2.min.js' ) }}"></script>
+    </head>
+    <body class="{{ location.split('/')|join(' ')|trim|default('portada') }}" lang="{{ lang }}">
+
+        {% if user %}
+          <nav id="user">
+            <a href="{{ url() }}">{{ t('Interface Pública') }}</a>
+            <a href="{{ url('admin') }}">{{ t('Interface de Administración') }}</a>
+            <a href="{{ url( 'admin', '/logout' ) }}">{{ t('Saír') }}</a>
+          </nav>
+        {% endif %}
+
+        <header>
+            <a id="logo" href="/">
+                <img src="{{ url( 'static', 'img/logo-expomar-hd2-blueok.png' ) }}" alt="Logo Fundación Expomar">
+                <h1>Fundación Expomar</h1>
+            </a>
+            <nav id="social">
+                <a href="#" class="facebook">Facebook?</a>
+                <a href="#" class="twitter">Twitter?</a>
+                <a href="#">Etc?</a>
+            </nav>
+            <nav id="language">
+              <a href="{{ url( 'www', location ) }}"{{ selected(lang == i18n.main) }}>{{ i18n.mainName }}</a>
+              {% for code, name in i18n.available %}
+                <a href="{{ url( code, location ) }}"{{ selected(lang == code) }}>{{ name }}</a>
+              {% endfor %}
+            </nav>
+            <nav id="menu-top">
+              <!-- to expand and collapse the menu on some layouts -->
+              <button class="fa">&#xf160;</button>
+              <a href="/" {{ selected(location =='/') }}>{{t('Portada')}}</a>
+              {%- for data in menuTop -%}
+                {{- data|link(location) }}
+              {%- endfor -%}
+            </nav>
+            {%- if menu -%}
+              <nav id="menu-section">
+                <!-- to expand and collapse the menu on some layouts -->
+                <button class="fa">&#xf160;</button>
+                {%- for data in menu -%}
+                  {{- data|link(location) }}
+                {%- endfor -%}
+              </nav>
+            {%- endif menu -%}
+            {% if links %}
+              <nav id="breadcumbs">
+                {%- for data in links -%}
+                  {% if loop.first %}<a class="home" href="/" title="{{t('Páxina principal')}}"><span class="fa fa-home"></span></a>{% endif %}
+                  <span class="sep fa fa-hand-o-right"></span>
+                  {{ data|link(location) }}
+                {%- endfor -%}
+              </nav>
+            {% elif breadcumbs %}
+              <nav id="breadcumbs">
+                {%- for item in breadcumbs -%}
+                  {% if not loop.first %}<span class="sep">&nbsp;&gt;&nbsp;</span>{% endif %}
+                  <a href="{{ item.url }}" title="{{ t(item.view.meta.desc) }}"{{ selected(loop.last) }}>{{ t(item.view.meta.name|default('Not found')) }}</a>
+                {%- endfor -%}
+              </nav>
+            {% endif links %}
+        </header>
+
+        <div id="content">
+            <div id="messages">
+              <!--[if lt IE 7]>
+                  <p class="message browsehappy">{{ 'You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.'|t(lang) }}</p>
+              <![endif]-->
+              {%- if view.data.ano && view.data.ultimo && view.data.ano < view.data.ultimo -%}
+              <p class="message">{{t('Está a ver a información dun evento do ano {ano}. A información de actualidade pertence ao ano {ultimo}.', view.data)}}</p>
+              {%- endif -%}
+              {%- for message in messages -%}
+                <p class="message">{{ message|safe }}</p>
+              {%- endfor -%}
+            </div>
+            {% set content = meta %}
+            {% if html %}
+              {#{ menu|json(4)|debug }#}
+              {#{ view|debug }#}
+              <section id="{{ location.split('/')[1]|default('portada') }}">
+                {{ html|safe }}
+              </section>
+            {% else %}
+                <section id="no-content">
+                    {% include "404-working.swig.html" %}
+                </section>
+            {% endif %}
+        </div>
+
+        <footer>
+          <address>
+              <i class="fa fa-fw fa-map-marker"></i>
+              <a
+                target="_blank"
+                href="http://maps.google.com/maps?q=description+({{t('Oficinas Fundación Expomar')}})+%4043.6614556,-7.3579469"
+                title="{{t('Localización exacta das oficinas da Fundación Expomar')}}"
+                >Praza da Mariña, nº 13 - 27880 Burela - Lugo (Spain)</a>
+              <i class="fa fa-fw fa-phone"></i>
+              <a href="tel:+34982586232">+34 982 586 232</a>
+              <i class="fa fa-fw fa-fax"></i>
+              <a href="tel:+34982586232">+34 982 575 061</a>
+              <i class="fa fa-fw fa-mobile"></i>
+              <a href="tel:+34982586232">+34 610 574 188</a>
+              <i class="fa fa-fw fa-envelope"></i>
+              <a href="mailto:expomar@expomar.com">expomar@expomar.com</a>
+          </nav>
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="{{ url( 'static', 'js/vendor/jquery-1.10.2.min.js' ) }}"><\/script>')</script>
+        <script src="{{ url( 'static', 'js/plugins.js' ) }}"></script>
+        <script src="{{ url( 'static', 'js/main.js' ) }}"></script>
+
+        <!-- Google Analytics tracking code -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-37723918-3');ga('send','pageview');
+        </script>
+    </body>
+</html>

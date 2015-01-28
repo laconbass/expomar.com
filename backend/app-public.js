@@ -1,11 +1,10 @@
-var iai = require('../../iai')
-  , project = iai.project
-  , public = iai( project.resolve('layouts/public') )
+var resolve = require('path').resolve.bind( 0, process.cwd() )
   , express = require( 'express' )
   , app = express.Router()
   , debug = require( 'debug' )( 'expomar.com:public' )
   , f = require('util').format
-  , utils = project.require( 'backend/utils' )
+  , utils = require( './utils' )
+  , t = require('./translator')
 ;
 
 module.exports = app;
@@ -14,48 +13,52 @@ module.exports = app;
 // Middleware
 //
 
+function menuTop( menu ){
+  var menus = { gl: menu };
+  ['es', 'en' ].forEach(function( code ){
+    menus[ code ] = menu.map(function(link){
+      return {
+        href: link.href,
+        text: t( code, link.text ),
+        title: link.title
+      };
+    });
+  });
+  return function( req, res, next ){
+    console.log( req.lang );
+    res.locals.menuTop = menus[ req.language ];
+    next();
+  };
+}
+
 app
-  .use( project.require('backend/middleware/messages')() )
+  .use( require('./middleware/messages')() )
   .use(function( req, res, next ){
-    console.log( req.url );
     res.locals.location = req.url;
     res.locals.url = utils.url;
     next();
   })
-  .use( project.require('backend/middleware/i18n')( 'gl', ['es', 'en'], project.require('backend/translator') ) )
-  .use( project.require('backend/middleware/breadcumbs')( app ) )
-  //.use( app.router )
+  .use( require('./middleware/i18n')( 'gl', ['es', 'en'], t ) )
+  .use( require('./middleware/breadcumbs')( app ) )
+  .use( menuTop([
+    { href: "/a-fundacion", text: 'A Fundación', title: 'no title' },
+    { href: "/feira-expomar", text: 'Feira Expomar', title: 'no title' },
+    { href: "/xornadas-tecnicas", text: 'Xornadas Técnicas', title: 'no title' },
+    { href: "/encontro-empresarial", text: 'Encontro Empresarial', title: 'no title' },
+    { href: "/produart", text: 'Produart', title: 'no title' }
+  ]) );
 ;
-
-//
-// View Controllers
-//
-
-var Controller = project.require( 'backend/middleware/Controller' )
-  , Layout = project.require( 'backend/middleware/Layout' )
-;
-
-function redirect( meta ){
-  meta = meta || {};
-
-  if( !meta.location ){
-    throw new Error( 'redirect controller needs a location' );
-  }
-
-  function redirect( req, res, next ){
-    res.redirect( meta.location );
-  }
-
-  return Controller( meta, redirect );
-}
-
-var Document = project.require( 'backend/middleware/Document' );
 
 //
 // Routes
 //
 
-var public = [ "public.swig.html" ];
+var Layout = require( './middleware/Layout' )
+  , Document = require( './middleware/Document' )
+  , Section = require( './middleware/Section' )
+  , redirect = require( './middleware/redirect' )
+;
+var public = [ "theme2.swig.html" ];
 
 app.get( '/', Layout({
   "name": "Portada",
@@ -82,48 +85,14 @@ app
   }) )
 ;
 
-var fundacion = public.concat( "public/a-fundacion/a-fundacion.swig.html" );
-
-app.use(
-  '/a-fundacion',
-  express.Router()
-  .get( '/', redirect({
-    "name": "A Fundación",
-    "desc": "A Fundación Expomar",
-    "location": "/a-fundacion/obxectivos"
-  }) )
-  .get( '/obxectivos', Document({
-    "name": "Obxectivos",
-    "desc": "Obxectivos da Fundación Expomar",
-    "layout": fundacion,
-    "document": {
-      gl: "public/a-fundacion/obxectivos-gl.md",
-      es: "public/a-fundacion/obxectivos-es.md"
-    }
-  }) )
-  .get( '/historia', Document({
-    "name": "Historia",
-    "desc": "Historia da Fundación Expomar",
-    "layout": fundacion,
-    "document": {
-      gl: "public/a-fundacion/historia-gl.md",
-    }
-  }) )
-  .get( '/estrutura', Layout({
-    "name": "Estrutura",
-    "desc": "Estrutura da Fundación Expomar",
-    "layout": fundacion.concat( "public/a-fundacion/estrutura.swig.html" ),
-    "styles": "public/estrutura.less"
-  }) )
-);
-
-var romanize = project.require( 'backend/utils' ).romanize
-  , format = require( 'util' ).format
-;
+app.use( '/feira-expomar', require('./map-public/feira-expomar') );
+app.use( '/xornadas-tecnicas', require('./map-public/xornadas-tecnicas') );
+app.use( '/encontro-empresarial', require('./map-public/encontro-empresarial') );
+app.use( '/a-fundacion', require('./map-public/a-fundacion') );
+app.use( '/produart', require('./map-public/produart') );
 
 //
 // 404-working
-//
 
 app
   .get( '/feira-expomar', Layout({
@@ -138,137 +107,6 @@ app
   }) )
 ;
 
-var xornadas = public.concat( 'public/xornadas/xornadas.swig.html' )
-  , aX = project.require( 'data/anosXornadas.json' )
-  , xOps = project.require('backend/operation/xornadas')
-;
-
-app.use(
-  '/xornadas-tecnicas',
-  express.Router()
-  .get( '/', redirect({
-    "name": "Xornadas Técnicas",
-    "desc": format(
-        '%s Xornadas Técnicas "Expomar %s"',
-        romanize(aX.length), aX[ aX.length-1 ]
-      ),
-    "location": "/xornadas-tecnicas/presentacion"
-  }) )
-  .get('/presentacion', Document({
-      "name": "Presentación",
-      "desc": "Presentación do evento",
-      "layout": xornadas.concat( 'public/presentacion.swig.html' ),
-      "document": {
-        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/presentacion.md',
-      },
-      "anos": aX
-  }) )
-  .get('/programa', Document({
-      "name": "Programa",
-      "desc": "Programa",
-      "layout": xornadas,
-      "document": {
-        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
-      }
-    //,"anos": aX
-  }) )
-  .get('/comite', Layout({
-      "name": "Comité Executivo",
-      "desc": "Listado de integrantes do Comité Executivo das Xornadas Técnicas",
-      "layout": xornadas.concat( 'public/comite-executivo.swig.html' )
-  }) )
-  .get('/ponencias', Layout({
-      "name": "Ponencias",
-      "desc": "Nesta sección pode consultar toda a información referente aos relatores das Xornadas Técnicas e os seus relatorios, que na meirande parte dos casos atópanse dispoñíbeis para a descarga.",
-      "layout": xornadas.concat( 'public/xornadas/ponencias.swig.html' ),
-      "styles": "public/ponencias.less",
-      "data": xOps.getPonencias.bind( null, aX[ aX.length-1 ] )
-  }) )
-);
-
-var encontro = public.concat( 'public/encontro/encontro.swig.html' )
-  , aE = project.require( 'data/anosEncontro.json' )
-;
-
-app.use(
-  '/encontro-empresarial',
-  express.Router()
-  .get( '/', redirect({
-    "name": "Encontro Empresarial",
-    "desc": "Encontro Empresarial de Organizacións Pesqueiras",
-    "location": "/encontro-empresarial/presentacion"
-  }) )
-  .get('/presentacion', Document({
-      "name": "Presentación",
-      "desc": "Presentación do Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro.concat( "public/presentacion.swig.html" ),
-      "document": {
-        gl: 'public/encontro/' + aE[ aE.length-1 ] + '/presentacion.md'
-      },
-      "anos": aE
-  }) )
-  .get('/programa', Document({
-      "name": "Programa",
-      "desc": "Programa",
-      "layout": encontro,
-      "document": {
-        gl: 'public/xornadas/' + aX[ aX.length-1 ] + '/programa.md'
-      }
-    //,"anos": aX
-  }) )
-  .get('/comite', Layout({
-      "name": "Comité Executivo",
-      "desc": "Listado de integrantes do Comité Executivo do Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro.concat( 'public/comite-executivo.swig.html' )
-  }) )
-  .get('/organizacions', Layout({
-      "name": "Organizacións Invitadas",
-      "desc": "Listado de organizacións invitadas ao Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro.concat( 'public/encontro/' + aE[ aE.length-1 ] + '/organizacions.md' ),
-  }) )
-  .get('/conclusions', Document({
-      "name": "Conclusións",
-      "desc": "Conclusións do Encontro Empresarial de Organizacións Pesqueiras",
-      "layout": encontro,
-      "document": {
-        es: 'public/encontro/' + aX[ aX.length-1 ] + '/conclusions-es.md'
-      }
-  }) )
-);
-
-var produart = public.concat( 'public/produart/produart.swig.html' )
-  , aP = project.require( 'data/anosProduart.json' )
-;
-
-app.use(
-  '/produart',
-  express.Router()
-  .get( '/', redirect({
-    "name": "Produart",
-    "desc": "Feira dos Produtos Artesáns e Ecolóxicos",
-    "location": "/produart/presentacion"
-  }) )
-  .get('/presentacion', Document({
-      "name": "Presentación",
-      "desc": "Presentación de Produart",
-      "layout": produart,
-      "document": {
-        gl: 'public/produart/' + aP[ aP.length-1 ] + '/presentacion.md',
-        es: 'public/produart/' + aP[ aP.length-1 ] + '/presentacion-es.md'
-      },
-      "anos": aP
-  }) )
-  .get('/inscricion', Document({
-      "name": "Inscrición",
-      "desc": "Información sobre a inscrición",
-      "layout": produart,
-      "document": {
-        gl: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion.md',
-        es: 'public/produart/' + aP[ aP.length-1 ] + '/inscricion-es.md'
-      }
-  }) )
-);
-
 /**
  * 404 + 410 responses
  */
@@ -280,7 +118,7 @@ var NotFound = Layout({
   "styles": "404.less"
 });
 
-var oldUrl = project.require('data/old-urls');
+var oldUrl = require( resolve('data/old-urls') );
 
 app.use(function( req, res, next ){
   res.status(404);
@@ -306,7 +144,7 @@ app.use(function( err, req, res, next ){
   console.error( err.stack );
   res.status( 500 );
 
-  if( ! iai.production ){
+  if( process.env.NODE_ENV !== 'production' ){
     res.locals.error = err;
   }
 

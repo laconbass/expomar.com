@@ -10,6 +10,7 @@
  * intro animation
  */
 #portada #intro {
+  body.ready & { display: none; }
   //.animated(); .fadeOut(); .animation-delay(4.5s);
   h1, h2 { .animated(); }
   .mar { .fadeInLeft(); .animation-delay(1s); }
@@ -20,12 +21,11 @@
 
 
 
-#portada{
-  position: relative;
-  height: 12em;
-  #content & { padding: 0; margin: 0; }
+#content section#portada{
   .user-select(none);
 
+  position: relative;
+  min-height: 12em;
   #intro {
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
@@ -37,7 +37,7 @@
     h1 { font-size: 4em; }
     h2 { font-size: 1.4em; font-weight: normal; }
     .mar { top: -0.5em; right: 48%; color: @ouro-logo; }
-    .promocion { top: 0.5em; left: 52%; color: @verde-logo; }
+    .promocion { top: 0.5em; left: 52%; color: darken(@verde-logo, 12%); }
     .desenvolvemento { top: 1.8em; right: 52%; color: @azul-claro; }
     .futuro { bottom: 0; left: 48%; color: @azul-logo; }
   }
@@ -56,5 +56,51 @@
                        slider-portada 20s linear 5s infinite;
     animation:         fadeIn 2s ease 5s 1 alternate both,
                        slider-portada 20s linear 5s infinite;
+  }
+  #destacados {
+    height: 26em;
+    padding: 1em;
+    overflow: hidden;
+    a {
+      text-decoration: none;
+      display: block;
+      overflow: hidden;
+      width: 50%;
+      margin-right: 1%;
+      height: 100%;
+      float: left;
+      &:hover, &:focus { .box-shadow(0 0 10px black); }
+      .transition( all .3s ease-out );
+      .border-radius(.4em);
+      position: relative;
+      h1 {
+        position: absolute;
+        margin: 0;
+        bottom: 0; left: 0; right: 0;
+        background: @ouro-logo;
+        text-align: center;
+        font-size: 1.8em;
+        padding: .2em;
+      }
+      img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+        &.pantalla { display: none; }
+      }
+      + a {
+        float: none;
+        width: 50% - 1%;
+        margin-bottom: 1%;
+        height: 50% - 1.5%;
+        h1 {
+          font-size: 1.5em;
+        }
+        img {
+          //margin-top: -20%;
+          //max-height: 100%;
+        }
+      }
+    }
   }
 }

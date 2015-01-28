@@ -1,8 +1,6 @@
-var iai = require('../../iai')
-  , project = iai.project
-  , express = require( 'express' )
+var express = require( 'express' )
   , app = express.Router()
-  , auth = require( 'basic-auth' )
+  , auth = require( './app-auth.js' )()
  // , f = require('util').format
 ;
 
@@ -12,63 +10,51 @@ module.exports = app;
 // Middleware
 //
 
-var user = process.env.ADMIN_USER
-  , pass = process.env.ADMIN_PASS
-;
-
-if( iai.production && ( !user || !pass ) ){
-  throw Error( 'Production mode requires ADMIN_USER and ADMIN_PASS to be set' );
-} else {
-  user = user || 'admin';
-  pass = pass || 'admin';
+function menuTop( menu ){
+  return function( req, res, next ){ res.locals.menuTop = menu; next(); };
 }
 
 app
-  .use( function( req, res, next ){
-    var login = auth( req );
-    if( !login || login.name != user || login.pass != pass ){
-      return res.set('www-authenticate', 'basic').send( 401 );
-    }
-    next();
-  })
   .use( require('./middleware/messages')() )
   .use( require('./middleware/urlConstructor')( require('./utils').url ) )
   .use( require('./middleware/i18n')( 'gl', [] ) )
+  .use( auth )
 ;
 
-//
-// Layout
-//
-
-function view( content ){
-  content = content || {};
-
-  return function view( req, res, next ){
-    res.locals.content = content;
-
-    if( !content.layout ){
-      return res.render( 'admin.swig.html' )
-    }
-
-    res.render( content.layout, function( err, html ){
-      if( err ){
-        return next( err );
-      }
-      res.locals.html = html;
-      res.render( 'admin.swig.html' )
-    });
-  }
-}
 
 //
 // Routes
 //
 
-app
-  .get( '/', view({
+var Layout = require( './middleware/Layout' );
+var admin = [ 'theme2.swig.html' ];
+
+
+app.all( '/login', Layout({
+  "name": "Identifíquese",
+  "desc": "Páxina de acceso á interface de administración",
+  "layout": admin.concat('login.swig.html'),
+  "styles": "login.less"
+}) );
+
+app.all( '*', menuTop({
+  "/eval": { text: 'eval' }
+}) );
+
+app.get( '/', Layout({
+  "name": "Panel de administración de expomar.com",
+  "desc": "Páxina principal da interface de administración",
+  "layout": admin
+}) );
+
+
+app.route( '/eval' )
+  .get( Layout({
+    "name": "Utilidade de evaluación de código",
+    "desc": "Inserir código para ser evaluado no contexto do servidor",
+    "layout": admin.concat('admin/eval.swig.html')
   }) )
-  .get( '/actualidade', view({
-  }) )
-  .get( '*', view({
-  }) )
-;
+  .post(function( req, res, next ){
+    
+  })
+

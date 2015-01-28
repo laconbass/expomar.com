@@ -1,8 +1,6 @@
-var iai = require('../../../iai')
-  , path = require('path')
-;
+var path = require('path');
 
-var Controller = iai.project.require('backend/middleware/Controller')
+var View = require('./View')
   , Layout = require( './Layout' )
 ;
 
@@ -44,5 +42,5 @@ function Document( meta ){
 
   document.layout = Layout( meta );
 
-  return Controller( meta, document );
+  return View.create( meta, document );
 }

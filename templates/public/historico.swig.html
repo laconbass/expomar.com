@@ -1,0 +1,28 @@
+<h1>{{ view.title }}</h1>
+
+<p class="short">{{t('Nesta sección relaciónanse toda a información dispoñible sobre as edicións anteriores á')}} {{t(view.data.descPattern, view.data) }}.</p>
+
+{#{ view.data|debug }#}
+{% for n, ano in view.data.history %}
+<article class="event summary">
+  {% set n = view.data.history.length - n %}
+  {% set event = {ano: ano, romano: n|romanize} %}
+  <h2>{{t(view.data.namePattern, event)}}</h2>
+  {%- if view.data.hasdata[ano] -%}
+  <p class="short">{{t('Esta é a información dispoñible da')}} {{t(view.data.descPattern, event)}}:</p>
+  <nav class="buttons">
+  {%- for link in view.data.hasdata[ano] -%}
+    <a title="{{t(link.title, event)}}"
+      href="{{view.data.baseUrl+'/'+ano+link.href}}"
+      >{{link.text}}</a>
+  {%- endfor-%}
+  </nav>
+  {%- else -%}
+  <p class="nodata">
+  {{t('Debido a que estamos a restruturar a nosa base de datos, nestes momentos non podemos ofrecerlle a información relativa á')+' '+t(view.data.descPattern, event)+'. '+t('Lamentamos as molestias que isto lle poda causar.', event)}}
+  </p>
+  {%- endif -%}
+</article>
+{% endfor %}
+
+

@@ -1,6 +1,5 @@
-var iai = require( '../../../iai' )
-  , sequence = iai( 'async/sequence' )
-  , Controller = require( './Controller' )
+var sequence = require( '../sequence' )
+  , View = require( './View' )
 ;
 
 module.exports = Layout;
@@ -12,6 +11,7 @@ function Layout( meta ){
     throw new Error( "Layout controller must has #layout");
   }
 
+
   function layout( req, res, next ){
     res.locals.meta = meta;
 
@@ -22,10 +22,10 @@ function Layout( meta ){
       layout.render( meta.layout, req, res, next );
     }
 
-    if( !meta.data ){
+    if( !meta.operation ){
       return finish();
     }
-    meta.data(function( err, data ){
+    meta.operation(function( err, data ){
       if( err ){
         return next( err );
       }
@@ -36,10 +36,14 @@ function Layout( meta ){
 
   layout.render = renderSequence;
 
-  return Controller( meta, layout );
+  return View.create( meta, layout );
 }
 
 function renderSequence( layouts, req, res, next ){
+  var parts = layouts.slice(1).reverse();
+  if( !parts.length ){
+    return res.render( layouts[0] );
+  }
   sequence(
       layouts.slice(1).reverse(),
       function step( index, layout, done ){

@@ -49,11 +49,13 @@ textarea {
 html,
 input {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: darken(@azul-logo, 6%);
+  color: @azul-logo;
 }
 
 a {
-  color: lighten(@azul-logo, 6%);
+  text-decoration: none;
+  &, &:link, &:visited { color: darken(@verde-logo, 15%); }
+  &:hover, &:focus, &:active { color: @ouro-logo; }
 }
 
 html {
@@ -62,21 +64,55 @@ html {
 }
 
 body {
-    background: url('/img/fondo-a-verde-alpha.png') no-repeat -1.2em .5em,
-                url('/img/fondo-b-verde-alpha.png') no-repeat right bottom;
-    padding-bottom: 5em;
+  padding-bottom: 5em;
+  min-height: 100%;
+  &.ready > * { .animated(); .fadeIn(); }
+  &:not( .ready ) {
+    & > * { visibility: hidden; }
+    & > header {
+      visibility: visible;
+      height: auto;
+      & > * { display: none; }
+      #logo {
+        display: block;
+        width: 100%;
+        padding-left: 0;
+        & > * { display: block; margin: 0 auto; }
+        img {
+          height: auto;
+          max-height: none;
+          position: relative;
+          left: -1em;
+        }
+        h1 { max-width: 50%;  }
+      }
+    }
+    &.portada > #content {
+      visibility: visible;
+      & > * { visibility: hidden; }
+      #portada {
+        visibility: visible;
+        & > * { display: none; }
+        #intro { display: block; }
+      }
+    }
+  }
 }
 
 // de momento non
 //a.selected { cursor: default; pointer-events: none; }
+nav#user {
+  position: fixed;
+  width: 100%;
+  text-align: right;
+  z-index: 99;
+}
 
 header {
-  position: relative;
-
   #logo {
-    display: block;
+    display: inline-block;
     text-decoration: none;
-    margin: .5em;
+    padding: .5em 0 0 .5em;
 
     * { display: inline-block; vertical-align: middle; }
     img {
@@ -93,24 +129,17 @@ header {
       background-image: url('/img/logo-expomar-letras-blueok.png');
       background-size: contain;
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: left center;
     }
   }
-  aside {
-    .clearfix();
-    nav {
-      float: right;
-      clear: both;
-      padding-left: .5em;
+  nav {
+    a {
+      display: inline-block;
+      text-decoration: none;
     }
-  }
-  nav a {
-    display: inline-block;
-    text-decoration: none;
   }
   nav#social {
-    //height: 2.5em;
-    height: 0; overflow: hidden;
+    /*height: 2.5em; // */ display: none;
 
     a {
       height: 33px; width: 33px;
@@ -124,94 +153,83 @@ header {
     }
   }
   nav#language {
+    margin-top: .2em;
     margin-bottom: .2em;
+    text-align: right;
+    padding-right: 1em;
     a {
       color: #444;
-      margin-right: .5em;
+      margin-left: .5em;
 
-      &:hover { color: #122F62; }
+      &:hover, &:focus, &:active { color: @ouro-logo; }
       &.selected { color: #ccc; }
     }
   }
-  nav#menu-top {
-    padding-right: 3em;
-    background-color: @azul-logo;
-
+  nav#menu-top { .nav-menu-color(); }
+  nav#menu-section { .nav-menu-color( @bg: @ouro-logo; @fg: @azul-logo ); }
+  #menu-top, #menu-section {
+    position: relative;
+    @pad: .5em;
+    @but: 2.5em;
+    padding: @pad @pad 0 @but+@pad*2;
+    //min-height: @but + @pad;
+    .transition( all .3s ease-out );
+    button {
+      position: absolute;
+      top: @pad;
+      left: @pad;
+      bottom: @pad/2;
+      width: @but;
+      border: none;
+      .border-radius(@pad);
+    }
     a {
-      padding: 1em .5em;
-      color: @ouro-logo;
-
-      &:hover,
-      &.selected {
-        background-color: @ouro-logo;
-        color: @azul-logo;
-      }
+      display: none;
+      padding: @pad*1.5 @pad*2 @pad/1.5 @pad*2;
+      .border-radius(@pad @pad 0 0);
+      font-weight: bold;
+      &.selected { display: block; }
+    }
+    &.expanded {
+      .fadeInLeft();
+      padding-bottom: @pad;
+      a { display: block; .border-radius(@pad); }
+      a + a { margin-top: @pad; }
+      button { bottom: @pad; }
+      /*.touch & {
+        position: fixed;
+        z-index: 9;
+        top: 0; bottom: 0;
+        left: 0; right: 0;
+        .box-sizing(border-box);
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+      }*/
     }
   }
-}
-
-body.actualidade header,
-body.axenda header {
-  .background-image( linear-gradient(to right, fade(@ouro-logo, 0) 40%, @ouro-logo 80%) );
-  background-repeat: no-repeat;
-  background-position: 0% 100%;
-  background-size: 100% .5em;
-}
-
-#breadcumbs {
-  margin-left: 1em;
-  margin-top: .5em;
-
-  a, span {
-    font-size: .8em;
+  #menu-top, #menu-section, #breadcumbs {
+    .animated(); .fadeIn();
   }
-  a { text-decoration: underline }
-  a.selected, span {
-    color: lighten(@azul-logo-gris, 6%);
-    text-decoration: none;
-  }
-}
-
-nav#menu-main {
-  margin-top: .5em;
-  padding: .5em 0;
-  width: 90%;
-  @color-empeza: fade(#fff, 85%);
-  //.background-image( linear-gradient(to right, @color-empeza 20%, fade(@color-empeza, 20%) 50%) );
-  background: fade( #fff, 50%);
-  .border-radius( 0 .5em .5em 0 );
-  .box-shadow( 0 0 10px fade(#000, 50%) );
-
-    a {
-      display: block;
-      padding: .2em .6em;
-      border: 1px solid transparent;
-      .border-radius(0 .4em .4em 0);
-      color: @azul-logo-gris;
-      text-decoration: none;
-      text-transform: uppercase;
-      .transition( all .3s ease-out );
-
-      &:hover { padding-left: 1em; color: @ouro-logo;   }
-      &.selected {
-        //border-color: @ouro-logo;
-        border-left: none;
-        margin-right: -1em;
-        text-align: right;
-        background-color: #fff;
-        color: @azul-logo;
-        .box-shadow( 0 0 10px 1px @ouro-logo );
-      }
+  nav#breadcumbs {
+    padding: .4em 1em;
+    a { font-size: .9em; }
+    .home {
+      @size: 1.3em;
+      line-height: @size;
+      vertical-align: middle;
+      span { font-size: @size; }
     }
+    span.sep { font-size: .85em; margin: 0 .5em; }
+  }
+  // & = header
 }
-
-
 
 #content {
   #messages > * {
     position: relative;
     margin: .5em auto;
-    padding: 1em 1em .5em;
+    padding: 1em 2em .5em;
     width: 80%;
     text-align: center;
     background: #fff;
@@ -228,7 +246,7 @@ nav#menu-main {
     &::after {
       content: 'Click para ocultar';
       display: block;
-      margin-top: 1em;
+      margin-top: .5em;
     }
     *:lang(en) &::after {
       content: 'Click to dismiss';
@@ -240,71 +258,256 @@ nav#menu-main {
     &:hover { cursor: pointer; }
   }
 
-
   //
   // Generic section styles
   //
 
-  section {
-    > * {
-      margin-left: .7em;
-      padding-left: 1.5em;
-      padding-right: 1.5em;
+  // be consistent with hierarchy: each child section adds padding
+  // TODO this should be each child section not being a main section??
+  // TODO it's not clear really, sometimes that hierarchy seems not clear
+  section { padding: 1em; }
+
+  // keep consistency within headings hierarchy through font-size
+  h1 {
+    margin-top: .5em;
+    // TODO decide if move centering specifically to > article
+    text-align: center;
+    font-size: 1.7em;
+    span { color: #bbb; }
+  }
+  h2 { font-size: 1.3em; }
+  h3 { font-size: 1.1em; }
+
+  // section childs of #content are the top-level navigation
+  > section {
+
+    // figures within a main section are often asides for full articles
+    // anyway provide default styles for any figure in the hierarchy
+    figure {
+      img {
+        display: block;
+        margin: 0 auto;
+        .border-radius(.5em);
+      }
+      figcaption { font-style: italic; text-align: center; }
     }
 
-    @color-empeza: fade(#fff, 85%);
+    // one article can fit a whole section, often preceded by a figure
+    > article {
+      // expect a first child article to be one-article-only
+      &:first-child {
+      }
+      // multiple articles mean main section is a collection, often without
+      // preceding figures
+      + article { margin-top: .5em; }
+    }
 
-    nav {
+    > section.category > h2,
+    > article.event.summary h2 {
+      border-bottom: .1em solid @ouro-logo;
+    }
+
+    // categorized collections are a main section with child sections as categories
+    > section.category {
+      // use all with available because contained articles count may be high
+      padding: 0;
+      // keep heading consistency through each level
+      // but contained articles may have h2 headings anyway
+      > h2 { }
+      // within categories multiple articles are items of the category
+      > article {
+        border: .1em solid @azul-claro;
+        .border-radius(.5em);
+        padding: 0 1em 1em 1em;
+        > i, > h3 { display: inline-block; vertical-align: middle; }
+        > i { font-size: 3em; }
+        > h3 { margin-left: .6em; line-height: 3em; }
+        > address { margin-left: .3em; }
+        + article {
+          margin-top: 1em;
+        }
+      }
+      & + section {
+        // TODO maybe collapse extra categories by default?
+      }
+    }
+
+    // miscellaneous content formating shared within all hierarchy
+    p { text-align: justify; }
+    p > a { font-weight: bold; }
+    li p { margin: .5em 0; }
+    img { max-width: 100%; height: auto; text-align: center; }
+
+    address {
       .clearfix();
-      overflow: hidden;
-      padding-top: .5em;
-      a {
+      max-width: 28em;
+      margin: 0 auto;
+      * {
         float: left;
-        margin: 0 .3em;
-        padding: .6em .6em .3em;
-        text-decoration: none;
-        .background-image( linear-gradient(to bottom, @color-empeza 0%, fade(@color-empeza, 0) 90%) );
-        .border-radius( .5em .5em 0 0 );
+        margin: .3em;
+      }
+      i { clear: left; }
+      a { }
+    }
 
-        .transition( all .15s ease-in );
+    // youtube widgets
+    figure.youtube {
+      display: table;
+      margin: 0 auto;
+      figcaption { font-style: italic; font-size: 70%; }
+    }
+    // format iframes too including those outside figures
+    iframe.youtube {
+      display: block;
+      margin: .5em auto;
+      max-width: 100%;
+    }
 
-        &:hover, &.selected {
-          background-color: @color-empeza;
-          color: darken(@ouro-logo, 10%);
-          .scale( 1.05 );
+    // button navigation within any section
+    nav.buttons {
+      display: flex;
+      flex-direction: column;
+
+      margin: 1em auto 0;
+      a {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+
+        > * { display: block; }
+        > i.fa { font-size: 5em; min-height: 1em; }
+        > span {
+          margin-top: .3em;
+          font-size: 1.2em;
+          font-weight: bold;
         }
       }
     }
 
-    nav a, > article {
-      .box-shadow( 0 0 10px fade(#000, 50%) );
-    }
+    // effects for buttons
+    button, .button, nav.buttons > * {
+      @c1: @azul-logo;
+      @c2: @verde-logo;
+      @c: fade(@c1, 70%);
 
-    > article {
-      &:first-child {
-        margin-top: .5em;
+      margin: .5em;
+      border: none;
+      padding: .8em;
+      text-align: center;
+      color: @c1;
+      background: fade(@c2, 50%);
+      font-weight: bold;
+
+      .border-radius(.7em);
+      .user-select(none);
+
+      &.disabled {
+        color: desaturate(@c1, 30%);
+        background: desaturate(@c2, 30%);
       }
-      padding-top: 1.5em;
-      padding-bottom: 1.5em;
-      .border-radius( .5em 0 0 .5em );
-      .background-image( linear-gradient(to bottom, @color-empeza 1em, fade(@color-empeza, 20%) 2em) );
+
+      &:not(.disabled) {
+        .box-shadow(0 0 .5em);
+        .transition(all .2s ease-out);
+        &:hover, &:focus {
+          color: @c2;
+          //background: @c;
+          border-color: @c1;
+          .background-image( linear-gradient(to bottom, @c 0%, @c1 100%) );
+          .box-shadow(0 0 2.5em);
+        }
+        &:active {
+          .background-image( linear-gradient(to top, @c 0%, @c1 100%) );
+        }
+      }
     }
 
-    h1 {
-      margin-top: 0;
-      span { color: #bbb; }
+    // featured content navigator
+    nav.destacados {
+      a {
+        display: inline-block;
+        margin: 1%;
+        &:first-child { font-size: 1.7em; }
+        font-size: 1.1em;
+        figure {
+          //border: 2px dashed;
+          @pad: 1em;
+          padding: @pad;
+
+          @c1: @azul-claro;
+          @c2: @ouro-logo;
+          @bg: fade(@c1, 50%);
+
+          color: @azul-logo;
+          background-color: @bg;
+          border-color: @bg;
+
+          .box-shadow( 0 0 .3em @bg );
+          &, & > * {
+            .border-radius(.5em);
+            .transition(all .3s ease-out);
+          }
+
+          position: relative;
+          figcaption {
+            position: absolute;
+            top: @pad; left: @pad; bottom: @pad; right: @pad;
+            padding-top: @pad/2;
+            @start: 1em + @pad/2 + 2em;
+
+            font-style: normal;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: white;
+            text-shadow: 0 0 .1em @c2;
+            .background-image( linear-gradient(to bottom, fade(@c1, 99%) @start, fade(@c1, 0%) @start+4em) );
+          }
+          // & = .destacados a
+          &:hover, &:focus {
+            @c: fade(@c2, 50%);
+            background-color: @c;
+            .box-shadow( 0 0 .2em .3em @c );
+            figcaption {
+              color: transparent;
+              background: transparent;
+              text-shadow: 0 0 1.5em @c2;
+            }
+          }
+        }
+      }
     }
-
-    p { text-align: justify; }
-
-    li p { margin: .5em 0; }
-
-    img { max-width: 100%; height: auto; text-align: center; }
-
-    figure {
-      img { display: block; margin: 0 auto; }
-      figcaption { font-style: italic; text-align: center; }
+    // isto é específico das ponencias
+    article.relatorio > h2 { text-align: center; }
+    figure.person {
+      margin: 1em 0;
+      img {
+        margin: 0 auto;
+        max-height: 8em;
+        .border-radius(~'50%');
+        .box-shadow( 0 0 10px @gris-shadow );
+      }
+      figcaption{
+        > * { margin: .35em 0; }
+        h3 { margin-top: 0; }
+        h4, h5 { font-weight: normal; }
+      }
     }
+  } // & = #content section
+}
+
+footer {
+  padding: .5em;
+  background-color: fade(lighten(desaturate(@azul-claro, 25%), 17%), 60%);
+  border-top: .2em solid @azul-claro;
+  address {
+    .clearfix();
+    max-width: 28em;
+    margin: 0 auto;
+    * {
+      float: left;
+      margin: .3em;
+    }
+    i { clear: left; }
   }
 }
 

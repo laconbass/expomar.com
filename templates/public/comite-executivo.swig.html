@@ -1,5 +1,8 @@
-<h1>{{ t('Comité Executivo') }}</h1>
+{% extends 'article.swig.html' %}
+{%- block article -%}
+<h1>{{ view.title }}</h1>
 
-<p>{{ t( meta.desc ) }}:</p>
+<p>{{t('Persoas que integran o Comité Executivo da')}} {{t(view.data.descPattern, view.data)}}:</p>
 
 {% include "comite.swig.html" %}
+{%- endblock article -%}

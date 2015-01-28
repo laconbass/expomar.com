@@ -1,3 +1,5 @@
-node_modules
+node_modules/*
+!node_modules/iai.js
 npm-debug.log
 REDIS_LOCAL.js
+data/testing.db

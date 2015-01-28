@@ -1,20 +1,20 @@
-var iai = require( '../../../iai' )
-  , project = iai.project
-  , read = project.require( 'backend/operation/read' )
+var read = require( './read' )
   , f = require( 'util' ).format
   , url = require( '../utils' ).url
   , map = require( 'async' ).map
+  , production = process.env.NODE_ENV === 'production'
+  , resolve = require('path').resolve
 ;
 
 var path = {
   talk: {
-    data: "data/%s/xornadas/ponentes.json",
+    data: "static/files/%s/ponentes.json",
     static: "files/%s/ponencias-xornadas-tecnicas"
   }
 };
 
 path.talk.url = url( 'static', f('/%s/%s', path.talk.static) );
-path.talk.file = iai.project.resolve( 'static', path.talk.static, '%s' );
+path.talk.file = resolve( process.cwd(), 'static', path.talk.static, '%s' );
 
 var fields = {
   url: [ "photo_filename", "slideshow_filename" ],
@@ -23,8 +23,8 @@ var fields = {
 
 exports.getPonencias = function( year, callback ){
   try {
-    var dry = project.resolve( f(path.talk.data, year) );
-    if( iai.production ){
+    var dry = resolve( process.cwd(), f(path.talk.data, year) );
+    if( !production ){
       delete require.cache[ dry ];
     }
     var data = require( dry );
