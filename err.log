@@ -1,0 +1,103 @@
+
+Wed, 16 Jul 2014 15:27:58 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Wed, 16 Jul 2014 15:30:23 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Wed, 16 Jul 2014 15:32:12 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Wed, 16 Jul 2014 23:55:52 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+TypeError: Cannot call method 'getFileName' of undefined
+    at callSiteLocation (/home/expomar.com/node_modules/express/node_modules/depd/index.js:221:23)
+    at Function.log (/home/expomar.com/node_modules/express/node_modules/depd/index.js:160:16)
+    at IncomingMessage.eval (eval at wrapfunction (/home/expomar.com/node_modules/express/node_modules/depd/index.js:344:5), <anonymous>:2:5)
+    at /home/expomar.com/backend/app-main.js:51:16
+    at ServerResponse.logRequest (/home/expomar.com/node_modules/morgan/index.js:93:18)
+    at ServerResponse.emit (events.js:117:20)
+    at ServerResponse.OutgoingMessage._finish (http.js:1016:8)
+    at ServerResponse.OutgoingMessage.end (http.js:999:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:181:8)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.header (/home/expomar.com/node_modules/express/lib/response.js:595:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:143:12)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+    at compileFile (/home/expomar.com/node_modules/swig/lib/swig.js:651:9)
+    at View.renderFile [as engine] (/home/expomar.com/node_modules/swig/lib/swig.js:532:12)
+    at View.render (/home/expomar.com/node_modules/express/lib/view.js:76:8)
+    at Function.app.render (/home/expomar.com/node_modules/express/lib/application.js:507:10)
+    at ServerResponse.res.render (/home/expomar.com/node_modules/express/lib/response.js:831:7)
+Mon, 25 Aug 2014 03:20:16 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+TypeError: Cannot call method 'getFileName' of undefined
+    at callSiteLocation (/home/expomar.com/node_modules/express/node_modules/depd/index.js:221:23)
+    at Function.log (/home/expomar.com/node_modules/express/node_modules/depd/index.js:160:16)
+    at IncomingMessage.eval (eval at wrapfunction (/home/expomar.com/node_modules/express/node_modules/depd/index.js:344:5), <anonymous>:2:5)
+    at /home/expomar.com/backend/app-main.js:51:16
+    at ServerResponse.logRequest (/home/expomar.com/node_modules/morgan/index.js:93:18)
+    at ServerResponse.emit (events.js:117:20)
+    at ServerResponse.OutgoingMessage._finish (http.js:1016:8)
+    at ServerResponse.OutgoingMessage.end (http.js:999:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:181:8)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.header (/home/expomar.com/node_modules/express/lib/response.js:595:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:143:12)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+    at compileFile (/home/expomar.com/node_modules/swig/lib/swig.js:651:9)
+    at View.renderFile [as engine] (/home/expomar.com/node_modules/swig/lib/swig.js:532:12)
+    at View.render (/home/expomar.com/node_modules/express/lib/view.js:76:8)
+    at Function.app.render (/home/expomar.com/node_modules/express/lib/application.js:507:10)
+    at ServerResponse.res.render (/home/expomar.com/node_modules/express/lib/response.js:831:7)
+Mon, 06 Oct 2014 14:06:07 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+TypeError: Cannot call method 'getFileName' of undefined
+    at callSiteLocation (/home/expomar.com/node_modules/express/node_modules/depd/index.js:221:23)
+    at Function.log (/home/expomar.com/node_modules/express/node_modules/depd/index.js:160:16)
+    at IncomingMessage.eval (eval at wrapfunction (/home/expomar.com/node_modules/express/node_modules/depd/index.js:344:5), <anonymous>:2:5)
+    at /home/expomar.com/backend/app-main.js:51:16
+    at ServerResponse.logRequest (/home/expomar.com/node_modules/morgan/index.js:93:18)
+    at ServerResponse.emit (events.js:117:20)
+    at ServerResponse.OutgoingMessage._finish (http.js:1016:8)
+    at ServerResponse.OutgoingMessage.end (http.js:999:10)
+    at ServerResponse.redirect (/home/expomar.com/node_modules/express/lib/response.js:773:8)
+    at redirect (/home/expomar.com/backend/app-public.js:46:9)
+    at Layer.handle [as handle_request] (/home/expomar.com/node_modules/express/lib/router/layer.js:76:5)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.header (/home/expomar.com/node_modules/express/lib/response.js:595:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:143:12)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+    at compileFile (/home/expomar.com/node_modules/swig/lib/swig.js:651:9)
+    at View.renderFile [as engine] (/home/expomar.com/node_modules/swig/lib/swig.js:532:12)
+    at View.render (/home/expomar.com/node_modules/express/lib/view.js:76:8)
+    at Function.app.render (/home/expomar.com/node_modules/express/lib/application.js:507:10)
+    at ServerResponse.res.render (/home/expomar.com/node_modules/express/lib/response.js:831:7)
+Wed, 12 Nov 2014 14:47:00 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Tue, 25 Nov 2014 22:59:42 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Wed, 26 Nov 2014 11:51:13 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+Wed, 10 Dec 2014 09:10:07 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
+TypeError: Cannot call method 'getFileName' of undefined
+    at callSiteLocation (/home/expomar.com/node_modules/express/node_modules/depd/index.js:221:23)
+    at Function.log (/home/expomar.com/node_modules/express/node_modules/depd/index.js:160:16)
+    at IncomingMessage.eval (eval at wrapfunction (/home/expomar.com/node_modules/express/node_modules/depd/index.js:344:5), <anonymous>:2:5)
+    at /home/expomar.com/backend/app-main.js:51:16
+    at ServerResponse.logRequest (/home/expomar.com/node_modules/morgan/index.js:93:18)
+    at ServerResponse.emit (events.js:117:20)
+    at ServerResponse.OutgoingMessage._finish (http.js:1016:8)
+    at ServerResponse.OutgoingMessage.end (http.js:999:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:181:8)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (http.js:689:11)
+    at ServerResponse.header (/home/expomar.com/node_modules/express/lib/response.js:595:10)
+    at ServerResponse.send (/home/expomar.com/node_modules/express/lib/response.js:143:12)
+    at fn (/home/expomar.com/node_modules/express/lib/response.js:827:10)
+    at /home/expomar.com/node_modules/swig/lib/swig.js:547:9
+    at compileFile (/home/expomar.com/node_modules/swig/lib/swig.js:651:9)
+    at View.renderFile [as engine] (/home/expomar.com/node_modules/swig/lib/swig.js:532:12)
+    at View.render (/home/expomar.com/node_modules/express/lib/view.js:76:8)
+    at Function.app.render (/home/expomar.com/node_modules/express/lib/application.js:507:10)
+    at ServerResponse.res.render (/home/expomar.com/node_modules/express/lib/response.js:831:7)
+Wed, 14 Jan 2015 23:28:25 GMT express deprecated req.host: Use req.hostname instead at backend/app-main.js:51:16
