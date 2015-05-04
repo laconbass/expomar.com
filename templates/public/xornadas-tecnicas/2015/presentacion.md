@@ -18,5 +18,8 @@ sector, entendendo a vital importancia do diálogo entre ambos axentes para
 intercambiar coñecementos, experiencias e impresións ao respecto da
 constante evolución do sector pesqueiro.
 
+<nav class="buttons">
+  [Ver o programa completo](/xornadas-tecnicas/2015/programa)
+</nav>
 
 [XVI edición da Feira Monográfica Náutico-Pesqueira Expomar 2015]: /feira-expomar/2015

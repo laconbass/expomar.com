@@ -2,7 +2,7 @@
 var production = exports.production = process.env.NODE_ENV === 'production';
 
 exports.mode = mode = 'http';
-exports.domain = production? 'expomar.com' : 'expomar.loc';
+exports.domain = production? 'expomar.com' : 'expomar.lan';
 exports.port = production?  61337 : 3000;
 
 if( production && !process.env.EXPOMAR_SECRET ){
