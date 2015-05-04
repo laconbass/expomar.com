@@ -31,4 +31,5 @@ gran número de profesionales del sector marino.
 
 <nav class="buttons">
     [Documentación entidades expositoras](./documentacion)
+    [Programa de actividades](./programa)
 </nav>

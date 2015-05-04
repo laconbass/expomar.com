@@ -29,4 +29,5 @@ a un gran número de profesionais do sector marítimo.
 
 <nav class="buttons">
     [Documentación entidades expositoras](./documentacion)
+    [Programa de actividades](./programa)
 </nav>
