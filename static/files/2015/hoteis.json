@@ -33,7 +33,6 @@
       "name": "Hotel Sargo",
       "postal": "Rosalía de Castro, 7",
       "phone": "+34982581079",
-      "phone": "98257 50 80",
       "email": "reservas@hotelsargo.com",
       "web": "http://www.hotelsargo.com"
     },
@@ -45,17 +44,17 @@
       "stars": 2
     },
     {
+      "name": "A Casa do Porto",
+      "postal": "Rúa do Hórreo, 10",
+      "phone": "+34666727750",
+      "email": "info@acasadoporto.com",
+      "web": "www.acasadoporto.com"
+    },
+    {
       "name": "Hotel Canabal",
       "postal": "Pascual Veiga, 19",
       "phone": "+34982585960",
       "rooms": 40,
-      "stars": 1
-    },
-    {
-      "name": "Hostal Mesón A Pedra",
-      "postal": "Rúa da Lamestra, s/n",
-      "phone": "+34982585357",
-      "rooms": 12,
       "stars": 1
     },
     {
@@ -64,6 +63,13 @@
       "phone": "+34982585730",
       "rooms": 15,
       "stars": "C.H."
+    },
+    {
+      "name": "Hostal Mesón A Pedra",
+      "postal": "Rúa da Lamestra, s/n",
+      "phone": "+34982585357",
+      "rooms": 12,
+      "stars": 1
     },
     {
       "name": "Hotel Galatea",
@@ -217,6 +223,11 @@
     }
   ],
   "Concello de Foz": [
+    {
+      "name": "El Rincón de Anita",
+      "postal": "Calle A Fiallega, nº 5 - Marzán (Foz)",
+      "phones": [ "+34982140159", "+34629220967" ]
+    },
     {
       "name": "Hostal O Norte",
       "postal": "Avda Viveiro, 1, 49",
