@@ -1,0 +1,515 @@
+[
+    {
+        "stand": "S-1-2",
+        "entity": "INSTITUTO SOCIAL DE LA MARINA",
+        "address": "Ronda Músico Xosé Castiñeira, 10 27002 Lugo",
+        "phone": "982-225010 / 982-223450",
+        "email": "lugo.dirprov.ism@seg-social.es",
+        "fax": "982-223170",
+        "web": ""
+    },
+    {
+        "stand": "S-3-4",
+        "entity": "CONCELLO DE BURELA",
+        "address": "Eijo Garay, 20 27880 Burela",
+        "phone": "982-586000",
+        "email": "burela@burela.org",
+        "fax": "982-585945",
+        "web": "http://www.burela.org"
+    },
+    {
+        "stand": "S-5-6-7",
+        "entity": "ELECTRÓNICA EUTIMIO S.L",
+        "address": "9º Transversal Solanas 16 A Guarda 36780 Pontevedra",
+        "phone": "986-613868",
+        "email": "eutim1@eesl.es",
+        "fax": "986-613555",
+        "web": ""
+    },
+    {
+        "stand": "S-8-9",
+        "entity": "PINTURAS HEMPEL, S.A.U ",
+        "address": "Ctra. De Sentimenat nº 108 Polinya 08213 Barcelona",
+        "phone": "937-130000",
+        "email": "general@hempel.es",
+        "fax": "937-130368",
+        "web": "http://www.hempel.es"
+    },
+    {
+        "stand": "S-10-11",
+        "entity": "MURIMAR SEGUROS",
+        "address": "Orense, 58-6ª planta 28020 Madrid",
+        "phone": "915-971835",
+        "email": "secretaria@murimar.com",
+        "fax": "91-597-1813",
+        "web": "http://www.murimar.com"
+    },
+    {
+        "stand": "S-12-13",
+        "entity": "IBERCISA",
+        "address": "Molinos 25 36213 Vigo",
+        "phone": "986-213900",
+        "email": "ibercisa@ibercisa.es",
+        "fax": "986-213900",
+        "web": "http://www.ibercisa.es"
+    },
+    {
+        "stand": "S-14-15",
+        "entity": "ELECTRONICA RÍAS BAJAS - NAVICO",
+        "address": "CL Estrada, nº 19 ( MARIN ) 36900 Pontevedra",
+        "phone": "986-838124",
+        "email": "erb@erbsl.com",
+        "fax": "986-838142",
+        "web": "http://www.erbsl.com"
+    },
+    {
+        "stand": "S-16",
+        "entity": "TRANSDIESEL, S.L",
+        "address": "C/COPÉRNICO 26 28823 COSLADA",
+        "phone": "916737012",
+        "email": "myt@transdiesel.es",
+        "fax": "91-6737412",
+        "web": "http://www.transdiesel.es"
+    },
+    {
+        "stand": "S-17-18",
+        "entity": "VANGUARD MARINE LDA",
+        "address": "ZONA IND Nº2 CAMPOS VILANOVA DE CERVEIRA",
+        "phone": "003351 251 709 144",
+        "email": "jl.rivera@vanguardmarine.com",
+        "fax": "",
+        "web": "http://vanguardmarine.com"
+    },
+    {
+        "stand": "S-19-20-21",
+        "entity": "TALLERES LUIS PIÑEIRO S.L",
+        "address": "C/ Agañan 151 Boiro 15938 La Coruña",
+        "phone": "981-847660",
+        "email": "info@talleresluispineiro.com",
+        "fax": "981846391",
+        "web": "http://www.talleresluispineiro.com"
+    },
+    {
+        "stand": "S-22-23",
+        "entity": "CLIMAFRIO (REFRIGERACIÓN DE RIVEIRA, S.L.)",
+        "address": "Rua Dean Pequeño, nº 113 15968 A Coruña",
+        "phone": "981-872707",
+        "email": "comercial@climafrio.net",
+        "fax": "981-876417",
+        "web": "http://www.climafrio.net"
+    },
+    {
+        "stand": "S-24",
+        "entity": "SINAVAL-EUROFISHING ELITE",
+        "address": "Ronda de Azkue, 1 Barakaldo 48902 ",
+        "phone": "94-404-0000",
+        "email": "sinaval@bec.eu",
+        "fax": "94-404-0001",
+        "web": "http://www.sinaval.eu"
+    },
+    {
+        "stand": "S-25",
+        "entity": "INDUSTRIAS PESQUERAS",
+        "address": "Policarpo sanz, 22-3º Derecha",
+        "phone": "986-447075",
+        "email": "info@industriaspesqueras.com",
+        "fax": "986-430625",
+        "web": "http://www.industriaspesqueras.com"
+    },
+    {
+        "stand": "S-26-27",
+        "entity": "REPSOL COMERCIAL DE PRODUCTOS PETROLÍFEROS, S.A",
+        "address": "Calle Méndez Álvaro, 44 28045 Madrid",
+        "phone": "91-7538100 / 91-7538000",
+        "email": "",
+        "fax": "91-3142821/91-3489494",
+        "web": "http://repsol-ypf.com"
+    },
+    {
+        "stand": "S-28",
+        "entity": "GRUPO MECÁNICO LÍQUIDO S.L (ADERCO)",
+        "address": "C/AUSTRIA Nº8, POL.INDU LOS CHOPOS",
+        "phone": "952 337 109",
+        "email": "aderco@combustiblesconaderco.com",
+        "fax": "",
+        "web": "http://www.mecanico-liquido.com"
+    },
+    {
+        "stand": "S-29",
+        "entity": "MARINE FENDERING SYSTEMS S.L",
+        "address": "C/ CAN VICTORIANO 11 ARENYS DE MUNT 08358 BARCELONA",
+        "phone": "937-939 042",
+        "email": "info@mfs-tecnogroup.com",
+        "fax": "",
+        "web": "http://www.mfs-tecnogroup.com"
+    },
+    {
+        "stand": "S-30-31",
+        "entity": "ACASTIMAR S.L",
+        "address": "Pol.Industrial. Belianes- c/ Ferreries, 21-23 43850 Cambrils Tarragona",
+        "phone": "977-362118",
+        "email": "acastimar@acastimar.com",
+        "fax": "977-362687",
+        "web": "http://www.acastimar.com"
+    },
+    {
+        "stand": "S-32-33-34",
+        "entity": "MARPORT SPAIN, S.L",
+        "address": "C/CHANO PIÑEIRO, 3-5 36208 VIGO",
+        "phone": "986-117310",
+        "email": "mps-admin@marport.com",
+        "fax": "986-117315",
+        "web": "http://www.marport.com"
+    },
+    {
+        "stand": "S-35-36-37-38",
+        "entity": "TECNAV S.L",
+        "address": "C/Curros Enríquez, 12 27880 Burela",
+        "phone": "982-581031",
+        "email": "griveira@tecnav.es",
+        "fax": "982-581312",
+        "web": ""
+    },
+    {
+        "stand": "S-35-36-37-38",
+        "entity": "FURUNO ESPAÑA S.A",
+        "address": "Francisco Remiro 2-B 28028 Madrid",
+        "phone": "91-7259088",
+        "email": "",
+        "fax": "91-7259897",
+        "web": "http://www.furuno.es"
+    },
+    {
+        "stand": "S-39-40",
+        "entity": "SATLINK, S.L",
+        "address": "C/ Julian Estevez, 20 Bajo 36207 Vigo",
+        "phone": "986-443765",
+        "email": "galicia@satlink.es",
+        "fax": "986-443766",
+        "web": "http://www.satlink.es"
+    },
+    {
+        "stand": "S-41-42",
+        "entity": "GRUPO KAUDAL EUROPA",
+        "address": "AVDA. LAS AMÉRICAS Nº4 NAVE A08",
+        "phone": "910103053",
+        "email": "manuelmartin@grupokaudal.com",
+        "fax": "",
+        "web": "http://www.grupokaudal.com"
+    },
+    {
+        "stand": "S-43-44",
+        "entity": "RENOLD HI-TEC COUPLINGS, S.A.U",
+        "address": "Antoni Gaudi, 21 08850 Gavá Barcelona",
+        "phone": "93-6380558",
+        "email": "pilarpuig@renold-hitec.com",
+        "fax": "93-6380737",
+        "web": "http://www.renold.com"
+    },
+    {
+        "stand": "S-45-46",
+        "entity": "SIMRAD SPAIN S.L.U",
+        "address": "PDA. TORRES Nº 38 NAVE 8 03570 Alicante Villajoyosa",
+        "phone": "966-810149",
+        "email": "simrad.spain@simrad.com",
+        "fax": "96-6852304",
+        "web": "http://www.simrad.com"
+    },
+    {
+        "stand": "S-47",
+        "entity": "MAPFRE SEGUROS DE EMPRESAS S.A",
+        "address": "Crta de Pozuelo, 52 28222 Majadahonda Madrid",
+        "phone": "902-365242",
+        "email": "",
+        "fax": "91-581-5318",
+        "web": ""
+    },
+    {
+        "stand": "S-48-49-50",
+        "entity": "PORTO DA CORUÑA",
+        "address": "Avenida de la Marina, 3 15001 A Coruña",
+        "phone": "981-219621",
+        "email": "",
+        "fax": "981-219607",
+        "web": "http://www.puertocoruna.com"
+    },
+    {
+        "stand": "S-48-49-50",
+        "entity": "AUTORIDAD PORTUARIA DE A CORUÑA",
+        "address": "Avenida de la Marina, 3 15001 A Coruña",
+        "phone": "981-219621",
+        "email": "",
+        "fax": "981-219607",
+        "web": ""
+    },
+    {
+        "stand": "S-51-52-53-54-55",
+        "entity": "CLÚSTER DO MAR DE CABO VERDE",
+        "address": "MINDELO SAO VINCENTE",
+        "phone": "+238 232 84 95",
+        "email": "gil.costa@becv.org",
+        "fax": "",
+        "web": "http://www.becv.org"
+    },
+    {
+        "stand": "S-56-57",
+        "entity": "INDUSTRISA FERRI S.A",
+        "address": "A PASAXE ,81 VINCIOS- GONDOMAR 36316 PONTEVEDRA",
+        "phone": "986-468 201",
+        "email": "sales@ferri-sa.es",
+        "fax": "986 468 011",
+        "web": "http://www.ferri-sa.es"
+    },
+    {
+        "stand": "S-58-59-60",
+        "entity": "ARMADORES DE BURELA S.A",
+        "address": "Puerto Pesquero s/n Edificio Cofradia 27880 Burela",
+        "phone": "982581008",
+        "email": "absa@absaburela.com",
+        "fax": "982581624",
+        "web": "http://www.absaburela.com"
+    },
+    {
+        "stand": "S-61-62-63",
+        "entity": "Ministerio de Agricultura, Alimentación y Medio Ambiente",
+        "address": "Pª Infanta Isabel 1, Madrid 28014, Dpcho B41 Madrid",
+        "phone": "91-3473708",
+        "email": "",
+        "fax": "91-3475724",
+        "web": "http://www.magrama.gob.es"
+    },
+    {
+        "stand": "S-64",
+        "entity": "FEDERACIÓN PROVINCIAL COFRADÍAS PESCADORES DE LUGO",
+        "address": "Puerto Pesquero s/n Edificio Cofradia 27880 Burela ",
+        "phone": "982-575185/982-585756",
+        "email": "info@cofradiaslugo.com",
+        "fax": "982-575185/982-585144",
+        "web": "http://www.cofradiaslugo.com"
+    },
+    {
+        "stand": "S-65",
+        "entity": "OPAGA - ORGANIZACIÓN PRODUCTORES ARTESANAIS DE GALICIA",
+        "address": "RÚA Palmeiras, 84-A1- POLÍGONO NOVO MILLADOIRO 15895 AMES",
+        "phone": "981-941775",
+        "email": "info@opaga.es",
+        "fax": "981-941756",
+        "web": "htttp://www.opaga.es"
+    },
+    {
+        "stand": "S-66-67-68-69-70",
+        "entity": "XUNTA DE GALICIA- CONSELLERÍA DO MAR",
+        "address": "Edificio Administrativo San Caetano s/n 15771 Santiago de Compostela",
+        "phone": "981-544001",
+        "email": "",
+        "fax": "981-545006",
+        "web": ""
+    },
+    {
+        "stand": "S-66-67-68-69-70",
+        "entity": "CONSERVAS ARTESANAS CURRICAN S.L",
+        "address": "P.I CAMBA 27877 XOVE",
+        "phone": "982-59 64 84",
+        "email": "currican@conservascurrican.es",
+        "fax": "",
+        "web": "http://www.conservascurrican.es"
+    },
+    {
+        "stand": "S-71",
+        "entity": "EROMAR S.L",
+        "address": "ESCULTOR LLIMONA 11 ALELLA 08328 BARCELONA",
+        "phone": "935556004",
+        "email": "info@eromar.es",
+        "fax": "935 556 004",
+        "web": "http://www.eromar.es"
+    },
+    {
+        "stand": "S-72",
+        "entity": "HISPANOVA MARINE CANTABRIA, S.A",
+        "address": "C/BERNARDO LAVIN Nº31 EL ASTILLERO 39610 CANTABRIA",
+        "phone": "942558958",
+        "email": "hispanova@hispanova.es",
+        "fax": "942-541511",
+        "web": "http://www.hispanova.es"
+    },
+    {
+        "stand": "S-73-74-75",
+        "entity": "GALMAN LUGO, S.L",
+        "address": "AVDA.BENIGNO RIVERA, Nº52 POLÍG. INDUST. O CEAO",
+        "phone": "982305916",
+        "email": "juancarlos@galmanlugo.es",
+        "fax": "982305933",
+        "web": "http://www.galmanlugo.es"
+    },
+    {
+        "stand": "S-76-77-78",
+        "entity": "VOLVO PENTA- ANDRÉS VIZOSO S.A",
+        "address": "AVDA. DA MARIÑA, 95 27880 BURELA LUGO",
+        "phone": "982 58 5953",
+        "email": "info@vizoso.net",
+        "fax": "982 580512",
+        "web": "http://www.vizoso.net"
+    },
+    {
+        "stand": "S-79-80",
+        "entity": "SKANDIAVERKEN S.L",
+        "address": "PO.IND.TORRELANAGOITI. PARCELA P7M.PAB. 1 Y 2 ZAMUDIO 48170 BIZKAIA",
+        "phone": "94 452 0816",
+        "email": "skv@skvbermeo.com",
+        "fax": "94 452 0510",
+        "web": "http://www.groupskv.com"
+    },
+    {
+        "stand": "S-81-82",
+        "entity": "ABSIDE GRUPO Y GLOBAL NOSTRUM",
+        "address": "AVDA ARCADIO PARDIÑAS, 81, BAJO",
+        "phone": "665124208",
+        "email": "secretarioexposito@gmail.com",
+        "fax": "982 580736",
+        "web": "http://www.globalnostrum.com"
+    },
+    {
+        "stand": "S-83-84-85",
+        "entity": "MARINE HEAVY INDUSTRIEL EQUIPMENT S.L",
+        "address": "C/VILLANUEVA 28 2ºD 28001 MADRID",
+        "phone": "916845654",
+        "email": "vgs@mhiesl.com",
+        "fax": "",
+        "web": ""
+    },
+    {
+        "stand": "S-86-87-88-89-90-91",
+        "entity": "ASTILLEROS ARMÓN BURELA S.A",
+        "address": "AVENIDA DE LA MARINA S/N 27880 BURELA",
+        "phone": "982 585453",
+        "email": "burela@astillerosarmon.com",
+        "fax": "982 585822",
+        "web": "http://www.astillerosarmon.com"
+    },
+    {
+        "stand": "S-92-93-94",
+        "entity": "MOTEURS BAUDOUIN",
+        "address": "TECHNOPARC DU BREGADAN CASSIS 13260 FRANCE",
+        "phone": "+(33)488688500",
+        "email": "jean.garcia@moteurs-baudouin.fr",
+        "fax": "+33 488688501",
+        "web": "http://www.moteurs-baudouin.com"
+    },
+    {
+        "stand": "S-95-96",
+        "entity": "PESCADOS RUBEN S.L",
+        "address": "FONDO NOIS Nº 1 27893 FOZ LUGO",
+        "phone": "982-136733",
+        "email": "pescadosruben@pescadosruben.com",
+        "fax": "982-136659",
+        "web": "http://www.pescadosruben.com"
+    },
+    {
+        "stand": "S-97",
+        "entity": "NOTUS MARÍTIMA, S.L",
+        "address": "DF.D-10 Consorcio Zona Franca Vigo- Muelle Portuario de",
+        "phone": "986-248518",
+        "email": "jose@notus.ca",
+        "fax": "986-248518",
+        "web": "http://www.notusmaritima.com"
+    },
+    {
+        "stand": "S-98-99-100",
+        "entity": "NORISPAN, S.L",
+        "address": "C/COVADONGA, 3 BAJO 36208 VIGO PONTEVEDRA",
+        "phone": "986213345",
+        "email": "norispan@norispan.com",
+        "fax": "986214902",
+        "web": "http://www.norispan.com"
+    },
+    {
+        "stand": "S-101-102-103",
+        "entity": "SOLÉ S.A",
+        "address": "Carretera, C-2436 km2 Martorell Barcelona",
+        "phone": "93-7751400",
+        "email": "info@solediesel.com",
+        "fax": "93-7753013",
+        "web": "http://www.solediesel.com"
+    },
+    {
+        "stand": "S-104",
+        "entity": "NAVALIA (MUESTRALO, S.L)",
+        "address": "Calle Príncipe 24, 4º 36202 Vigo",
+        "phone": "986-220138",
+        "email": "",
+        "fax": "986-229160",
+        "web": "http://navalia.es"
+    },
+    {
+        "stand": "S-105",
+        "entity": "REVISTA PESCA INTERNACIONAL",
+        "address": "Ramiro Gordejuela. Puerto Pesquero s/n 36202 Vigo",
+        "phone": "986-433844",
+        "email": "barbara@arvi.org",
+        "fax": "986-439218",
+        "web": "http://arvi.org"
+    },
+    {
+        "stand": "S-106-107",
+        "entity": "ELECTRÓNICA JEBO S.L",
+        "address": "Emilio Pardo Bazán Nº 30 Entlo",
+        "phone": "982-581804",
+        "email": "jebovieiro@galicia.com",
+        "fax": "982-581804",
+        "web": ""
+    },
+    {
+        "stand": "S-106-107",
+        "entity": "EQUIPOS NAVALES INDUSTRIALES, S.A",
+        "address": "CALLE MERIDIANO, 22 TORREJON DE ARDOZ 28850",
+        "phone": "91-725-4400",
+        "email": "juanl.iglesias@enisa.net",
+        "fax": "917258044",
+        "web": "http://enisa.com"
+    },
+    {
+        "stand": "S-108",
+        "entity": "CADENA COPE",
+        "address": "Ramón González, 28-2º B 27700 Ribadeo",
+        "phone": "982-131207",
+        "email": "adm.ribadeo@cadenacope.net",
+        "fax": "982-128507",
+        "web": "http://www.cope.es"
+    },
+    {
+        "stand": "S-109",
+        "entity": "TPI EDITA S.A.U",
+        "address": "Av. Manoteras, 26-3º 28050 Madrid",
+        "phone": "659563253",
+        "email": "cgomez@grupotpi.es",
+        "fax": "91-339-6096",
+        "web": "http://www.rotacionhoy.es"
+    },
+    {
+        "stand": "S-110",
+        "entity": "MUTUAPESCA",
+        "address": "Claudio Coello 78 1º Izquierdo 28001 Madrid",
+        "phone": "91-5770937",
+        "email": "mp@mutuapesca.es",
+        "fax": "91-577-9039",
+        "web": "http://www.mutuapesca.es"
+    },
+    {
+        "stand": "S-111",
+        "entity": "AON GIL Y CARVAJAL S.A",
+        "address": "C/CANTON PEQUEÑO 13-14 8ª PLANTA",
+        "phone": "981-216013",
+        "email": "",
+        "fax": "",
+        "web": "http://www.aon.com/spain"
+    },
+    {
+        "stand": "S-112",
+        "entity": "COTERENA S.L.U",
+        "address": "MUELLE DE REPARACIONES DE BOUZAS S/N",
+        "phone": "986-238767",
+        "email": "comunicación@coterena.es",
+        "fax": "986-245934",
+        "web": "http://www.coterena.es"
+    }
+]
