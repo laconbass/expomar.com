@@ -43,11 +43,11 @@ _Conselleira do Medio Rural e do Mar  da  Xunta de Galicia_. **(Sen confirmar)**
 
 ## Domingo, 17 de Maio
 
-### Horario da Feira
+**Horario da Feira**
 
 * 10.00h. a 14.00h.
 
-### Actividades
+**Actividades**
 
 * 13.00h.  **Clausura de EXPOMAR 2015**, a cargo do **Sr. D. Francisco Conde López**, 
 _Conselleiro de Economía e Industria  da  Xunta de Galicia_. **(Sen confirmar)**
