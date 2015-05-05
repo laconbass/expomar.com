@@ -3,3 +3,4 @@ node_modules/*
 npm-debug.log
 REDIS_LOCAL.js
 data/testing.db
+conf/google-webapp.json

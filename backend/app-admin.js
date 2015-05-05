@@ -55,6 +55,6 @@ app.route( '/eval' )
     "layout": admin.concat('admin/eval.swig.html')
   }) )
   .post(function( req, res, next ){
-    
+    res.sendStatus(404);
   })
 
