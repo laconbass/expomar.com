@@ -6,6 +6,7 @@ var express = require('express')
   , LocalStrategy = require('passport-local')
   , UserManager = require('./model/user/UserManager')
   , conf = require('../conf/auth')
+  , url = require('url')
 ;
 
 passport.use(new LocalStrategy(function(username, password, done) {
@@ -52,13 +53,29 @@ function auth( opts ){
     .use( passport.session() )
     // ensure every request is authenticated except loginUrl
     .all( '*', function skipIfLoginUrlOrCheckAuth( req, res, next ){
-      if( req.url === opts.loginUrl ) return next();
-      //console.log( 'is authenticated?', req.isAuthenticated() );
+      var URL = url.parse( req.url, true );
+      var isLoginUrl = (URL.pathname === opts.loginUrl);
       if( req.isAuthenticated() ){
         res.locals.user = req.user;
+        // just to avoid accidentaly printing it on templates
+        delete res.locals.user.password;
+        if( isLoginUrl ){
+          return res.redirect( opts.indexUrl );
+        }
         return next();
       }
-      res.redirect( opts.loginUrl );
+      // not authenticated
+      if( isLoginUrl ){
+        if( URL.query && URL.query.next ){
+          res.locals.next_url = URL.query.next;
+        }
+        return next();
+      }
+      var target = opts.loginUrl;
+      if( URL.pathname !== opts.indexUrl ){
+        target += '?next=' + encodeURIComponent(req.originalUrl)
+      }
+      res.redirect( target );
     })
     // intercept POST requests to loginUrl, so user can log in
     .post( opts.loginUrl, function( req, res, next ){
@@ -70,7 +87,7 @@ function auth( opts ){
         }
         req.logIn( user, function( err ){
           if( err ) return next(err);
-          return res.redirect( opts.indexUrl );
+          return res.redirect( req.body.next || opts.indexUrl );
         });
       })(req, res, next);
     })

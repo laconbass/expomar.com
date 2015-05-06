@@ -18,6 +18,7 @@ app
   .use( require('./middleware/messages')() )
   .use( require('./middleware/urlConstructor')( require('./utils').url ) )
   .use( require('./middleware/i18n')( 'gl', [] ) )
+  .use( require('./middleware/breadcumbs')( app ) )
   .use( auth )
 ;
 
@@ -37,16 +38,11 @@ app.all( '/login', Layout({
   "styles": "login.less"
 }) );
 
-app.all( '*', menuTop({
-  "/eval": { text: 'eval' }
-}) );
-
 app.get( '/', Layout({
   "name": "Panel de administración de expomar.com",
   "desc": "Páxina principal da interface de administración",
-  "layout": admin
+  "layout": admin.concat('admin/0-portada.swig.html')
 }) );
-
 
 app.route( '/eval' )
   .get( Layout({
@@ -57,4 +53,44 @@ app.route( '/eval' )
   .post(function( req, res, next ){
     res.sendStatus(404);
   })
+;
+
+var NotFound = Layout({
+  "name": "Page Not Found",
+  "desc": "Page Not Found",
+  "layout": admin.concat( "404.swig.html" ),
+  "styles": "404.less"
+});
+
+var eventos = {
+  "feira": require('../data/anosFeira')
+};
+var event_ids = Object.keys(eventos);
+app.param( 'event_id', function( req, res, next, id ){
+  if( !~event_ids.indexOf(id) ){
+    res.status(404);
+    return NotFound( req, res, next );
+  }
+  res.locals.event_id = id;
+  res.locals.event_anos = eventos[id];
+  next();
+});
+app.param( 'event_ano', function( req, res, next, ano ){
+  if( !~res.locals.event_anos.indexOf(ano) ){
+    res.status(404);
+    return NotFound( req, res, next );
+  }
+  res.locals.event_ano = ano;
+  next();
+});
+app.get( '/:event_id', Layout({
+  "name": "Seleccion ano evento",
+  "desc": "Descricion breve seleccionar ano",
+  "layout": admin.concat('admin/1-evento.swig.html')
+}) );
+app.get( '/:event_id/:event_ano', Layout({
+  "name": "Resumo evento",
+  "desc": "Descricion breve portada evento",
+  "layout": admin.concat('admin/1-evento.swig.html')
+}) );
 

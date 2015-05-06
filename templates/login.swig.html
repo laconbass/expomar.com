@@ -9,7 +9,9 @@
       <input type="password" id="login_password" name="password" placeholder="Contrasinal"/>
     </p>
     <div>
-      <button type="submit" value="Log In">{{ t('Log In') }}</button>
+      <button type="submit" value="login">{{ t('Log In') }}</button>
     </div>
   </fieldset>
+  <!-- button type="submit" value="resetpwd">{{ t('Olvidei o contrasinal') }}</button -->
+  <input type="hidden" name="next" value="{{next_url}}"/>
 </form>
