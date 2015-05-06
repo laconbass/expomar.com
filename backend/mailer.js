@@ -17,13 +17,6 @@ var transporter = nodemailer.createTransport({
   auth: { xoauth2: generator }
 });
 
-exports.defaults = {
-  to: undefined,
-  subject: undefined,
-  text: undefined,
-  html: undefined
-};
-
 exports.send = function( opts, callback ){
   // TODO validate options through schema
   if( ! opts.to ){
